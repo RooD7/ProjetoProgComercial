@@ -1,0 +1,38 @@
+unit Unit_Persistencia;
+
+interface
+
+uses
+  Vcl.Forms, Vcl.Dialogs;
+
+
+Type
+
+ Dados_Empresa = Record
+                  RazaoSocial : String;
+                  NomeFantasia : String;
+                  Endereco : String;
+                  CNPJ : String;
+                  Telefone : String;
+                  Lucro : Integer;
+                 End;
+
+  Procedure Grava_Dados_Empresa(Dados_Atuais:Dados_Empresa);
+  Function Retorna_Dados_Empresa : Dados_Empresa;
+
+implementation
+
+Procedure Grava_Dados_Empresa(Dados_Atuais:Dados_Empresa);
+  Begin
+   // nao deve acessar componentes de tela
+   // a ideia é que seja independente
+   ShowMessage(Dados_Atuais.NomeFantasia);
+  End;
+
+Function Retorna_Dados_Empresa : Dados_Empresa;
+  Begin
+   // nao deve acessar componentes de tela
+   // a ideia é que seja independente
+  End;
+
+end.

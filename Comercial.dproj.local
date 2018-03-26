@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/03/08 07:07:01.000.367,=C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/08 07:44:58.000.072,C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.dfm=E:\Prog_Comercial\Unit_Empresa.dfm</Transaction>
+    <Transaction>2018/03/08 07:44:58.000.072,C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.pas=E:\Prog_Comercial\Unit_Empresa.pas</Transaction>
+    <Transaction>2018/03/08 07:45:07.000.900,C:\Users\alunos\Documents\RAD Studio\Projects\Project1.dproj=E:\Prog_Comercial\Comercial.dproj</Transaction>
+    <Transaction>2018/03/12 13:31:28.000.627,=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 13:32:01.000.850,E:\Prog_Comercial\Unit_Persistencia.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 14:32:48.000.013,=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 14:32:54.000.078,E:\Prog_Comercial\Unit_Utils.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 15:04:52.000.513,=E:\Prog_Comercial\Unit2.pas</Transaction>
+    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit_Principal.pas=E:\Prog_Comercial\Unit2.pas</Transaction>
+    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit_Principal.dfm=E:\Prog_Comercial\Unit2.dfm</Transaction>
+    <Transaction>2018/03/15 07:12:52.000.537,=F:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit1.pas=F:\Prog_Comercial\Unit_Clientes.pas</Transaction>
+    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit1.dfm=F:\Prog_Comercial\Unit_Clientes.dfm</Transaction>
+    <Transaction>2018/03/19 14:02:36.000.671,=F:\Prog_Comercial\Unit_Produtos.pas</Transaction>
+    <Transaction>2018/03/22 07:52:09.000.729,=C:\Users\alunos\Desktop\ButecoAtual\Unit1.pas</Transaction>
+    <Transaction>2018/03/22 07:52:41.000.018,C:\Users\alunos\Desktop\ButecoAtual\Unit1.dfm=C:\Users\alunos\Desktop\ButecoAtual\Unit_DM.dfm</Transaction>
+    <Transaction>2018/03/22 07:52:41.000.018,C:\Users\alunos\Desktop\ButecoAtual\Unit1.pas=C:\Users\alunos\Desktop\ButecoAtual\Unit_DM.pas</Transaction>
+  </Transactions>
+</BorlandProject>

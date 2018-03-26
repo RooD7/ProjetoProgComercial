@@ -1,0 +1,16 @@
+program Comercial;
+
+uses
+  Vcl.Forms,
+  Unit_Empresa in 'Unit_Empresa.pas' {Form1},
+  Unit_Persistencia in 'Unit_Persistencia.pas',
+  Unit_Utils in 'Unit_Utils.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

@@ -1,0 +1,14 @@
+unit Unit_Persistencia;
+
+interface
+
+  Procedure Grava_Dados_Empresa; //public
+
+implementation
+
+Procedure Grava_Dados_Empresa; //
+  Begin
+    //
+  End;
+
+end.

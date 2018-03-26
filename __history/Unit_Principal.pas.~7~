@@ -1,0 +1,50 @@
+unit Unit_Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Unit_Empresa, Vcl.ImgList;
+
+type
+  TfrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastros1: TMenuItem;
+    Empresa1: TMenuItem;
+    N1: TMenuItem;
+    ImageList1: TImageList;
+    procedure Empresa1Click(Sender: TObject);
+    procedure Cadastros1DrawItem(Sender: TObject; ACanvas: TCanvas;
+      ARect: TRect; Selected: Boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmPrincipal.Cadastros1DrawItem(Sender: TObject; ACanvas: TCanvas;
+  ARect: TRect; Selected: Boolean);
+begin
+  if selected then
+    Cadastros1.ImageIndex := 50
+    else     Cadastros1.ImageIndex := 70
+
+end;
+
+procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmEmpresa,frmEmpresa);
+  frmEmpresa.ShowModal;
+  frmEmpresa.Destroy;
+end;
+
+end.
+
+
