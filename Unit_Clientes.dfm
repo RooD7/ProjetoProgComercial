@@ -20,7 +20,7 @@ object frmClientes: TfrmClientes
     Top = 0
     Width = 819
     Height = 455
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -279,6 +279,7 @@ object frmClientes: TfrmClientes
         LabelPosition = lpLeft
         ReadOnly = True
         TabOrder = 1
+        Text = '0'
       end
       object edt_Nome: TLabeledEdit
         Left = 201

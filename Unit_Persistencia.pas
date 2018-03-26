@@ -2,6 +2,8 @@ unit Unit_Persistencia;
 
 interface
 
+uses Unit_DM, System.SysUtils, System.StrUtils, VCL.Dialogs;
+
 Type
 
  Dados_Empresa = Record
@@ -65,6 +67,24 @@ Procedure Grava_Dados_Cliente(Dados_Atuais:Dados_Cliente);
   Begin
    // nao deve acessar componentes de tela
    // a ideia é que seja independente
+    With DM.qryCliente DO
+    begin
+      SQL.Clear;
+      SQL.Add('Insert Into Cliente Values (');
+      SQL.Add(IntToStr(Dados_Atuais.Codigo)+',');
+      SQL.Add(QuotedStr(Dados_Atuais.Nome));
+      SQL.Add(QuotedStr(Dados_Atuais.Endereco));
+      SQL.Add(QuotedStr(Dados_Atuais.CPF));
+      SQL.Add(QuotedStr(Dados_Atuais.Telefone));
+      SQL.Add(QuotedStr(Dados_Atuais.Celular));
+      SQL.Add(QuotedStr(Dados_Atuais.Time));
+      SQL.Add(QuotedStr(Dados_Atuais.Religiao));
+      SQL.Add(IntToStr(Dados_Atuais.Sexo));
+      SQL.Add(')');
+      ShowMessage(SQL.Text);
+      ExecSQL;
+
+    end;
   End;
 
 Function Retorna_Dados_Cliente(Codigo : Integer) : Dados_Cliente;

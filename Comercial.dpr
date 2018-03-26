@@ -8,7 +8,7 @@ uses
   Unit_Principal in 'Unit_Principal.pas' {frmPrincipal},
   Unit_Clientes in 'Unit_Clientes.pas' {frmClientes},
   Unit_Produtos in 'Unit_Produtos.pas' {frmProdutos},
-  Unit_DM in 'Unit_DM.pas' {DataModule1: TDataModule};
+  Unit_DM in 'Unit_DM.pas' {DM: TDataModule};
 
 {$R *.res}
 
@@ -16,6 +16,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TDM, DM);
   Application.Run;
 end.
