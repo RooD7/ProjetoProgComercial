@@ -10,7 +10,6 @@ type
     IBDatabase1: TIBDatabase;
     IBTransaction1: TIBTransaction;
     qryCliente: TIBQuery;
-    qryCommit: TIBQuery;
   private
     { Private declarations }
   public
