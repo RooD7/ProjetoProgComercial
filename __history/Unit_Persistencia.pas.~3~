@@ -48,7 +48,6 @@ Type
   Procedure Grava_Dados_Produto(Dados_Atuais:Dados_Produto);
   Function Retorna_Dados_Produto(Codigo : Integer) : Dados_Produto;
   Function Retorna_Produtos_Cadastrados : Produtos_Cadastrados;
-  Procedure Commit;
 
 implementation
 
@@ -85,7 +84,7 @@ Procedure Grava_Dados_Cliente(Dados_Atuais:Dados_Cliente);
       ShowMessage(SQL.Text);
       ExecSQL;
       Commit;
-      Close;
+
     end;
   End;
 

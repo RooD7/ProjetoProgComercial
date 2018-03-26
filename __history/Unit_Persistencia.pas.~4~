@@ -85,7 +85,7 @@ Procedure Grava_Dados_Cliente(Dados_Atuais:Dados_Cliente);
       ShowMessage(SQL.Text);
       ExecSQL;
       Commit;
-      Close;
+
     end;
   End;
 
