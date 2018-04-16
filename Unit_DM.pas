@@ -3,7 +3,7 @@ unit Unit_DM;
 interface
 
 uses
-  System.SysUtils, System.Classes, Data.DB, IBDatabase, IBCustomDataSet, IBQuery;
+  System.SysUtils, System.Classes, Data.DB, IBCustomDataSet, IBQuery, IBDatabase;
 
 type
   TDM = class(TDataModule)
@@ -11,6 +11,11 @@ type
     IBTransaction1: TIBTransaction;
     qryCliente: TIBQuery;
     qryCommit: TIBQuery;
+    qryAux: TIBQuery;
+    qryEmpresa: TIBQuery;
+    qryProduto: TIBQuery;
+    qryGrupoProd: TIBQuery;
+    qrySubGrupoProd: TIBQuery;
   private
     { Private declarations }
   public

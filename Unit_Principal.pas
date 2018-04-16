@@ -17,9 +17,14 @@ type
     N2: TMenuItem;
     Produtos1: TMenuItem;
     N3: TMenuItem;
+    GruposdeProdutos1: TMenuItem;
+    N4: TMenuItem;
+    SubGrupodeProdutos1: TMenuItem;
     procedure Empresa1Click(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
+    procedure GruposdeProdutos1Click(Sender: TObject);
+    procedure SubGrupodeProdutos1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,7 +38,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit_Clientes, Unit_Produtos;
+uses Unit_Clientes, Unit_Produtos, Unit_GrupoProd, Unit_SubGrupoProd;
 
 procedure TfrmPrincipal.Clientes1Click(Sender: TObject);
 begin
@@ -49,11 +54,25 @@ begin
   frmEmpresa.Destroy;
 end;
 
+procedure TfrmPrincipal.GruposdeProdutos1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmGrupoProd,frmGrupoProd);
+  frmGrupoProd.ShowModal;
+  frmGrupoProd.Destroy;
+end;
+
 procedure TfrmPrincipal.Produtos1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmProdutos,frmProdutos);
   frmProdutos.ShowModal;
   frmProdutos.Destroy;
+end;
+
+procedure TfrmPrincipal.SubGrupodeProdutos1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmSubGrupoProd,frmSubGrupoProd);
+  frmSubGrupoProd.ShowModal;
+  frmSubGrupoProd.Destroy;
 end;
 
 end.

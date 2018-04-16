@@ -1,8 +1,8 @@
-object frmClientes: TfrmClientes
+object frmSubGrupoProd: TfrmSubGrupoProd
   Left = 0
   Top = 0
-  Caption = 'Cadastro/Edi'#231#227'o de dados dos clientes'
-  ClientHeight = 455
+  Caption = 'Cadastro/Edi'#231#227'o de dados dos SubGrupos'
+  ClientHeight = 275
   ClientWidth = 819
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,15 +19,15 @@ object frmClientes: TfrmClientes
     Left = 0
     Top = 0
     Width = 819
-    Height = 455
+    Height = 275
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = 'Clientes cadastrados'
+      Caption = 'SubGrupos cadastrados'
       object lblQtde: TLabel
         Left = 0
-        Top = 328
+        Top = 148
         Width = 811
         Height = 24
         Align = alBottom
@@ -35,24 +35,24 @@ object frmClientes: TfrmClientes
         ParentColor = False
         ExplicitWidth = 6
       end
-      object sgdClientes: TStringGrid
+      object sgdSubGrupoProd: TStringGrid
         Left = 41
         Top = 0
         Width = 770
-        Height = 328
+        Height = 148
         Align = alClient
-        ColCount = 9
+        ColCount = 3
         FixedCols = 0
         RowCount = 2
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
         PopupMenu = PopupMenu1
         TabOrder = 0
-        OnDblClick = sgdClientesDblClick
-        OnSelectCell = sgdClientesSelectCell
+        OnDblClick = sgdSubGrupoProdDblClick
+        OnSelectCell = sgdSubGrupoProdSelectCell
       end
       object Panel1: TPanel
         Left = 0
-        Top = 352
+        Top = 172
         Width = 811
         Height = 64
         Align = alBottom
@@ -84,10 +84,8 @@ object frmClientes: TfrmClientes
           OnChange = cbxCamposChange
           Items.Strings = (
             'C'#243'digo'
-            'Nome'
-            'Endere'#231'o'
-            'Telefone'
-            'CPF')
+            'Descri'#231#227'o'
+            'Cod. Barras')
         end
         object edt_Pesquisa: TMaskEdit
           Left = 167
@@ -125,12 +123,12 @@ object frmClientes: TfrmClientes
         Left = 0
         Top = 0
         Width = 41
-        Height = 328
+        Height = 148
         Align = alLeft
         TabOrder = 2
         object btnAZ: TBitBtn
-          Left = 1
-          Top = 64
+          Left = 0
+          Top = 6
           Width = 38
           Height = 30
           Caption = 'A..Z'
@@ -139,8 +137,8 @@ object frmClientes: TfrmClientes
           OnClick = btnAZClick
         end
         object btnZA: TBitBtn
-          Left = 1
-          Top = 99
+          Left = 0
+          Top = 41
           Width = 38
           Height = 30
           Caption = 'Z..A'
@@ -148,8 +146,8 @@ object frmClientes: TfrmClientes
           OnClick = btnZAClick
         end
         object btn09: TBitBtn
-          Left = 1
-          Top = 134
+          Left = 0
+          Top = 76
           Width = 38
           Height = 30
           Caption = '0..9'
@@ -157,8 +155,8 @@ object frmClientes: TfrmClientes
           OnClick = btn09Click
         end
         object btn90: TBitBtn
-          Left = 1
-          Top = 169
+          Left = 0
+          Top = 111
           Width = 38
           Height = 30
           Caption = '9..0'
@@ -171,32 +169,16 @@ object frmClientes: TfrmClientes
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
       object Label3: TLabel
-        Left = 158
-        Top = 136
-        Width = 40
+        Left = 138
+        Top = 112
+        Width = 60
         Height = 24
-        Caption = 'CPF:'
-        Enabled = False
-      end
-      object Label4: TLabel
-        Left = 113
-        Top = 174
-        Width = 85
-        Height = 24
-        Caption = 'Telefone:'
-        Enabled = False
-      end
-      object Label5: TLabel
-        Left = 129
-        Top = 211
-        Width = 69
-        Height = 24
-        Caption = 'Celular:'
+        Caption = 'Grupo:'
         Enabled = False
       end
       object Panel2: TPanel
         Left = 0
-        Top = 344
+        Top = 164
         Width = 811
         Height = 72
         Align = alBottom
@@ -336,104 +318,26 @@ object frmClientes: TfrmClientes
         ReadOnly = True
         TabOrder = 1
       end
-      object edt_Nome: TLabeledEdit
+      object edt_Descricao: TLabeledEdit
         Left = 201
-        Top = 56
+        Top = 62
         Width = 497
         Height = 32
-        EditLabel.Width = 59
+        EditLabel.Width = 93
         EditLabel.Height = 24
-        EditLabel.Caption = 'Nome:'
+        EditLabel.Caption = 'Descri'#231#227'o:'
         EditLabel.Layout = tlCenter
         Enabled = False
         LabelPosition = lpLeft
         TabOrder = 2
       end
-      object edt_Endereco: TLabeledEdit
+      object cbxGrupo: TComboBox
         Left = 201
-        Top = 94
+        Top = 109
         Width = 497
         Height = 32
-        EditLabel.Width = 89
-        EditLabel.Height = 24
-        EditLabel.Caption = 'Endere'#231'o:'
-        EditLabel.Layout = tlCenter
         Enabled = False
-        LabelPosition = lpLeft
         TabOrder = 3
-      end
-      object edt_CPF: TMaskEdit
-        Left = 201
-        Top = 132
-        Width = 156
-        Height = 32
-        Enabled = False
-        EditMask = '999.999.999-99'
-        MaxLength = 14
-        TabOrder = 4
-        Text = '   .   .   -  '
-      end
-      object edt_Telefone: TMaskEdit
-        Left = 201
-        Top = 170
-        Width = 156
-        Height = 32
-        Enabled = False
-        EditMask = '(99)9999-9999;1;_'
-        MaxLength = 13
-        TabOrder = 5
-        Text = '(  )    -    '
-      end
-      object edt_Celular: TMaskEdit
-        Left = 201
-        Top = 208
-        Width = 156
-        Height = 32
-        Enabled = False
-        EditMask = '(99)99999-9999;1;_'
-        MaxLength = 14
-        TabOrder = 6
-        Text = '(  )     -    '
-      end
-      object rdg_Sexo: TRadioGroup
-        Left = 371
-        Top = 129
-        Width = 327
-        Height = 107
-        Caption = ' Sexo '
-        Columns = 2
-        Enabled = False
-        Items.Strings = (
-          'Masculino'
-          'Feminino'
-          'Indeterminado')
-        TabOrder = 7
-      end
-      object edt_Time: TLabeledEdit
-        Left = 201
-        Top = 246
-        Width = 497
-        Height = 32
-        EditLabel.Width = 52
-        EditLabel.Height = 24
-        EditLabel.Caption = 'Time:'
-        EditLabel.Layout = tlCenter
-        Enabled = False
-        LabelPosition = lpLeft
-        TabOrder = 8
-      end
-      object edt_Religiao: TLabeledEdit
-        Left = 201
-        Top = 284
-        Width = 497
-        Height = 32
-        EditLabel.Width = 78
-        EditLabel.Height = 24
-        EditLabel.Caption = 'Religi'#227'o:'
-        EditLabel.Layout = tlCenter
-        Enabled = False
-        LabelPosition = lpLeft
-        TabOrder = 9
       end
     end
   end
@@ -442,7 +346,7 @@ object frmClientes: TfrmClientes
     Top = 48
     object Editarcadastro1: TMenuItem
       Caption = 'Editar cadastro'
-      OnClick = sgdClientesDblClick
+      OnClick = sgdSubGrupoProdDblClick
     end
   end
 end

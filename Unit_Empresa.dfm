@@ -148,13 +148,11 @@ object frmEmpresa: TfrmEmpresa
     Top = 0
     Width = 817
     Height = 350
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados da Empresa'
-      ExplicitLeft = 116
-      ExplicitTop = 54
       object Label1: TLabel
         Left = 143
         Top = 184

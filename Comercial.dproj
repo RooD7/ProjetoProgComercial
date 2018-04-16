@@ -70,7 +70,6 @@
 			<DCC_RemoteDebug>true</DCC_RemoteDebug>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-			<DCC_ExeOutput>C:\Projeto\ProjetoProgComercial\</DCC_ExeOutput>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 			<DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -99,13 +98,18 @@
 				<Form>frmClientes</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
+			<DCCReference Include="Unit_DM.pas">
+				<Form>DM</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
 			<DCCReference Include="Unit_Produtos.pas">
 				<Form>frmProdutos</Form>
 			</DCCReference>
-			<DCCReference Include="Unit_DM.pas">
-				<Form>DM</Form>
-				<FormType>dfm</FormType>
-				<DesignClass>TDataModule</DesignClass>
+			<DCCReference Include="Unit_GrupoProd.pas">
+				<Form>frmGrupoProd</Form>
+			</DCCReference>
+			<DCCReference Include="Unit_SubGrupoProd.pas">
+				<Form>frmSubGrupoProd</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

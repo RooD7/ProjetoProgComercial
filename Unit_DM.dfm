@@ -1,32 +1,63 @@
 object DM: TDM
   OldCreateOrder = False
-  Height = 691
-  Width = 773
+  Height = 336
+  Width = 422
   object IBDatabase1: TIBDatabase
     Connected = True
-    DatabaseName = 'C:\Projeto\ProjetoProgComercial\BD_COMERCIAL.FDB'
+    DatabaseName = 'E:\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
     LoginPrompt = False
     DefaultTransaction = IBTransaction1
     ServerType = 'IBServer'
-    Left = 288
-    Top = 144
+    Left = 64
+    Top = 56
   end
   object IBTransaction1: TIBTransaction
-    Active = True
-    Left = 360
-    Top = 144
+    Left = 136
+    Top = 56
   end
   object qryCliente: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 432
-    Top = 144
+    Left = 64
+    Top = 112
   end
   object qryCommit: TIBQuery
-    Left = 488
-    Top = 144
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 136
+    Top = 112
+  end
+  object qryAux: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 200
+    Top = 112
+  end
+  object qryEmpresa: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 64
+    Top = 168
+  end
+  object qryProduto: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 136
+    Top = 176
+  end
+  object qryGrupoProd: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 208
+    Top = 176
+  end
+  object qrySubGrupoProd: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 296
+    Top = 176
   end
 end

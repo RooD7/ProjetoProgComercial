@@ -17,8 +17,8 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 13
   object MainMenu1: TMainMenu
     Images = ImageList1
-    Left = 216
-    Top = 136
+    Left = 16
+    Top = 8
     object Cadastros1: TMenuItem
       Caption = 'Cadastros'
       ImageIndex = 4
@@ -49,13 +49,24 @@ object frmPrincipal: TfrmPrincipal
       object N3: TMenuItem
         Caption = '-'
       end
+      object GruposdeProdutos1: TMenuItem
+        Caption = 'Grupos de Produtos'
+        OnClick = GruposdeProdutos1Click
+      end
+      object N4: TMenuItem
+        Caption = '-'
+      end
+      object SubGrupodeProdutos1: TMenuItem
+        Caption = 'SubGrupo de Produtos'
+        OnClick = SubGrupodeProdutos1Click
+      end
     end
   end
   object ImageList1: TImageList
-    Left = 288
-    Top = 200
+    Left = 16
+    Top = 56
     Bitmap = {
-      494C010144015001200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010144015001300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002005000001002000000000000020
       0500000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

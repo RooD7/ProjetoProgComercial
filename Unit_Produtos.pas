@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.ComCtrls, Unit_Persistencia, StrUtils, Unit_Utils;
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.ComCtrls, Unit_Persistencia, StrUtils, Unit_Utils,
+  Vcl.Menus;
 
 type
   TfrmProdutos = class(TForm)
@@ -26,6 +27,14 @@ type
     btn_Gravar: TBitBtn;
     btn_Sair1: TBitBtn;
     lblQtde: TLabel;
+    Panel3: TPanel;
+    btnAZ: TBitBtn;
+    btnZA: TBitBtn;
+    btn09: TBitBtn;
+    btn90: TBitBtn;
+    PopupMenu1: TPopupMenu;
+    Editarcadastro1: TMenuItem;
+    CheckBox1: TCheckBox;
     edt_Codigo: TLabeledEdit;
     edt_Descricao: TLabeledEdit;
     edt_CodBarras: TLabeledEdit;
@@ -33,12 +42,19 @@ type
     edt_PreVenda: TLabeledEdit;
     edt_EstAtual: TLabeledEdit;
     edt_EstMin: TLabeledEdit;
-    CheckBox1: TCheckBox;
+    cbxGrupo: TComboBox;
+    cbxSubGrupo: TComboBox;
+    Label3: TLabel;
+    Label4: TLabel;
     procedure Popula_Grid;
     Procedure Pinta_Grid;
+    procedure Atualiza_Combo_Grupo(Descricao:String);
+    procedure Atualiza_Combo_SubGrupo(Descricao:String);
     procedure Preenche_Componentes;
     Function Validado : Boolean;
     function Coleta_Dados : Dados_Produto;
+    Procedure Carrega_Grupos_Cadastrados;
+    Procedure Carrega_SubGrupos_Cadastrados(Cod_Grupo:Integer);
     procedure Habilita_Tela(Habilita : Boolean);
     procedure Habilita_Botoes(Quais : String);
     procedure Limpa_Tela;
@@ -48,7 +64,17 @@ type
     procedure btn_CancelarClick(Sender: TObject);
     procedure btn_Sair1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAZClick(Sender: TObject);
+    procedure btnZAClick(Sender: TObject);
+    procedure btn09Click(Sender: TObject);
+    procedure btn90Click(Sender: TObject);
+    procedure sgdProdutosDblClick(Sender: TObject);
+    procedure sgdProdutosSelectCell(Sender: TObject; ACol, ARow: Integer;
+      var CanSelect: Boolean);
+    procedure cbxCamposChange(Sender: TObject);
+    procedure edt_PesquisaChange(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
+    procedure cbxGrupoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +83,8 @@ type
 
 var
   frmProdutos: TfrmProdutos;
+  Linha : Integer;
+  Novo : Boolean;
 
 implementation
 
@@ -86,9 +114,50 @@ procedure TfrmProdutos.Popula_Grid;
   Var
     Produtos_Atuais : Produtos_Cadastrados;
     I : Integer;
+    Campo, Termo : String;
   Begin
+    If Trim(edt_Pesquisa.Text) = ''
+      Then Begin
+             Campo := '';
+             Termo := '';
+           End
+      Else Begin
+             Case cbxCampos.ItemIndex Of
+               0 : Begin
+                     Campo := 'Codigo';
+                   End;
+               1 : Begin
+                     Campo := 'descricao';
+                   End;
+               2 : Begin
+                     Campo := 'codbarras';
+                   End;
+             End;//End do Case
+             Termo := Trim(edt_Pesquisa.Text);
+           End;
     SetLength(Produtos_Atuais,0);
-    Produtos_Atuais := Retorna_Produtos_Cadastrados;
+    if Not(btnAZ.Enabled)
+      then Produtos_Atuais := Retorna_Produtos_Cadastrados(Campo, Termo, 'AZ');
+    if Not(btnZA.Enabled)
+      then Produtos_Atuais := Retorna_Produtos_Cadastrados(Campo, Termo, 'ZA');
+    if Not(btn09.Enabled)
+      then Produtos_Atuais := Retorna_Produtos_Cadastrados(Campo, Termo, '09');
+    if Not(btn90.Enabled)
+      then Produtos_Atuais := Retorna_Produtos_Cadastrados(Campo, Termo, '90');
+    If Length(Produtos_Atuais) >= 1
+      Then sgdProdutos.RowCount := Length(Produtos_Atuais)+1
+      Else Begin
+             sgdProdutos.RowCount := 2;
+             sgdProdutos.FixedRows := 1;
+             sgdProdutos.Cells[0,1] := '';
+             sgdProdutos.Cells[1,1] := '';
+             sgdProdutos.Cells[2,1] := '';
+             sgdProdutos.Cells[3,1] := '';
+             sgdProdutos.Cells[4,1] := '';
+             sgdProdutos.Cells[5,1] := '';
+             sgdProdutos.Cells[6,1] := '';
+           End;
+    lblQtde.Caption := IntToStr(Length(Produtos_Atuais))+ ' Produtos cadastrados';
     for I := 0 to Length(Produtos_Atuais)-1 do
       Begin
 sgdProdutos.Cells[0,I+1] := IntToStr(Produtos_Atuais[I].Codigo);
@@ -101,18 +170,69 @@ sgdProdutos.Cells[6,I+1] := FloatToStr(Produtos_Atuais[I].Estoque_Minimo);
       End;//end do FOR
   End;//end da subrotina
 
+function TfrmProdutos.Coleta_Dados : Dados_Produto;
+  Begin
+Result.Codigo := StrToInt(edt_Codigo.Text);
+Result.Descricao := edt_Descricao.Text;
+Result.Cod_Barras := edt_CodBarras.Text;
+Result.Preco_Custo := StrToFloat(edt_PreCusto.Text);
+Result.Preco_Venda := StrToFloat(edt_PreVenda.Text);
+Result.Estoque_Atual := StrToFloat(edt_EstAtual.Text);
+Result.Estoque_Minimo := StrToFloat(edt_EstMin.Text);
+Result.Cod_Grupo := Retorna_Codigo_Grupo(cbxGrupo.Text);
+Result.Cod_SubGrupo := Retorna_Codigo_SubGrupo(cbxSubGrupo.Text);
+  End;
+
+procedure TfrmProdutos.CheckBox1Click(Sender: TObject);
+begin
+if CheckBox1.Checked
+  then sgdProdutos.ColWidths[3] := 100
+  Else sgdProdutos.ColWidths[3] := -1;
+end;
+
+
+procedure TfrmProdutos.Atualiza_Combo_Grupo(Descricao:String);
+  Var
+    I : Integer;
+  Begin
+    for I := 0 to cbxGrupo.Items.Count do
+      if cbxGrupo.Items[I] = Descricao
+        then Begin
+               cbxGrupo.ItemIndex := I;
+               Break;
+             End;
+  End;
+
+procedure TfrmProdutos.Atualiza_Combo_SubGrupo(Descricao:String);
+  Var
+    I : Integer;
+  Begin
+    for I := 0 to cbxSubGrupo.Items.Count do
+      if cbxSubGrupo.Items[I] = Descricao
+        then Begin
+               cbxSubGrupo.ItemIndex := I;
+               Break;
+             End;
+  End;
+
 procedure TfrmProdutos.Preenche_Componentes;
   Var
     Temp : Dados_Produto;
   Begin
-Temp := Retorna_Dados_Produto(1);
-edt_Codigo.Text := IntToStr(Temp.Codigo);
-edt_Descricao.Text := Temp.Descricao;
-edt_CodBarras.Text := Temp.Cod_Barras;
-edt_PreCusto.Text := FloatToStr(Temp.Preco_Custo);
-edt_PreVenda.Text := FloatToStr(Temp.Preco_Venda);
-edt_EstAtual.Text := FloatToStr(Temp.Estoque_Atual);
-edt_EstMin.Text := FloatToStr(Temp.Estoque_Minimo);
+    Temp := Retorna_Dados_Produto(StrToInt(sgdProdutos.Cells[0,Linha]));
+    edt_Codigo.Text := IntToStr(Temp.Codigo);
+    edt_Descricao.Text := Temp.Descricao;
+    edt_CodBarras.Text := Temp.Cod_Barras;
+    edt_PreCusto.Text := FloatToStr(Temp.Preco_Custo);
+    edt_PreVenda.Text := FloatToStr(Temp.Preco_Venda);
+    edt_EstAtual.Text := FloatToStr(Temp.Estoque_Atual);
+    edt_EstMin.Text := FloatToStr(Temp.Estoque_Minimo);
+    PageControl1.ActivePageIndex := 1;
+    Habilita_Tela(True);
+    Atualiza_Combo_Grupo(Retorna_Dados_GrupoProd(Temp.Cod_Grupo).Descricao);
+    Atualiza_Combo_SubGrupo(Retorna_Dados_SubGrupoProd(Temp.Cod_SubGrupo).Descricao);
+    Habilita_Botoes('01110');
+    Novo := False;
   End;
 
 Function TfrmProdutos.Validado : Boolean;
@@ -181,22 +301,37 @@ Application.MessageBox('O campo de estoque mínimo é obrigatório',               
     Result := True;
   End;
 
-procedure TfrmProdutos.CheckBox1Click(Sender: TObject);
+procedure TfrmProdutos.sgdProdutosDblClick(Sender: TObject);
 begin
-if CheckBox1.Checked
-  then sgdProdutos.ColWidths[3] := 100
-  Else sgdProdutos.ColWidths[3] := -1;
+  Preenche_Componentes;
 end;
 
-function TfrmProdutos.Coleta_Dados : Dados_Produto;
+procedure TfrmProdutos.sgdProdutosSelectCell(Sender: TObject; ACol,
+  ARow: Integer; var CanSelect: Boolean);
+begin
+  Linha := ARow;
+end;
+
+
+procedure TfrmProdutos.edt_PesquisaChange(Sender: TObject);
+  Const
+    Numeros = ['0'..'9'];
+  Var
+    I : Integer;
   Begin
-Result.Codigo := StrToInt(edt_Codigo.Text);
-Result.Descricao := edt_Descricao.Text;
-Result.Cod_Barras := edt_CodBarras.Text;
-Result.Preco_Custo := StrToFloat(edt_PreCusto.Text);
-Result.Preco_Venda := StrToFloat(edt_PreVenda.Text);
-Result.Estoque_Atual := StrToFloat(edt_EstAtual.Text);
-Result.Estoque_Minimo := StrToFloat(edt_EstMin.Text);
+    //se campo = codigo, verifico se só digitou numeros
+    If cbxCampos.ItemIndex = 0
+      Then Begin
+             for I := 1 to Length(edt_Pesquisa.Text) do
+               Begin
+                 If Not(edt_Pesquisa.Text[I] In Numeros)
+                   Then Begin
+                          Application.MessageBox('Ao pesquisar por código só é permitido digitar números!','Informe apenas números',MB_ICONERROR + MB_OK);
+                          edt_Pesquisa.Clear;
+                        End;
+               End;
+           End;
+    Popula_Grid;
   End;
 
 procedure TfrmProdutos.FormShow(Sender: TObject);
@@ -225,6 +360,29 @@ procedure TfrmProdutos.Habilita_Botoes(Quais : String);
       Else btn_Sair.Enabled := True;
   End;
 
+Procedure TfrmProdutos.Carrega_Grupos_Cadastrados;
+  Var
+    GruposP_Atuais : GrupoProds_Cadastrados;
+    I : Integer;
+  Begin
+    GruposP_Atuais := Retorna_GrupoProds_Cadastrados('','', 'AZ');
+    cbxGrupo.Clear;
+    for I := 0 to Length(GruposP_Atuais)-1 do
+      cbxGrupo.Items.Add(GruposP_Atuais[i].Descricao);
+    //
+  End;
+
+Procedure TfrmProdutos.Carrega_SubGrupos_Cadastrados(Cod_Grupo:Integer);
+  Var
+    SubGruposP_Atuais : SubGrupoProds_Cadastrados;
+    I : Integer;
+  Begin
+    SubGruposP_Atuais := Retorna_SubGrupoProds_Cadastrados('COD_GRUPO',IntToStr(Cod_Grupo), 'AZ');
+    cbxSubGrupo.Clear;
+    for I := 0 to Length(SubGruposP_Atuais)-1 do
+      cbxSubGrupo.Items.Add(SubGruposP_Atuais[i].Descricao);
+  End;
+
 procedure TfrmProdutos.Habilita_Tela(Habilita : Boolean);
   Begin
     edt_Codigo.Enabled := Habilita;
@@ -234,6 +392,8 @@ procedure TfrmProdutos.Habilita_Tela(Habilita : Boolean);
     edt_PreVenda.Enabled := Habilita;
     edt_EstAtual.Enabled := Habilita;
     edt_EstMin.Enabled := Habilita;
+    cbxGrupo.Enabled := Habilita;
+    Carrega_Grupos_Cadastrados;
   End;
 
 procedure TfrmProdutos.Limpa_Tela;
@@ -252,27 +412,80 @@ begin
     frmProdutos.Close;
 end;
 
+procedure TfrmProdutos.cbxCamposChange(Sender: TObject);
+begin
+  edt_Pesquisa.Clear;
+end;
+
+procedure TfrmProdutos.cbxGrupoChange(Sender: TObject);
+  Begin
+    Carrega_SubGrupos_Cadastrados(Retorna_Codigo_Grupo(cbxGrupo.Text));
+    cbxSubGrupo.Enabled := True;
+  End;
+
+procedure TfrmProdutos.btn09Click(Sender: TObject);
+begin
+    btnAZ.Enabled := True;
+    btnZA.Enabled := True;
+    btn09.Enabled := False;
+    btn90.Enabled := True;
+    Popula_Grid;
+end;
+
+procedure TfrmProdutos.btn90Click(Sender: TObject);
+begin
+    btnAZ.Enabled := True;
+    btnZA.Enabled := True;
+    btn09.Enabled := True;
+    btn90.Enabled := False;
+    Popula_Grid;
+end;
+
+procedure TfrmProdutos.btnAZClick(Sender: TObject);
+begin
+    btnAZ.Enabled := False;
+    btnZA.Enabled := True;
+    btn09.Enabled := True;
+    btn90.Enabled := True;
+    Popula_Grid;
+end;
+
+procedure TfrmProdutos.btnZAClick(Sender: TObject);
+begin
+    btnAZ.Enabled := True;
+    btnZA.Enabled := False;
+    btn09.Enabled := True;
+    btn90.Enabled := True;
+    Popula_Grid;
+end;
+
 procedure TfrmProdutos.btn_CancelarClick(Sender: TObject);
 begin
     Habilita_Botoes('10001');
     Habilita_Tela(False);
+    Limpa_Tela;
 end;
 
 procedure TfrmProdutos.btn_EditarClick(Sender: TObject);
 begin
+    Novo := True;
     Habilita_Tela(True);
     Habilita_Botoes('01110');
+    edt_Codigo.Text := Retorna_Proximo_Codigo_Produto;
 end;
 
 procedure TfrmProdutos.btn_GravarClick(Sender: TObject);
-begin
-    if Validado
-      then Begin
-             Grava_Dados_Produto(Coleta_Dados);
+Begin
+    If Validado
+      Then Begin
+             If Novo
+               Then Grava_Dados_Produto(Coleta_Dados)
+               Else Atualiza_Dados_Produto(Coleta_Dados);
              Habilita_Tela(False);
              Habilita_Botoes('10001');
+             Popula_Grid;
           End;
-end;
+End;
 
 procedure TfrmProdutos.btn_LimparClick(Sender: TObject);
 begin

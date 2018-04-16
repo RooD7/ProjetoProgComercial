@@ -2,10 +2,12 @@ unit Unit_Utils;
 
 interface
 
-Uses System.SysUtils;
+Uses System.SysUtils, StrUtils;
 
 function isCNPJ(CNPJ: string): boolean;
 function isCPF(CPF: string): boolean;
+function Remove_Mascara(Termo: string): String;
+
 
 implementation
 
@@ -120,5 +122,15 @@ begin
     isCPF := false
   end;
 end;
+
+function Remove_Mascara(Termo: string): String;
+  Begin
+    Termo := AnsiReplaceStr(Termo,'.','');
+    Termo := AnsiReplaceStr(Termo,'-','');
+    Termo := AnsiReplaceStr(Termo,'/','');
+    Termo := AnsiReplaceStr(Termo,'(','');
+    Termo := AnsiReplaceStr(Termo,')','');
+    Result := Trim(Termo);
+  End;
 
 end.

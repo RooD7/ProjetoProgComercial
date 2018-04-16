@@ -2,7 +2,7 @@ object frmProdutos: TfrmProdutos
   Left = 0
   Top = 0
   Caption = 'Cadastro/Edi'#231#227'o de dados dos produtos'
-  ClientHeight = 455
+  ClientHeight = 475
   ClientWidth = 819
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,39 +19,44 @@ object frmProdutos: TfrmProdutos
     Left = 0
     Top = 0
     Width = 819
-    Height = 455
-    ActivePage = TabSheet1
+    Height = 475
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 455
     object TabSheet1: TTabSheet
       Caption = 'Produtos cadastrados'
+      ExplicitHeight = 416
       object lblQtde: TLabel
         Left = 0
-        Top = 328
+        Top = 348
         Width = 811
         Height = 24
         Align = alBottom
         Color = clBtnFace
         ParentColor = False
+        ExplicitTop = 328
         ExplicitWidth = 6
       end
       object sgdProdutos: TStringGrid
-        Left = 0
+        Left = 41
         Top = 0
-        Width = 811
-        Height = 328
+        Width = 770
+        Height = 348
         Align = alClient
-        ColCount = 7
+        ColCount = 9
         FixedCols = 0
         RowCount = 2
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
+        PopupMenu = PopupMenu1
         TabOrder = 0
-        ExplicitLeft = 72
-        ExplicitTop = 64
+        OnDblClick = sgdProdutosDblClick
+        OnSelectCell = sgdProdutosSelectCell
+        ExplicitHeight = 328
       end
       object Panel1: TPanel
         Left = 0
-        Top = 352
+        Top = 372
         Width = 811
         Height = 64
         Align = alBottom
@@ -59,6 +64,7 @@ object frmProdutos: TfrmProdutos
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
+        ExplicitTop = 352
         object Label1: TLabel
           Left = 16
           Top = 4
@@ -80,6 +86,11 @@ object frmProdutos: TfrmProdutos
           Height = 32
           Style = csDropDownList
           TabOrder = 0
+          OnChange = cbxCamposChange
+          Items.Strings = (
+            'C'#243'digo'
+            'Descri'#231#227'o'
+            'Cod. Barras')
         end
         object edt_Pesquisa: TMaskEdit
           Left = 167
@@ -87,6 +98,7 @@ object frmProdutos: TfrmProdutos
           Width = 410
           Height = 32
           TabOrder = 1
+          OnChange = edt_PesquisaChange
         end
         object btn_Sair: TBitBtn
           Left = 699
@@ -112,30 +124,92 @@ object frmProdutos: TfrmProdutos
           OnClick = btn_Sair1Click
         end
         object CheckBox1: TCheckBox
-          Left = 384
-          Top = 2
-          Width = 193
-          Height = 24
+          Left = 383
+          Top = 3
+          Width = 201
+          Height = 23
           Caption = 'Mostrar pre'#231'o custo'
           TabOrder = 3
           OnClick = CheckBox1Click
+        end
+      end
+      object Panel3: TPanel
+        Left = 0
+        Top = 0
+        Width = 41
+        Height = 348
+        Align = alLeft
+        TabOrder = 2
+        ExplicitHeight = 328
+        object btnAZ: TBitBtn
+          Left = 1
+          Top = 64
+          Width = 38
+          Height = 30
+          Caption = 'A..Z'
+          Enabled = False
+          TabOrder = 0
+          OnClick = btnAZClick
+        end
+        object btnZA: TBitBtn
+          Left = 1
+          Top = 99
+          Width = 38
+          Height = 30
+          Caption = 'Z..A'
+          TabOrder = 1
+          OnClick = btnZAClick
+        end
+        object btn09: TBitBtn
+          Left = 1
+          Top = 134
+          Width = 38
+          Height = 30
+          Caption = '0..9'
+          TabOrder = 2
+          OnClick = btn09Click
+        end
+        object btn90: TBitBtn
+          Left = 1
+          Top = 169
+          Width = 38
+          Height = 30
+          Caption = '9..0'
+          TabOrder = 3
+          OnClick = btn90Click
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 39
+      ExplicitHeight = 416
+      object Label3: TLabel
+        Left = 138
+        Top = 282
+        Width = 60
+        Height = 24
+        Caption = 'Grupo:'
+        Enabled = False
+      end
+      object Label4: TLabel
+        Left = 107
+        Top = 317
+        Width = 91
+        Height = 24
+        Caption = 'Subgrupo:'
+        Enabled = False
+      end
       object Panel2: TPanel
         Left = 0
-        Top = 344
+        Top = 364
         Width = 811
         Height = 72
         Align = alBottom
         BevelInner = bvLowered
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = 344
         object btn_Editar: TBitBtn
           Left = 19
           Top = 12
@@ -271,7 +345,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_Descricao: TLabeledEdit
         Left = 201
-        Top = 62
+        Top = 56
         Width = 497
         Height = 32
         EditLabel.Width = 93
@@ -284,7 +358,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_CodBarras: TLabeledEdit
         Left = 201
-        Top = 106
+        Top = 93
         Width = 200
         Height = 32
         EditLabel.Width = 159
@@ -298,7 +372,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_PreCusto: TLabeledEdit
         Left = 201
-        Top = 150
+        Top = 130
         Width = 200
         Height = 32
         EditLabel.Width = 140
@@ -312,7 +386,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_PreVenda: TLabeledEdit
         Left = 201
-        Top = 193
+        Top = 167
         Width = 200
         Height = 32
         EditLabel.Width = 146
@@ -326,7 +400,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_EstAtual: TLabeledEdit
         Left = 201
-        Top = 237
+        Top = 204
         Width = 200
         Height = 32
         EditLabel.Width = 78
@@ -340,7 +414,7 @@ object frmProdutos: TfrmProdutos
       end
       object edt_EstMin: TLabeledEdit
         Left = 201
-        Top = 281
+        Top = 241
         Width = 200
         Height = 32
         EditLabel.Width = 150
@@ -352,6 +426,33 @@ object frmProdutos: TfrmProdutos
         NumbersOnly = True
         TabOrder = 7
       end
+      object cbxGrupo: TComboBox
+        Left = 201
+        Top = 279
+        Width = 200
+        Height = 32
+        Enabled = False
+        TabOrder = 8
+        Text = 'cbxGrupo'
+        OnChange = cbxGrupoChange
+      end
+      object cbxSubGrupo: TComboBox
+        Left = 201
+        Top = 317
+        Width = 200
+        Height = 32
+        Enabled = False
+        TabOrder = 9
+        Text = 'cbxSubGrupo'
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 32
+    Top = 48
+    object Editarcadastro1: TMenuItem
+      Caption = 'Editar cadastro'
+      OnClick = sgdProdutosDblClick
     end
   end
 end
