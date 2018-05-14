@@ -3,12 +3,10 @@ object DM: TDM
   Height = 336
   Width = 422
   object IBDatabase1: TIBDatabase
-    Connected = True
-    DatabaseName = 'E:\Prog_Comercial\BD_COMERCIAL.FDB'
+    DatabaseName = '172.16.2.131:E:\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
-    LoginPrompt = False
     DefaultTransaction = IBTransaction1
     ServerType = 'IBServer'
     Left = 64

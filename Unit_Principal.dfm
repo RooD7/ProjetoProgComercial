@@ -60,6 +60,10 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'SubGrupo de Produtos'
         OnClick = SubGrupodeProdutos1Click
       end
+      object este1: TMenuItem
+        Caption = 'Teste'
+        OnClick = este1Click
+      end
     end
     object Manuteno1: TMenuItem
       Caption = 'Manuten'#231#227'o'
@@ -80,7 +84,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 16
     Top = 56
     Bitmap = {
-      494C0101440150013C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010144015001400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002005000001002000000000000020
       0500000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

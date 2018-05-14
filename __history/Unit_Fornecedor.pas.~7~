@@ -1,0 +1,39 @@
+unit Unit_Fornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Unit_Utils,
+  Vcl.Buttons;
+
+type
+  TForm1 = class(TForm)
+    Inscrição: TBitBtn;
+    edt_InscrEstadual: TLabeledEdit;
+    edt_ResultInscrEstadual: TLabeledEdit;
+    procedure InscriçãoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+{Inscricao( Inscricao, Tipo : String )
+  Mascara_Inscricao( Inscricao, Estado : String )
+}
+{$R *.dfm}
+
+procedure TForm1.InscriçãoClick(Sender: TObject);
+begin
+  if Inscricao('','') then
+        edt_ResultInscrEstadual.Text := True
+  else
+      edt_ResultInscrEstadual.Text := False;
+end;
+
+end.
