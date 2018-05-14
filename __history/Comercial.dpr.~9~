@@ -12,8 +12,7 @@ uses
   Unit_GrupoProd in 'Unit_GrupoProd.pas' {frmGrupoProd},
   Unit_SubGrupoProd in 'Unit_SubGrupoProd.pas' {frmSubGrupoProd},
   Unit_Altera_Preco in 'Unit_Altera_Preco.pas' {frmAlteraPreco},
-  Unit_Vendas in 'Unit_Vendas.pas' {frmVendas},
-  Unit_Fornecedor in 'Unit_Fornecedor.pas' {frmFornecedor};
+  Unit_Vendas in 'Unit_Vendas.pas' {frmVendas};
 
 {$R *.res}
 
@@ -24,6 +23,5 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmAlteraPreco, frmAlteraPreco);
   Application.CreateForm(TfrmVendas, frmVendas);
-  Application.CreateForm(TfrmFornecedor, frmFornecedor);
   Application.Run;
 end.
