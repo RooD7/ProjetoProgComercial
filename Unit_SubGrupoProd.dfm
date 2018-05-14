@@ -25,6 +25,10 @@ object frmSubGrupoProd: TfrmSubGrupoProd
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'SubGrupos cadastrados'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblQtde: TLabel
         Left = 0
         Top = 148
@@ -168,6 +172,10 @@ object frmSubGrupoProd: TfrmSubGrupoProd
     object TabSheet2: TTabSheet
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label3: TLabel
         Left = 138
         Top = 112

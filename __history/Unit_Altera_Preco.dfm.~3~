@@ -1,0 +1,81 @@
+object frmAlteraPreco: TfrmAlteraPreco
+  Left = 0
+  Top = 0
+  Caption = 'frmAlteraPreco'
+  ClientHeight = 264
+  ClientWidth = 399
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -20
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 24
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 399
+    Height = 200
+    Align = alClient
+    Caption = ' Altera'#231#227'o de pre'#231'os '
+    TabOrder = 0
+    ExplicitHeight = 201
+    object Label1: TLabel
+      Left = 74
+      Top = 59
+      Width = 60
+      Height = 24
+      Caption = 'Grupo:'
+    end
+    object Label2: TLabel
+      Left = 43
+      Top = 107
+      Width = 91
+      Height = 24
+      Caption = 'Subgrupo:'
+    end
+    object Label3: TLabel
+      Left = 10
+      Top = 155
+      Width = 124
+      Height = 24
+      Caption = 'Porcentagem:'
+    end
+    object cbxGrupo: TComboBox
+      Left = 138
+      Top = 55
+      Width = 232
+      Height = 32
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object cbxSubGrupo: TComboBox
+      Left = 138
+      Top = 102
+      Width = 232
+      Height = 32
+      Style = csDropDownList
+      TabOrder = 1
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 138
+      Top = 150
+      Width = 145
+      Height = 34
+      MaxValue = 1000
+      MinValue = -1000
+      TabOrder = 2
+      Value = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 200
+    Width = 399
+    Height = 64
+    Align = alBottom
+    TabOrder = 1
+  end
+end

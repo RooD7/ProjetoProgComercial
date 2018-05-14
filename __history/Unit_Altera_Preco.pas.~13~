@@ -1,0 +1,80 @@
+unit Unit_Altera_Preco;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Samples.Spin,
+  Vcl.ExtCtrls, Unit_Persistencia, Vcl.Buttons;
+
+type
+  TfrmAlteraPreco = class(TForm)
+    GroupBox1: TGroupBox;
+    Panel1: TPanel;
+    cbxGrupo: TComboBox;
+    cbxSubGrupo: TComboBox;
+    SpinEdit1: TSpinEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    btn_Gravar: TBitBtn;
+    btn_Cancelar: TBitBtn;
+    btn_Sair1: TBitBtn;
+    Procedure Carrega_Grupos_Cadastrados;
+    Procedure Carrega_SubGrupos_Cadastrados(Cod_Grupo:Integer);
+    procedure cbxGrupoChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btn_GravarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAlteraPreco: TfrmAlteraPreco;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmAlteraPreco.btn_GravarClick(Sender: TObject);
+  Begin
+    Atualiza_Preco_Venda(Retorna_Codigo_Grupo(cbxGrupo.Text),Retorna_Codigo_SubGrupo(cbxSubGrupo.Text),SpinEdit1.Value);
+  End;
+
+Procedure TfrmAlteraPreco.Carrega_Grupos_Cadastrados;
+  Var
+    GruposP_Atuais : GrupoProds_Cadastrados;
+    I : Integer;
+  Begin
+    GruposP_Atuais := Retorna_GrupoProds_Cadastrados('','', 'AZ');
+    cbxGrupo.Clear;
+    for I := 0 to Length(GruposP_Atuais)-1 do
+      cbxGrupo.Items.Add(GruposP_Atuais[i].Descricao);
+    //
+  End;
+
+Procedure TfrmAlteraPreco.Carrega_SubGrupos_Cadastrados(Cod_Grupo:Integer);
+  Var
+    SubGruposP_Atuais : SubGrupoProds_Cadastrados;
+    I : Integer;
+  Begin
+    SubGruposP_Atuais := Retorna_SubGrupoProds_Cadastrados('COD_GRUPO',IntToStr(Cod_Grupo), 'AZ');
+    cbxSubGrupo.Clear;
+    for I := 0 to Length(SubGruposP_Atuais)-1 do
+      cbxSubGrupo.Items.Add(SubGruposP_Atuais[i].Descricao);
+  End;
+
+procedure TfrmAlteraPreco.cbxGrupoChange(Sender: TObject);
+begin
+    Carrega_SubGrupos_Cadastrados(Retorna_Codigo_Grupo(cbxGrupo.Text));
+    cbxSubGrupo.Enabled := True;
+end;
+
+procedure TfrmAlteraPreco.FormShow(Sender: TObject);
+  Begin
+     Carrega_Grupos_Cadastrados;
+  End;
+
+end.

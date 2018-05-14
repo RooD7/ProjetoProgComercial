@@ -3,7 +3,8 @@ unit Unit_Principal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Unit_Empresa, Vcl.ImgList;
 
 type
@@ -20,11 +21,17 @@ type
     GruposdeProdutos1: TMenuItem;
     N4: TMenuItem;
     SubGrupodeProdutos1: TMenuItem;
+    Manuteno1: TMenuItem;
+    Alteraodepreos1: TMenuItem;
+    Movimentos1: TMenuItem;
+    Venda1: TMenuItem;
     procedure Empresa1Click(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
     procedure GruposdeProdutos1Click(Sender: TObject);
     procedure SubGrupodeProdutos1Click(Sender: TObject);
+    procedure Alteraodepreos1Click(Sender: TObject);
+    procedure Venda1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,44 +45,56 @@ implementation
 
 {$R *.dfm}
 
-uses Unit_Clientes, Unit_Produtos, Unit_GrupoProd, Unit_SubGrupoProd;
+uses Unit_Clientes, Unit_Produtos, Unit_GrupoProd, Unit_SubGrupoProd,
+  Unit_Altera_Preco, Unit_Vendas;
+
+procedure TfrmPrincipal.Alteraodepreos1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmAlteraPreco, frmAlteraPreco);
+  frmAlteraPreco.ShowModal;
+  frmAlteraPreco.Destroy;
+end;
 
 procedure TfrmPrincipal.Clientes1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmClientes,frmClientes);
+  Application.CreateForm(TfrmClientes, frmClientes);
   frmClientes.ShowModal;
   frmClientes.Destroy;
 end;
 
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmEmpresa,frmEmpresa);
+  Application.CreateForm(TfrmEmpresa, frmEmpresa);
   frmEmpresa.ShowModal;
   frmEmpresa.Destroy;
 end;
 
 procedure TfrmPrincipal.GruposdeProdutos1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmGrupoProd,frmGrupoProd);
+  Application.CreateForm(TfrmGrupoProd, frmGrupoProd);
   frmGrupoProd.ShowModal;
   frmGrupoProd.Destroy;
 end;
 
 procedure TfrmPrincipal.Produtos1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmProdutos,frmProdutos);
+  Application.CreateForm(TfrmProdutos, frmProdutos);
   frmProdutos.ShowModal;
   frmProdutos.Destroy;
 end;
 
 procedure TfrmPrincipal.SubGrupodeProdutos1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmSubGrupoProd,frmSubGrupoProd);
+  Application.CreateForm(TfrmSubGrupoProd, frmSubGrupoProd);
   frmSubGrupoProd.ShowModal;
   frmSubGrupoProd.Destroy;
 end;
 
+procedure TfrmPrincipal.Venda1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmVendas, frmVendas);
+  frmVendas.ShowModal;
+  frmVendas.Destroy;
+end;
+
 end.
-
-
-

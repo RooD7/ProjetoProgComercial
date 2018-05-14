@@ -23,10 +23,12 @@ object frmProdutos: TfrmProdutos
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 455
     object TabSheet1: TTabSheet
       Caption = 'Produtos cadastrados'
-      ExplicitHeight = 416
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblQtde: TLabel
         Left = 0
         Top = 348
@@ -35,7 +37,6 @@ object frmProdutos: TfrmProdutos
         Align = alBottom
         Color = clBtnFace
         ParentColor = False
-        ExplicitTop = 328
         ExplicitWidth = 6
       end
       object sgdProdutos: TStringGrid
@@ -52,7 +53,6 @@ object frmProdutos: TfrmProdutos
         TabOrder = 0
         OnDblClick = sgdProdutosDblClick
         OnSelectCell = sgdProdutosSelectCell
-        ExplicitHeight = 328
       end
       object Panel1: TPanel
         Left = 0
@@ -64,7 +64,6 @@ object frmProdutos: TfrmProdutos
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
-        ExplicitTop = 352
         object Label1: TLabel
           Left = 16
           Top = 4
@@ -140,7 +139,6 @@ object frmProdutos: TfrmProdutos
         Height = 348
         Align = alLeft
         TabOrder = 2
-        ExplicitHeight = 328
         object btnAZ: TBitBtn
           Left = 1
           Top = 64
@@ -183,7 +181,6 @@ object frmProdutos: TfrmProdutos
     object TabSheet2: TTabSheet
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
-      ExplicitHeight = 416
       object Label3: TLabel
         Left = 138
         Top = 282
@@ -209,7 +206,6 @@ object frmProdutos: TfrmProdutos
         BevelInner = bvLowered
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = 344
         object btn_Editar: TBitBtn
           Left = 19
           Top = 12
@@ -431,9 +427,9 @@ object frmProdutos: TfrmProdutos
         Top = 279
         Width = 200
         Height = 32
+        Style = csDropDownList
         Enabled = False
         TabOrder = 8
-        Text = 'cbxGrupo'
         OnChange = cbxGrupoChange
       end
       object cbxSubGrupo: TComboBox
@@ -441,9 +437,9 @@ object frmProdutos: TfrmProdutos
         Top = 317
         Width = 200
         Height = 32
+        Style = csDropDownList
         Enabled = False
         TabOrder = 9
-        Text = 'cbxSubGrupo'
       end
     end
   end

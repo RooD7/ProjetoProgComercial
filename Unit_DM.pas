@@ -3,7 +3,8 @@ unit Unit_DM;
 interface
 
 uses
-  System.SysUtils, System.Classes, Data.DB, IBCustomDataSet, IBQuery, IBDatabase;
+  System.SysUtils, System.Classes, Data.DB, IBCustomDataSet, IBQuery,
+  IBDatabase;
 
 type
   TDM = class(TDataModule)
@@ -16,6 +17,7 @@ type
     qryProduto: TIBQuery;
     qryGrupoProd: TIBQuery;
     qrySubGrupoProd: TIBQuery;
+    qryProd_Venda: TIBQuery;
   private
     { Private declarations }
   public
@@ -27,7 +29,7 @@ var
 
 implementation
 
-{%CLASSGROUP 'System.Classes.TPersistent'}
+{ %CLASSGROUP 'System.Classes.TPersistent' }
 
 {$R *.dfm}
 

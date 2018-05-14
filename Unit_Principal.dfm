@@ -61,12 +61,26 @@ object frmPrincipal: TfrmPrincipal
         OnClick = SubGrupodeProdutos1Click
       end
     end
+    object Manuteno1: TMenuItem
+      Caption = 'Manuten'#231#227'o'
+      object Alteraodepreos1: TMenuItem
+        Caption = 'Altera'#231#227'o de pre'#231'os'
+        OnClick = Alteraodepreos1Click
+      end
+    end
+    object Movimentos1: TMenuItem
+      Caption = 'Movimentos'
+      object Venda1: TMenuItem
+        Caption = 'Venda'
+        OnClick = Venda1Click
+      end
+    end
   end
   object ImageList1: TImageList
     Left = 16
     Top = 56
     Bitmap = {
-      494C010144015001300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101440150013C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002005000001002000000000000020
       0500000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
