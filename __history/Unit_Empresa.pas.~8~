@@ -28,9 +28,9 @@ type
     edt_Telefone: TMaskEdit;
     Label_Tel: TLabel;
     spn_Lucro: TSpinEdit;
-    Label_PorcLucro: TLabel;
+    Label3: TLabel;
     Label_InscEstadual: TLabeledEdit;
-    Label_email: TLabeledEdit;
+    LabeledEdit1: TLabeledEdit;
     Label_TP_InscEstadual: TLabeledEdit;
     TabSheet3: TTabSheet;
     Label_NomeResp: TLabeledEdit;
@@ -188,15 +188,7 @@ Begin
   edt_Telefone.Enabled := Habilita;
   Label_CNPJ.Enabled := Habilita;
   Label_InscEstadual.Enabled := Habilita;
-  Label_TP_InscEstadual.Enabled := Habilita;
   Label_Tel.Enabled := Habilita;
-  Label_TelResp.Enabled := Habilita;
-  RadioGroup_CargoResp.Enabled := Habilita;
-  Label_email.Enabled := Habilita;
-  Label_PorcLucro.Enabled := Habilita;
-  Label_NomeResp.Enabled := Habilita;
-  RadioButton_Dono.Enabled := Habilita;
-  RadioButton_Gerente.Enabled := Habilita;
   spn_Lucro.Enabled := habilita;
 End;
 

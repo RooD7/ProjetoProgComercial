@@ -256,7 +256,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 5
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
-      object Label_email: TLabeledEdit
+      object LabeledEdit1: TLabeledEdit
         Left = 251
         Top = 302
         Width = 427
@@ -288,7 +288,7 @@ object frmEmpresa: TfrmEmpresa
       ImageIndex = 1
       ExplicitWidth = 809
       ExplicitHeight = 302
-      object Label_PorcLucro: TLabel
+      object Label3: TLabel
         Left = 48
         Top = 67
         Width = 259

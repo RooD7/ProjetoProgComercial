@@ -194,9 +194,6 @@ Begin
   RadioGroup_CargoResp.Enabled := Habilita;
   Label_email.Enabled := Habilita;
   Label_PorcLucro.Enabled := Habilita;
-  Label_NomeResp.Enabled := Habilita;
-  RadioButton_Dono.Enabled := Habilita;
-  RadioButton_Gerente.Enabled := Habilita;
   spn_Lucro.Enabled := habilita;
 End;
 

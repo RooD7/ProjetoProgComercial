@@ -28,7 +28,7 @@ type
     edt_Telefone: TMaskEdit;
     Label_Tel: TLabel;
     spn_Lucro: TSpinEdit;
-    Label_PorcLucro: TLabel;
+    Label3: TLabel;
     Label_InscEstadual: TLabeledEdit;
     Label_email: TLabeledEdit;
     Label_TP_InscEstadual: TLabeledEdit;
@@ -193,10 +193,6 @@ Begin
   Label_TelResp.Enabled := Habilita;
   RadioGroup_CargoResp.Enabled := Habilita;
   Label_email.Enabled := Habilita;
-  Label_PorcLucro.Enabled := Habilita;
-  Label_NomeResp.Enabled := Habilita;
-  RadioButton_Dono.Enabled := Habilita;
-  RadioButton_Gerente.Enabled := Habilita;
   spn_Lucro.Enabled := habilita;
 End;
 

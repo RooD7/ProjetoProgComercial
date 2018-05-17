@@ -2,7 +2,7 @@ object frmEmpresa: TfrmEmpresa
   Left = 0
   Top = 0
   Caption = 'Cadastro/Edi'#231#227'o dos dados da Empresa'
-  ClientHeight = 475
+  ClientHeight = 544
   ClientWidth = 916
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,16 +15,9 @@ object frmEmpresa: TfrmEmpresa
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 33
-  object Label4: TLabel
-    Left = 208
-    Top = 184
-    Width = 77
-    Height = 33
-    Caption = 'Label4'
-  end
   object Panel1: TPanel
     Left = 0
-    Top = 403
+    Top = 472
     Width = 916
     Height = 72
     Align = alBottom
@@ -156,35 +149,41 @@ object frmEmpresa: TfrmEmpresa
     Left = 0
     Top = 0
     Width = 916
-    Height = 403
-    ActivePage = TabSheet3
+    Height = 472
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 472
     object TabSheet1: TTabSheet
       Caption = 'Dados da Empresa'
       ExplicitLeft = 8
       ExplicitTop = 28
-      ExplicitHeight = 424
       object Label_CNPJ: TLabel
         Left = 185
-        Top = 160
+        Top = 144
         Width = 60
         Height = 33
         Caption = 'CNPJ'
         Enabled = False
       end
-      object Label_Tel: TLabel
+      object Label2: TLabel
         Left = 142
-        Top = 251
+        Top = 235
         Width = 103
         Height = 33
         Caption = 'Telefone'
         Enabled = False
       end
+      object Label1: TLabel
+        Left = -44
+        Top = 333
+        Width = 296
+        Height = 33
+        Caption = 'Telefone do Respons'#225'vel'
+        Enabled = False
+      end
       object edt_RazaoSocial: TLabeledEdit
         Left = 251
-        Top = 63
+        Top = 47
         Width = 427
         Height = 41
         EditLabel.Width = 148
@@ -197,7 +196,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object edt_NomeFantasia: TLabeledEdit
         Left = 251
-        Top = 16
+        Top = 0
         Width = 427
         Height = 41
         EditLabel.Width = 176
@@ -210,7 +209,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object edt_Endereco: TLabeledEdit
         Left = 251
-        Top = 201
+        Top = 185
         Width = 427
         Height = 41
         EditLabel.Width = 110
@@ -223,7 +222,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object edt_CNPJ: TMaskEdit
         Left = 251
-        Top = 157
+        Top = 141
         Width = 275
         Height = 41
         Enabled = False
@@ -234,7 +233,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object edt_Telefone: TMaskEdit
         Left = 251
-        Top = 248
+        Top = 232
         Width = 275
         Height = 41
         Enabled = False
@@ -245,7 +244,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object Label_InscEstadual: TLabeledEdit
         Left = 251
-        Top = 110
+        Top = 94
         Width = 427
         Height = 41
         EditLabel.Width = 214
@@ -256,9 +255,9 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 5
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
-      object Label_email: TLabeledEdit
+      object LabeledEdit1: TLabeledEdit
         Left = 251
-        Top = 302
+        Top = 286
         Width = 427
         Height = 41
         EditLabel.Width = 74
@@ -271,7 +270,7 @@ object frmEmpresa: TfrmEmpresa
       end
       object Label_TP_InscEstadual: TLabeledEdit
         Left = 760
-        Top = 110
+        Top = 94
         Width = 80
         Height = 41
         EditLabel.Width = 32
@@ -282,13 +281,37 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 7
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
+      object MaskEdit_TelResp: TMaskEdit
+        Left = 251
+        Top = 333
+        Width = 275
+        Height = 41
+        Enabled = False
+        EditMask = '(99)9999-9999;1;_'
+        MaxLength = 13
+        TabOrder = 8
+        Text = '(  )    -    '
+      end
+      object Label_NomeResp: TLabeledEdit
+        Left = 251
+        Top = 380
+        Width = 427
+        Height = 41
+        EditLabel.Width = 263
+        EditLabel.Height = 33
+        EditLabel.Caption = 'Nome do Respons'#225'vel'
+        Enabled = False
+        LabelPosition = lpLeft
+        TabOrder = 9
+        TextHint = 'digite aqui o nome fantasia'
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Par'#226'metros do Sistema'
       ImageIndex = 1
       ExplicitWidth = 809
       ExplicitHeight = 302
-      object Label_PorcLucro: TLabel
+      object Label3: TLabel
         Left = 48
         Top = 67
         Width = 259
@@ -311,64 +334,6 @@ object frmEmpresa: TfrmEmpresa
     object TabSheet3: TTabSheet
       Caption = 'Dados do respons'#225'vel'
       ImageIndex = 2
-      ExplicitHeight = 424
-      object Label_TelResp: TLabel
-        Left = 21
-        Top = 70
-        Width = 296
-        Height = 33
-        Caption = 'Telefone do Respons'#225'vel'
-        Enabled = False
-      end
-      object Label_NomeResp: TLabeledEdit
-        Left = 323
-        Top = 20
-        Width = 425
-        Height = 41
-        EditLabel.Width = 263
-        EditLabel.Height = 33
-        EditLabel.Caption = 'Nome do Respons'#225'vel'
-        Enabled = False
-        LabelPosition = lpLeft
-        TabOrder = 0
-        TextHint = 'digite aqui o nome fantasia'
-      end
-      object MaskEdit_TelResp: TMaskEdit
-        Left = 323
-        Top = 67
-        Width = 275
-        Height = 41
-        Enabled = False
-        EditMask = '(99)9999-9999;1;_'
-        MaxLength = 13
-        TabOrder = 1
-        Text = '(  )    -    '
-      end
-      object RadioGroup_CargoResp: TRadioGroup
-        Left = 21
-        Top = 114
-        Width = 727
-        Height = 71
-        Caption = 'Cargo do Respons'#225'vel'
-        Enabled = False
-        TabOrder = 2
-      end
-      object RadioButton_Gerente: TRadioButton
-        Left = 485
-        Top = 149
-        Width = 113
-        Height = 17
-        Caption = 'Gerente'
-        TabOrder = 3
-      end
-      object RadioButton_Dono: TRadioButton
-        Left = 323
-        Top = 149
-        Width = 113
-        Height = 17
-        Caption = 'Dono'
-        TabOrder = 4
-      end
     end
   end
 end

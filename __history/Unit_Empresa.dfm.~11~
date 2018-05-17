@@ -157,7 +157,7 @@ object frmEmpresa: TfrmEmpresa
     Top = 0
     Width = 916
     Height = 403
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     ExplicitHeight = 472
@@ -288,7 +288,7 @@ object frmEmpresa: TfrmEmpresa
       ImageIndex = 1
       ExplicitWidth = 809
       ExplicitHeight = 302
-      object Label_PorcLucro: TLabel
+      object Label3: TLabel
         Left = 48
         Top = 67
         Width = 259
