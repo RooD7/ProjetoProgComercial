@@ -397,7 +397,7 @@ object frmClientes: TfrmClientes
       end
       object rdg_Sexo: TRadioGroup
         Left = 371
-        Top = 129
+        Top = 132
         Width = 327
         Height = 107
         Caption = ' Sexo '

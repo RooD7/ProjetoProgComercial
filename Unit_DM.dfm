@@ -3,7 +3,8 @@ object DM: TDM
   Height = 336
   Width = 422
   object IBDatabase1: TIBDatabase
-    DatabaseName = 'E:\git\ProjetoProgComercial\BD_COMERCIAL.FDB'
+    Connected = True
+    DatabaseName = '\\172.16.2.186\E:\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')

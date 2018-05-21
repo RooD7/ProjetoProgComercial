@@ -2,7 +2,7 @@ unit Unit_Utils;
 
 interface
 
-Uses System.SysUtils, StrUtils;
+Uses System.SysUtils, StrUtils, System.RegularExpressions;
 
 function isCNPJ(CNPJ: string): boolean;
 function isCPF(CPF: string): boolean;
@@ -527,4 +527,11 @@ Begin
 
 End;
 
+function ValidateEmail(const emailAddress: string): Boolean;
+var
+  RegEx: TRegEx;
+begin
+  RegEx := TRegex.Create('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]*[a-zA-Z0-9]+$');
+  Result := RegEx.Match(emailAddress).Success;
+end;
 end.

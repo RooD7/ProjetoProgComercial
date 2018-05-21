@@ -10,6 +10,12 @@ Type
     RazaoSocial: String;
     NomeFantasia: String;
     Endereco: String;
+    InscEstadual: String;
+    UF: String;
+    TelResp: String;
+    NomeResp: String;
+    CargoResp: String;
+    Email: String;
     CNPJ: String;
     Telefone: String;
     Lucro: Integer;
