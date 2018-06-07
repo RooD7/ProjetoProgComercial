@@ -169,7 +169,7 @@ Begin
     RadioGroup_CargoResp.SetFocus;
     Exit;
   End;
-  if Trim(edt_Email.Text) = '' Then
+  if not ValidateEmail(edt_Email.Text) Then
   Begin
     Application.MessageBox('O campo de e-mail é obrigatório',
       'Informe o e-mail', MB_ICONERROR + MB_OK);
@@ -260,15 +260,15 @@ Begin
   edt_Endereco.Enabled := Habilita;
   edt_CNPJ.Enabled := Habilita;
   edt_Telefone.Enabled := Habilita;
-  edt_Mail.Enabled := Habilita;
+  edt_Email.Enabled := Habilita;
   Label_CNPJ.Enabled := Habilita;
-  Label_InscEstadual.Enabled := Habilita;
-  Label_TP_InscEstadual.Enabled := Habilita;
+  edt_InscEstadual.Enabled := Habilita;
+  edt_UFInscEstadual.Enabled := Habilita;
   Label_Tel.Enabled := Habilita;
   Label_TelResp.Enabled := Habilita;
   RadioGroup_CargoResp.Enabled := Habilita;
   Label_PorcLucro.Enabled := Habilita;
-  Label_NomeResp.Enabled := Habilita;
+  edt_NomeResp.Enabled := Habilita;
   RadioButton_Dono.Enabled := Habilita;
   RadioButton_Gerente.Enabled := Habilita;
   spn_Lucro.Enabled := habilita;
@@ -281,6 +281,11 @@ Begin
   edt_Endereco.Clear;
   edt_CNPJ.Clear;
   edt_Telefone.Clear;
+  edt_NomeResp.Clear;
+  edt_TelResp.Clear;
+  edt_InscEstadual.Clear;
+  edt_UFInscEstadual.Clear;
+  RadioGroup_CargoResp := 0;
 End;
 
 procedure TfrmEmpresa.btn_CancelarClick(Sender: TObject);

@@ -15,13 +15,6 @@ object frmEmpresa: TfrmEmpresa
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 33
-  object Label4: TLabel
-    Left = 208
-    Top = 184
-    Width = 77
-    Height = 33
-    Caption = 'Label4'
-  end
   object Panel1: TPanel
     Left = 0
     Top = 403
@@ -31,8 +24,6 @@ object frmEmpresa: TfrmEmpresa
     BevelInner = bvLowered
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 350
-    ExplicitWidth = 817
     object btn_Editar: TBitBtn
       Left = 19
       Top = 12
@@ -157,15 +148,11 @@ object frmEmpresa: TfrmEmpresa
     Top = 0
     Width = 916
     Height = 403
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 472
     object TabSheet1: TTabSheet
       Caption = 'Dados da Empresa'
-      ExplicitLeft = 8
-      ExplicitTop = 28
-      ExplicitHeight = 424
       object Label_CNPJ: TLabel
         Left = 185
         Top = 160
@@ -243,7 +230,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 4
         Text = '(  )    -    '
       end
-      object Label_InscEstadual: TLabeledEdit
+      object edt_InscEstadual: TLabeledEdit
         Left = 251
         Top = 110
         Width = 427
@@ -256,20 +243,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 5
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
-      object Label_email: TLabeledEdit
-        Left = 251
-        Top = 302
-        Width = 427
-        Height = 41
-        EditLabel.Width = 74
-        EditLabel.Height = 33
-        EditLabel.Caption = 'E-mail'
-        Enabled = False
-        LabelPosition = lpLeft
-        TabOrder = 6
-        TextHint = 'digite aqui o e-mail da empresa'
-      end
-      object Label_TP_InscEstadual: TLabeledEdit
+      object edt_UFInscEstadual: TLabeledEdit
         Left = 760
         Top = 110
         Width = 80
@@ -279,15 +253,26 @@ object frmEmpresa: TfrmEmpresa
         EditLabel.Caption = 'UF'
         Enabled = False
         LabelPosition = lpLeft
-        TabOrder = 7
+        TabOrder = 6
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
+      end
+      object edt_Email: TLabeledEdit
+        Left = 251
+        Top = 295
+        Width = 427
+        Height = 41
+        EditLabel.Width = 74
+        EditLabel.Height = 33
+        EditLabel.Caption = 'E-mail'
+        Enabled = False
+        LabelPosition = lpLeft
+        TabOrder = 7
+        TextHint = 'digite aqui o email da empresa'
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Par'#226'metros do Sistema'
       ImageIndex = 1
-      ExplicitWidth = 809
-      ExplicitHeight = 302
       object Label_PorcLucro: TLabel
         Left = 48
         Top = 67
@@ -311,16 +296,15 @@ object frmEmpresa: TfrmEmpresa
     object TabSheet3: TTabSheet
       Caption = 'Dados do respons'#225'vel'
       ImageIndex = 2
-      ExplicitHeight = 424
       object Label_TelResp: TLabel
         Left = 21
-        Top = 70
+        Top = 190
         Width = 296
         Height = 33
         Caption = 'Telefone do Respons'#225'vel'
         Enabled = False
       end
-      object Label_NomeResp: TLabeledEdit
+      object edt_NomeResp: TLabeledEdit
         Left = 323
         Top = 20
         Width = 425
@@ -333,9 +317,9 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 0
         TextHint = 'digite aqui o nome fantasia'
       end
-      object MaskEdit_TelResp: TMaskEdit
+      object edt_TelResp: TMaskEdit
         Left = 323
-        Top = 67
+        Top = 187
         Width = 275
         Height = 41
         Enabled = False
@@ -344,30 +328,39 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 1
         Text = '(  )    -    '
       end
-      object RadioGroup_CargoResp: TRadioGroup
+      object Panel2: TPanel
         Left = 21
-        Top = 114
+        Top = 88
         Width = 727
-        Height = 71
-        Caption = 'Cargo do Respons'#225'vel'
-        Enabled = False
+        Height = 73
         TabOrder = 2
-      end
-      object RadioButton_Gerente: TRadioButton
-        Left = 485
-        Top = 149
-        Width = 113
-        Height = 17
-        Caption = 'Gerente'
-        TabOrder = 3
-      end
-      object RadioButton_Dono: TRadioButton
-        Left = 323
-        Top = 149
-        Width = 113
-        Height = 17
-        Caption = 'Dono'
-        TabOrder = 4
+        object RadioGroup_CargoResp: TRadioGroup
+          Left = 16
+          Top = 2
+          Width = 699
+          Height = 64
+          Caption = 'Cargo do Respons'#225'vel'
+          Enabled = False
+          TabOrder = 0
+        end
+        object RadioButton_Gerente: TRadioButton
+          Left = 326
+          Top = 32
+          Width = 113
+          Height = 17
+          Caption = 'Gerente'
+          Enabled = False
+          TabOrder = 1
+        end
+        object RadioButton_Dono: TRadioButton
+          Left = 611
+          Top = 32
+          Width = 113
+          Height = 17
+          Caption = 'Dono'
+          Enabled = False
+          TabOrder = 2
+        end
       end
     end
   end

@@ -260,11 +260,6 @@ Begin
   End;
 End;
 
-/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
-
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin
   With DM.qryCliente Do

@@ -173,32 +173,6 @@ Begin
   End;
 End;
 
-Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Begin
-  With DM.qryEmpresa Do
-  Begin
-    SQL.Clear;
-    SQL.Add('Update Empresa Set ');
-    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('EMP_TELRESP = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
-    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('EMP_TELEFONE = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
-    ExecSQL;
-    Commit;
-    Close;
-  End;
-End;
-
 Function Retorna_Dados_Empresa: Dados_Empresa;
 Begin
   With DM.qryAux Do
@@ -259,11 +233,6 @@ Begin
       Result.Lucro := 0;
   End;
 End;
-
-/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin

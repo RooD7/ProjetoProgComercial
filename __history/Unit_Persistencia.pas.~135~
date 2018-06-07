@@ -33,6 +33,18 @@ Type
     Sexo: Integer;
   End;
 
+  Dados_Empresa = Record
+    Codigo: Integer;
+    Nome: String;
+    Endereco: String;
+    CPF: String;
+    Telefone: String;
+    Celular: String;
+    Time: String;
+    Religiao: String;
+    Sexo: Integer;
+  End;
+
   Dados_Produto = Record
     Codigo: Integer;
     Descricao: String;
@@ -62,7 +74,6 @@ Type
     Cod_Grupo: Integer;
   End;
 
-  Empresas_Cadastradas = Array of Dados_Empresa;
   Clientes_Cadastrados = Array of Dados_Cliente;
   Produtos_Cadastrados = Array of Dados_Produto;
   GrupoProds_Cadastrados = Array of Dados_GrupoProd;
@@ -73,15 +84,6 @@ Type
 
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Function Retorna_Dados_Empresa: Dados_Empresa;
-
-// subrotinas Empresa
-Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Function Retorna_Dados_Empresa(Codigo: Integer): Dados_Empresa;
-Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  : Empresas_Cadastradas;
-Function Retorna_Proximo_Codigo_Empresa: String;
-
 // subrotinas Cliente
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Procedure Atualiza_Dados_Cliente(Dados_Atuais: Dados_Cliente);
@@ -140,13 +142,6 @@ Begin
   End
 End;
 
-//InscEstadual: String;
-  //  UF: String;
-//    TelResp: String;
-    //NomeResp: String;
-  //  CargoResp: String;
-//    Email: String;
-
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Begin
   With DM.qryEmpresa Do
@@ -156,39 +151,6 @@ Begin
     SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
     SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
     SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('EMP_TELRESP = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
-    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('EMP_TELEFONE = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
-    ExecSQL;
-    Commit;
-    Close;
-  End;
-End;
-
-Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Begin
-  With DM.qryEmpresa Do
-  Begin
-    SQL.Clear;
-    SQL.Add('Update Empresa Set ');
-    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('EMP_TELRESP = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
     SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
     SQL.Add('EMP_TELEFONE = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
@@ -221,30 +183,6 @@ Begin
       Result.Endereco := DM.qryAux['Emp_Endereco']
     else
       Result.Endereco := '';
-    if DM.qryAux['Emp_InscEstadual'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_InscEstadual']
-    else
-      Result.CNPJ := '';
-    if DM.qryAux['Emp_UF'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_UF']
-    else
-      Result.CNPJ := '';
-    if DM.qryAux['Emp_TelResp'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_TelResp']
-    else
-      Result.CNPJ := '';
-    if DM.qryAux['Emp_NomeResp'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_NomeResp']
-    else
-      Result.CNPJ := '';
-    if DM.qryAux['Emp_CargoResp'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_CargoResp']
-    else
-      Result.CNPJ := '';
-    if DM.qryAux['Emp_Email'] <> null then
-      Result.CNPJ := DM.qryAux['Emp_Email']
-    else
-      Result.CNPJ := '';
     if DM.qryAux['Emp_CNPJ'] <> null then
       Result.CNPJ := DM.qryAux['Emp_CNPJ']
     else
@@ -259,11 +197,6 @@ Begin
       Result.Lucro := 0;
   End;
 End;
-
-/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin

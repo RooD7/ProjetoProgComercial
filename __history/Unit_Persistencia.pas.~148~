@@ -175,24 +175,22 @@ End;
 
 Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Begin
-  With DM.qryEmpresa Do
+  With DM.qryCliente Do
   Begin
     SQL.Clear;
-    SQL.Add('Update Empresa Set ');
-    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('EMP_TELRESP = ' +
-      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
-    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('EMP_TELEFONE = ' +
+    SQL.Add('Update Cliente Set');
+    SQL.Add('Cli_Codigo = ' + IntToStr(Dados_Atuais.Codigo) + ',');
+    SQL.Add('Cli_Nome = ' + QuotedStr(Dados_Atuais.Nome) + ',');
+    SQL.Add('Cli_Endereco = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
+    SQL.Add('Cli_CPF = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CPF)) + ',');
+    SQL.Add('Cli_Telefone = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
+    SQL.Add('Cli_Celular = ' +
+      QuotedStr(Remove_Mascara(Dados_Atuais.Celular)) + ',');
+    SQL.Add('Cli_Time = ' + QuotedStr(Dados_Atuais.Time) + ',');
+    SQL.Add('Cli_Religiao = ' + QuotedStr(Dados_Atuais.Religiao) + ',');
+    SQL.Add('Cli_Sexo = ' + IntToStr(Dados_Atuais.Sexo));
+    SQL.Add('Where Cli_Codigo = ' + IntToStr(Dados_Atuais.Codigo));
     ExecSQL;
     Commit;
     Close;
@@ -259,11 +257,6 @@ Begin
       Result.Lucro := 0;
   End;
 End;
-
-/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin

@@ -175,7 +175,7 @@ End;
 
 Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Begin
-  With DM.qryEmpresa Do
+  With DM.qryCliente Do
   Begin
     SQL.Clear;
     SQL.Add('Update Empresa Set ');
@@ -259,11 +259,6 @@ Begin
       Result.Lucro := 0;
   End;
 End;
-
-/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin
