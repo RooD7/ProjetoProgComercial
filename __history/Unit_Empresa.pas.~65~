@@ -80,14 +80,6 @@ Begin
   edt_NomeResp.Text := Temp.NomeResp;
   RadioGroup_CargoResp.ItemIndex := Temp.CargoResp;
   edt_Email.Text := Temp.Email;
-
-  //InscEstadual: String;
-    //UF: String;
-    //TelResp: String;
-    //NomeResp: String;
-    //CargoResp: String;
-    //Email: String;
-
   edt_CNPJ.Text := Temp.CNPJ;
   edt_Telefone.Text := Temp.Telefone;
   spn_Lucro.Value := Temp.Lucro;
@@ -160,16 +152,7 @@ Begin
     edt_TelResp.SetFocus;
     Exit;
   End;
-  if Trim(RadioGroup_CargoResp.ItemIndex) = '' Then
-  Begin
-    Application.MessageBox('O campo de cargo é obrigatório',
-      'Informe o cargo responsável', MB_ICONERROR + MB_OK);
-    Result := False;
-    PageControl1.ActivePageIndex := 0;
-    RadioGroup_CargoResp.SetFocus;
-    Exit;
-  End;
-  if Trim(edt_Email.Text) = '' Then
+  if not ValidateEmail(edt_Email.Text) Then
   Begin
     Application.MessageBox('O campo de e-mail é obrigatório',
       'Informe o e-mail', MB_ICONERROR + MB_OK);
@@ -285,6 +268,7 @@ Begin
   edt_TelResp.Clear;
   edt_InscEstadual.Clear;
   edt_UFInscEstadual.Clear;
+  RadioGroup_CargoResp := 0;
 End;
 
 procedure TfrmEmpresa.btn_CancelarClick(Sender: TObject);

@@ -158,7 +158,7 @@ Begin
     SQL.Add('Emp_TelResp = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
     SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
     SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
     SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
     SQL.Add('Emp_Telefone = ' +
@@ -184,7 +184,7 @@ Begin
     SQL.Add('Emp_TelResp = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
     SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
     SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
     SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
     SQL.Add('Emp_Telefone = ' +

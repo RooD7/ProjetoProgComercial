@@ -80,14 +80,6 @@ Begin
   edt_NomeResp.Text := Temp.NomeResp;
   RadioGroup_CargoResp.ItemIndex := Temp.CargoResp;
   edt_Email.Text := Temp.Email;
-
-  //InscEstadual: String;
-    //UF: String;
-    //TelResp: String;
-    //NomeResp: String;
-    //CargoResp: String;
-    //Email: String;
-
   edt_CNPJ.Text := Temp.CNPJ;
   edt_Telefone.Text := Temp.Telefone;
   spn_Lucro.Value := Temp.Lucro;

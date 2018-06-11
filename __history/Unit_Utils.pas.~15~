@@ -527,7 +527,7 @@ Begin
 
 End;
 
-function ValidateEmail(emailAddress: string): Boolean;
+function ValidateEmail(const emailAddress: string): Boolean;
 var
   RegEx: TRegEx;
 begin

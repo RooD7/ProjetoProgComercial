@@ -6,8 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils,
-  StrUtils;
+  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils, StrUtils;
 
 type
   TfrmEmpresa = class(TForm)
@@ -152,16 +151,8 @@ Begin
     edt_TelResp.SetFocus;
     Exit;
   End;
-  if Trim(RadioGroup_CargoResp.ItemIndex) = '' Then
-  Begin
-    Application.MessageBox('O campo de cargo é obrigatório',
-      'Informe o cargo responsável', MB_ICONERROR + MB_OK);
-    Result := False;
-    PageControl1.ActivePageIndex := 0;
-    RadioGroup_CargoResp.SetFocus;
-    Exit;
-  End;
-  if not ValidateEmail(edt_Email.Text) Then
+  // SAPORRA NAO QUER FUNCIONAR, FEDEU MUITO
+  if not (ValidateEmail(edt_Email.Text)) Then
   Begin
     Application.MessageBox('O campo de e-mail é obrigatório',
       'Informe o e-mail', MB_ICONERROR + MB_OK);
@@ -210,11 +201,11 @@ Begin
   Result.RazaoSocial := edt_RazaoSocial.Text;
   Result.NomeFantasia := edt_NomeFantasia.Text;
   Result.Endereco := edt_Endereco.Text;
-  Result.NomeResp := edt_NomeResp;
-  Result.TelResp := edt_TelResp;
+  Result.NomeResp := edt_NomeResp.Text;
+  Result.TelResp := edt_TelResp.Text;
   Result.CargoResp := RadioGroup_CargoResp.ItemIndex;
-  Result.InscEstadual := edt_InscEstadual;
-  Result.UF := edt_UFInscEstadual;
+  Result.InscEstadual := edt_InscEstadual.Text;
+  Result.UF := edt_UFInscEstadual.Text;
   Result.Email := edt_Email.Text;
   Result.CNPJ := edt_CNPJ.Text;
   Result.Telefone := edt_Telefone.Text;
@@ -277,7 +268,7 @@ Begin
   edt_TelResp.Clear;
   edt_InscEstadual.Clear;
   edt_UFInscEstadual.Clear;
-  RadioGroup_CargoResp := 0;
+  RadioGroup_CargoResp.ItemIndex := 0;
 End;
 
 procedure TfrmEmpresa.btn_CancelarClick(Sender: TObject);

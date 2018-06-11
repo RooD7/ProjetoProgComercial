@@ -14,7 +14,7 @@ Type
     UF: String;
     TelResp: String;
     NomeResp: String;
-    CargoResp: Integer;
+    CargoResp: String;
     Email: String;
     CNPJ: String;
     Telefone: String;
@@ -71,13 +71,16 @@ Type
 
   Prods_Com_SubGrupo = Array of Integer;
 
-// subrotinas Empresa
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Function Retorna_Dados_Empresa: Dados_Empresa;
+
+// subrotinas Empresa
+Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
+Function Retorna_Dados_Empresa(Codigo: Integer): Dados_Empresa;
+Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
+  : Empresas_Cadastradas;
+Function Retorna_Proximo_Codigo_Empresa: String;
 
 // subrotinas Cliente
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
@@ -158,7 +161,7 @@ Begin
     SQL.Add('Emp_TelResp = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
     SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
     SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
     SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
     SQL.Add('Emp_Telefone = ' +
@@ -184,7 +187,7 @@ Begin
     SQL.Add('Emp_TelResp = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
     SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
     SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
     SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
     SQL.Add('Emp_Telefone = ' +

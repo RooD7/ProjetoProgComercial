@@ -6,8 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils,
-  StrUtils;
+  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils, StrUtils;
 
 type
   TfrmEmpresa = class(TForm)
@@ -80,14 +79,6 @@ Begin
   edt_NomeResp.Text := Temp.NomeResp;
   RadioGroup_CargoResp.ItemIndex := Temp.CargoResp;
   edt_Email.Text := Temp.Email;
-
-  //InscEstadual: String;
-    //UF: String;
-    //TelResp: String;
-    //NomeResp: String;
-    //CargoResp: String;
-    //Email: String;
-
   edt_CNPJ.Text := Temp.CNPJ;
   edt_Telefone.Text := Temp.Telefone;
   spn_Lucro.Value := Temp.Lucro;
@@ -160,16 +151,7 @@ Begin
     edt_TelResp.SetFocus;
     Exit;
   End;
-  if Trim(RadioGroup_CargoResp.ItemIndex) = '' Then
-  Begin
-    Application.MessageBox('O campo de cargo é obrigatório',
-      'Informe o cargo responsável', MB_ICONERROR + MB_OK);
-    Result := False;
-    PageControl1.ActivePageIndex := 0;
-    RadioGroup_CargoResp.SetFocus;
-    Exit;
-  End;
-  if Trim(edt_Email.Text) = '' Then
+  if not (ValidateEmail(edt_Email.Text)) Then
   Begin
     Application.MessageBox('O campo de e-mail é obrigatório',
       'Informe o e-mail', MB_ICONERROR + MB_OK);
@@ -268,7 +250,7 @@ Begin
   Label_TelResp.Enabled := Habilita;
   RadioGroup_CargoResp.Enabled := Habilita;
   Label_PorcLucro.Enabled := Habilita;
-  Label_NomeResp.Enabled := Habilita;
+  edt_NomeResp.Enabled := Habilita;
   RadioButton_Dono.Enabled := Habilita;
   RadioButton_Gerente.Enabled := Habilita;
   spn_Lucro.Enabled := habilita;
@@ -281,6 +263,11 @@ Begin
   edt_Endereco.Clear;
   edt_CNPJ.Clear;
   edt_Telefone.Clear;
+  edt_NomeResp.Clear;
+  edt_TelResp.Clear;
+  edt_InscEstadual.Clear;
+  edt_UFInscEstadual.Clear;
+  RadioGroup_CargoResp := 0;
 End;
 
 procedure TfrmEmpresa.btn_CancelarClick(Sender: TObject);

@@ -14,7 +14,7 @@ Type
     UF: String;
     TelResp: String;
     NomeResp: String;
-    CargoResp: Integer;
+    CargoResp: String;
     Email: String;
     CNPJ: String;
     Telefone: String;
@@ -71,13 +71,16 @@ Type
 
   Prods_Com_SubGrupo = Array of Integer;
 
-// subrotinas Empresa
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Function Retorna_Dados_Empresa: Dados_Empresa;
+
+// subrotinas Empresa
+Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  //: Empresas_Cadastradas;
-//Function Retorna_Proximo_Codigo_Empresa: String;
+Function Retorna_Dados_Empresa(Codigo: Integer): Dados_Empresa;
+Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
+  : Empresas_Cadastradas;
+Function Retorna_Proximo_Codigo_Empresa: String;
 
 // subrotinas Cliente
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
@@ -150,20 +153,20 @@ Begin
   Begin
     SQL.Clear;
     SQL.Add('Update Empresa Set ');
-    SQL.Add('Emp_NomeFantasia = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('Emp_RazaoSocial = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('Emp_Endereco = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('Emp_InscEstadual = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('Emp_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('Emp_TelResp = ' +
+    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
+    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
+    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
+    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
+    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
+    SQL.Add('EMP_TELRESP = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
-    SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('Emp_Telefone = ' +
+    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
+    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
+    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
+    SQL.Add('EMP_TELEFONE = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('Emp_Porc_Lucro = ' + IntToStr(Dados_Atuais.Lucro));
+    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
     ExecSQL;
     Commit;
     Close;
@@ -176,20 +179,20 @@ Begin
   Begin
     SQL.Clear;
     SQL.Add('Update Empresa Set ');
-    SQL.Add('Emp_NomeFantasia = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('Emp_RazaoSocial = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('Emp_Endereco = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('Emp_InscEstadual = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
-    SQL.Add('Emp_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
-    SQL.Add('Emp_TelResp = ' +
+    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
+    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
+    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
+    SQL.Add('EMP_INSCESTADUAL = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
+    SQL.Add('EMP_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
+    SQL.Add('EMP_TELRESP = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
-    SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
-    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
-    SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
-    SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('Emp_Telefone = ' +
+    SQL.Add('EMP_NOMERESP = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
+    SQL.Add('EMP_CARGORESP = ' + QuotedStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('EMP_EMAIL = ' + QuotedStr(Dados_Atuais.Email) + ',');
+    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
+    SQL.Add('EMP_TELEFONE = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('Emp_Porc_Lucro = ' + IntToStr(Dados_Atuais.Lucro));
+    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
     ExecSQL;
     Commit;
     Close;
@@ -257,11 +260,76 @@ Begin
   End;
 End;
 
-/// NAO FORAM IMPLEMENTADAS AS FUNCOES DA EMPRESA
-//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String);
+/// CONTINUAR AQUI, FAZENDO O RESTANTE DAS FUNCOES DA EMPRESA
+Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String);
+// Valores possiveis para CAMPO
+//InscEstadual: String;
+  //  UF: String;
+//    TelResp: String;
+    //NomeResp: String;
+  //  CargoResp: String;
+//    Email: String;
+Var
+  I: Integer;
+Begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Select *');
+    SQL.Add('From Cliente');
+    If LowerCase(Campo) = 'codigo' Then
+    Begin
+      SQL.Add('Where Cli_Codigo = ' + Termo);
+    End;
+    If LowerCase(Campo) = 'nome' Then
+    Begin
+      SQL.Add('Where Cli_Nome Like ' + QuotedStr(Termo + '%'));
+    End;
+    If LowerCase(Campo) = 'endereco' Then
+    Begin
+      SQL.Add('Where Cli_Endereco Like ' + QuotedStr(Termo + '%'));
+    End;
+    If LowerCase(Campo) = 'telefone' Then
+    Begin
+      SQL.Add('Where Cli_Telefone Like ' +
+        QuotedStr(Remove_Mascara(Termo) + '%'));
+    End;
+    If LowerCase(Campo) = 'cpf' Then
+    Begin
+      SQL.Add('Where Cli_CPF Like ' + QuotedStr(Remove_Mascara(Termo) + '%'));
+    End;
+    If Ordenacao = 'AZ' Then
+      SQL.Add('Order By Cli_Nome Asc');
+    If Ordenacao = 'ZA' Then
+      SQL.Add('Order By Cli_Nome Desc');
+    If Ordenacao = '09' Then
+      SQL.Add('Order By Cli_Codigo Asc');
+    If Ordenacao = '90' Then
+      SQL.Add('Order By Cli_Codigo Desc');
+    Open; // A SQL acima é executada
+    // ShowMessage(SQL.Text);
+    FetchAll;
+    SetLength(Result, 0);
+    For I := 1 to DM.qryAux.RecordCount do
+    Begin
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1].Codigo := DM.qryAux['Cli_Codigo'];
+      Result[Length(Result) - 1].Nome := DM.qryAux['Cli_Nome'];
+      Result[Length(Result) - 1].Endereco := DM.qryAux['Cli_Endereco'];
+      Result[Length(Result) - 1].CPF := DM.qryAux['Cli_CPF'];
+      Result[Length(Result) - 1].Telefone := DM.qryAux['Cli_Telefone'];
+      Result[Length(Result) - 1].Celular := DM.qryAux['Cli_Celular'];
+      Result[Length(Result) - 1].Time := DM.qryAux['Cli_Time'];
+      Result[Length(Result) - 1].Religiao := DM.qryAux['Cli_Religiao'];
+      Result[Length(Result) - 1].Sexo := DM.qryAux['Cli_Sexo'];
+      DM.qryAux.Next;
+    End;
+    Close;
+  End;
+end;
   //: Empresas_Cadastradas;
 //Function Retorna_Proximo_Codigo_Empresa: String;
-// POIS NAO EXISTE MAIS DE UMA EMPRESA NO SISTEMA
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin
