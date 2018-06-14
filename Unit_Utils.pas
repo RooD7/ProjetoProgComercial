@@ -11,6 +11,7 @@ function Troca_Virgula_Ponto(Termo: string): String;
 function Transforma_Data(Data: TDate): String;
 Function Inscricao(Inscricao, Tipo: String ): Boolean;
 Function Mascara_Inscricao(Inscricao, Estado: String ): String;
+function ValidateEmail(emailAddress: string): Boolean;
 
 implementation
 

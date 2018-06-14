@@ -79,12 +79,20 @@ object frmPrincipal: TfrmPrincipal
         OnClick = Venda1Click
       end
     end
+    object Terminal1: TMenuItem
+      Caption = 'Terminal'
+      object TerminalConsulta1: TMenuItem
+        Caption = 'Terminal de consulta'
+        ShortCut = 16468
+        OnClick = Terminal1Click
+      end
+    end
   end
   object ImageList1: TImageList
     Left = 16
     Top = 56
     Bitmap = {
-      494C010144015001440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010144015001480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002005000001002000000000000020
       0500000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

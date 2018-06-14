@@ -273,6 +273,10 @@ object frmEmpresa: TfrmEmpresa
     object TabSheet2: TTabSheet
       Caption = 'Par'#226'metros do Sistema'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label_PorcLucro: TLabel
         Left = 48
         Top = 67
@@ -296,6 +300,10 @@ object frmEmpresa: TfrmEmpresa
     object TabSheet3: TTabSheet
       Caption = 'Dados do respons'#225'vel'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label_TelResp: TLabel
         Left = 21
         Top = 190
