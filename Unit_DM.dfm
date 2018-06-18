@@ -3,7 +3,8 @@ object DM: TDM
   Height = 336
   Width = 422
   object IBDatabase1: TIBDatabase
-    DatabaseName = '\\172.16.2.47\E:\git\ProjetoProgComercial\BD_COMERCIAL.FDB'
+    Connected = True
+    DatabaseName = '\\172.16.2.155\E:\progcomercial\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
@@ -64,5 +65,19 @@ object DM: TDM
     Transaction = IBTransaction1
     Left = 376
     Top = 168
+  end
+  object IBTableVenda: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'VENDA'
+    Left = 48
+    Top = 240
+  end
+  object IBTableProduto: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'PRODUTO'
+    Left = 136
+    Top = 240
   end
 end

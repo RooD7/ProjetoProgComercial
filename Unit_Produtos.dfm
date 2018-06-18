@@ -20,15 +20,11 @@ object frmProdutos: TfrmProdutos
     Top = 0
     Width = 819
     Height = 475
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Produtos cadastrados'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lblQtde: TLabel
         Left = 0
         Top = 348

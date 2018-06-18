@@ -1,0 +1,26 @@
+unit Unit_Terminal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfmTerminal = class(TForm)
+    Panel_Terminal: TPanel;
+    StaticText1: TStaticText;
+    Edit1: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTerminal: TfmTerminal;
+
+implementation
+
+{$R *.dfm}
+

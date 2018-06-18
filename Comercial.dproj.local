@@ -2,19 +2,19 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2018/03/08 07:07:01.000.367,=C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/03/08 07:44:58.000.072,C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.pas=E:\Prog_Comercial\Unit_Empresa.pas</Transaction>
-    <Transaction>2018/03/08 07:44:58.000.072,C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.dfm=E:\Prog_Comercial\Unit_Empresa.dfm</Transaction>
-    <Transaction>2018/03/08 07:45:07.000.900,C:\Users\alunos\Documents\RAD Studio\Projects\Project1.dproj=E:\Prog_Comercial\Comercial.dproj</Transaction>
+    <Transaction>2018/03/08 07:44:58.000.072,E:\Prog_Comercial\Unit_Empresa.dfm=C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/03/08 07:44:58.000.072,E:\Prog_Comercial\Unit_Empresa.pas=C:\Users\alunos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/08 07:45:07.000.900,E:\Prog_Comercial\Comercial.dproj=C:\Users\alunos\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2018/03/12 13:31:28.000.627,=E:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/03/12 13:32:01.000.850,E:\Prog_Comercial\Unit_Persistencia.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 13:32:01.000.850,E:\Prog_Comercial\Unit1.pas=E:\Prog_Comercial\Unit_Persistencia.pas</Transaction>
     <Transaction>2018/03/12 14:32:48.000.013,=E:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/03/12 14:32:54.000.078,E:\Prog_Comercial\Unit_Utils.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/12 14:32:54.000.078,E:\Prog_Comercial\Unit1.pas=E:\Prog_Comercial\Unit_Utils.pas</Transaction>
     <Transaction>2018/03/12 15:04:52.000.513,=E:\Prog_Comercial\Unit2.pas</Transaction>
-    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit_Principal.dfm=E:\Prog_Comercial\Unit2.dfm</Transaction>
-    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit_Principal.pas=E:\Prog_Comercial\Unit2.pas</Transaction>
+    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit2.pas=E:\Prog_Comercial\Unit_Principal.pas</Transaction>
+    <Transaction>2018/03/12 15:05:02.000.832,E:\Prog_Comercial\Unit2.dfm=E:\Prog_Comercial\Unit_Principal.dfm</Transaction>
     <Transaction>2018/03/15 07:12:52.000.537,=F:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit1.dfm=F:\Prog_Comercial\Unit_Clientes.dfm</Transaction>
-    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit1.pas=F:\Prog_Comercial\Unit_Clientes.pas</Transaction>
+    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit_Clientes.pas=F:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 07:13:24.000.938,F:\Prog_Comercial\Unit_Clientes.dfm=F:\Prog_Comercial\Unit1.dfm</Transaction>
     <Transaction>2018/03/19 14:02:36.000.671,=F:\Prog_Comercial\Unit_Produtos.pas</Transaction>
     <Transaction>2018/04/02 13:42:43.000.467,=E:\Programação Comercial\Unit_DM.pas</Transaction>
     <Transaction>2018/04/09 14:25:12.000.116,E:\Programação Comercial\Unit_Produtos.pas=</Transaction>
@@ -24,20 +24,22 @@
     <Transaction>2018/04/12 07:25:24.000.765,=E:\Prog_Comercial\Unit_GrupoProd.pas</Transaction>
     <Transaction>2018/04/12 08:22:43.000.164,=E:\Prog_Comercial\Unit_SubGrupoProd.pas</Transaction>
     <Transaction>2018/04/23 14:05:06.000.583,=E:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/04/23 14:12:41.000.323,E:\Prog_Comercial\Unit_Altera_Preco.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/04/23 14:12:41.000.323,E:\Prog_Comercial\Unit_Altera_Preco.dfm=E:\Prog_Comercial\Unit1.dfm</Transaction>
+    <Transaction>2018/04/23 14:12:41.000.323,E:\Prog_Comercial\Unit1.dfm=E:\Prog_Comercial\Unit_Altera_Preco.dfm</Transaction>
+    <Transaction>2018/04/23 14:12:41.000.323,E:\Prog_Comercial\Unit1.pas=E:\Prog_Comercial\Unit_Altera_Preco.pas</Transaction>
     <Transaction>2018/04/26 07:17:09.000.764,=E:\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/04/26 07:37:44.000.765,E:\Prog_Comercial\Unit1.dfm=E:\Prog_Comercial\Unit_Vendas.dfm</Transaction>
-    <Transaction>2018/04/26 07:37:44.000.765,E:\Prog_Comercial\Unit1.pas=E:\Prog_Comercial\Unit_Vendas.pas</Transaction>
+    <Transaction>2018/04/26 07:37:44.000.765,E:\Prog_Comercial\Unit_Vendas.pas=E:\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/04/26 07:37:44.000.765,E:\Prog_Comercial\Unit_Vendas.dfm=E:\Prog_Comercial\Unit1.dfm</Transaction>
     <Transaction>2018/05/14 14:57:14.000.748,=E:\progcomercial\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/05/14 14:57:29.000.349,E:\progcomercial\Prog_Comercial\Unit1.pas=E:\progcomercial\Prog_Comercial\Unit_Fornecedor.pas</Transaction>
+    <Transaction>2018/05/14 14:57:29.000.349,E:\progcomercial\Prog_Comercial\Unit_Fornecedor.pas=E:\progcomercial\Prog_Comercial\Unit1.pas</Transaction>
     <Transaction>2018/05/14 14:57:48.000.362,=E:\progcomercial\Prog_Comercial\Unit1.pas</Transaction>
-    <Transaction>2018/05/14 14:58:15.000.551,E:\progcomercial\Prog_Comercial\Unit1.pas=E:\progcomercial\Prog_Comercial\Unit_Fornecedor.pas</Transaction>
-    <Transaction>2018/05/14 14:58:15.000.551,E:\progcomercial\Prog_Comercial\Unit1.dfm=E:\progcomercial\Prog_Comercial\Unit_Fornecedor.dfm</Transaction>
-    <Transaction>2018/06/14 08:33:31.584,=E:\git\ProjetoProgComercial\Unit1.pas</Transaction>
-    <Transaction>2018/06/14 08:33:42.743,E:\git\ProjetoProgComercial\Terminal.pas=E:\git\ProjetoProgComercial\Unit1.pas</Transaction>
-    <Transaction>2018/06/14 08:33:42.743,E:\git\ProjetoProgComercial\Terminal.dfm=E:\git\ProjetoProgComercial\Unit1.dfm</Transaction>
-    <Transaction>2018/06/14 08:47:16.685,E:\git\ProjetoProgComercial\Unit_Terminal.dfm=E:\git\ProjetoProgComercial\Terminal.dfm</Transaction>
-    <Transaction>2018/06/14 08:47:16.685,E:\git\ProjetoProgComercial\Unit_Terminal.pas=E:\git\ProjetoProgComercial\Terminal.pas</Transaction>
+    <Transaction>2018/05/14 14:58:15.000.551,E:\progcomercial\Prog_Comercial\Unit_Fornecedor.dfm=E:\progcomercial\Prog_Comercial\Unit1.dfm</Transaction>
+    <Transaction>2018/05/14 14:58:15.000.551,E:\progcomercial\Prog_Comercial\Unit_Fornecedor.pas=E:\progcomercial\Prog_Comercial\Unit1.pas</Transaction>
+    <Transaction>2018/06/14 08:33:31.000.584,=E:\git\ProjetoProgComercial\Unit1.pas</Transaction>
+    <Transaction>2018/06/14 08:33:42.000.743,E:\git\ProjetoProgComercial\Unit1.pas=E:\git\ProjetoProgComercial\Terminal.pas</Transaction>
+    <Transaction>2018/06/14 08:33:42.000.743,E:\git\ProjetoProgComercial\Unit1.dfm=E:\git\ProjetoProgComercial\Terminal.dfm</Transaction>
+    <Transaction>2018/06/14 08:47:16.000.685,E:\git\ProjetoProgComercial\Terminal.pas=E:\git\ProjetoProgComercial\Unit_Terminal.pas</Transaction>
+    <Transaction>2018/06/14 08:47:16.000.685,E:\git\ProjetoProgComercial\Terminal.dfm=E:\git\ProjetoProgComercial\Unit_Terminal.dfm</Transaction>
+    <Transaction>2018/06/18 14:35:23.193,E:\git\ProjetoProgComercial\Unit_Grafico.dfm=E:\git\ProjetoProgComercial\Unit_Terminal.dfm</Transaction>
+    <Transaction>2018/06/18 14:35:23.193,E:\git\ProjetoProgComercial\Unit_Grafico.pas=E:\git\ProjetoProgComercial\Unit_Terminal.pas</Transaction>
   </Transactions>
 </BorlandProject>

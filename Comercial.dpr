@@ -14,7 +14,7 @@ uses
   Unit_Altera_Preco in 'Unit_Altera_Preco.pas' {frmAlteraPreco},
   Unit_Vendas in 'Unit_Vendas.pas' {frmVendas},
   Unit_Fornecedor in 'Unit_Fornecedor.pas' {frmFornecedor},
-  Unit_Terminal in 'Unit_Terminal.pas' {fmTerminal};
+  Unit_Grafico in 'Unit_Grafico.pas' {fmGrafico};
 
 {$R *.res}
 
@@ -26,6 +26,6 @@ begin
   Application.CreateForm(TfrmAlteraPreco, frmAlteraPreco);
   Application.CreateForm(TfrmVendas, frmVendas);
   Application.CreateForm(TfrmFornecedor, frmFornecedor);
-  Application.CreateForm(TfmTerminal, frmTerminal);
+  Application.CreateForm(TfrmTerminal, frmTerminal);
   Application.Run;
 end.

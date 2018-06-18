@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.DB, IBCustomDataSet, IBQuery,
-  IBDatabase;
+  IBDatabase, IBTable;
 
 type
   TDM = class(TDataModule)
@@ -18,6 +18,8 @@ type
     qryGrupoProd: TIBQuery;
     qrySubGrupoProd: TIBQuery;
     qryProd_Venda: TIBQuery;
+    IBTableVenda: TIBTable;
+    IBTableProduto: TIBTable;
   private
     { Private declarations }
   public

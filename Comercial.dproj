@@ -123,8 +123,8 @@
 				<Form>frmFornecedor</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
-			<DCCReference Include="Unit_Terminal.pas">
-				<Form>fmTerminal</Form>
+			<DCCReference Include="Unit_Grafico.pas">
+				<Form>fmGrafico</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
