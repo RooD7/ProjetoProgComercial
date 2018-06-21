@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
   VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs, VCLTee.Chart, VCLTee.DBChart,
-  VCLTee.TeeData;
+  VCLTee.TeeData, Unit_DM;
 
 type
   TfmGrafico = class(TForm)
@@ -25,6 +25,9 @@ type
     ChDataVendaTotalMesSeries1X: TFloatField;
     ChDataVendaTotalMesSeries1Pie: TFloatField;
     ChDataVendaTotalMesSeries1Label: TStringField;
+    Series6: TPieSeries;
+    Series7: TPieSeries;
+    Series8: TPieSeries;
     procedure FormCreate(Sender: TObject);
     procedure ChDataVendaTotalMesSeries1XChange(Sender: TField);
   private
@@ -39,10 +42,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TfmGrafico.ChDataVendaTotalMesSeries1XChange(Sender: TField);
-begin
-Series1.AddPie()
-end;
 
 end.

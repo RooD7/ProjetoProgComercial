@@ -42,7 +42,7 @@ implementation
 
 procedure TfmGrafico.ChDataVendaTotalMesSeries1XChange(Sender: TField);
 begin
-Series1.AddPie()
+//Series1.AddPie()
 end;
- Unit_DM.IBTableVenda
+
 end.

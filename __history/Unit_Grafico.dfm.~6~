@@ -14,67 +14,37 @@ object fmGrafico: TfmGrafico
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object LabelGrafico01: TLabel
-    Left = 16
-    Top = 56
-    Width = 49
-    Height = 13
-    Caption = 'Gr'#225'fico 01'
-  end
-  object LabelGrafico02: TLabel
-    Left = 16
-    Top = 87
-    Width = 49
-    Height = 13
-    Caption = 'Gr'#225'fico 02'
-  end
-  object LabelGrafico03: TLabel
-    Left = 16
-    Top = 118
-    Width = 49
-    Height = 13
-    Caption = 'Gr'#225'fico 03'
-  end
-  object LabelGrafico04: TLabel
-    Left = 16
-    Top = 149
-    Width = 49
-    Height = 13
-    Caption = 'Gr'#225'fico 04'
-  end
-  object LabelGrafico05: TLabel
-    Left = 16
-    Top = 180
-    Width = 49
-    Height = 13
-    Caption = 'Gr'#225'fico 05'
-  end
-  object Chart1: TChart
-    Left = 184
-    Top = -6
-    Width = 656
-    Height = 385
-    Legend.FirstValue = 19
-    Legend.LegendStyle = lsValues
-    Legend.TextStyle = ltsXAndValue
+  object DBChartGrafico: TDBChart
+    Left = 0
+    Top = 0
+    Width = 400
+    Height = 250
     Title.Text.Strings = (
-      'Gr'#225'fico')
-    Pages.AutoScale = True
-    Pages.Current = 20
-    Pages.MaxPointsPerPage = 1
-    View3D = False
+      'TDBChart')
+    View3DOptions.Elevation = 315
+    View3DOptions.Orthogonal = False
+    View3DOptions.Perspective = 0
+    View3DOptions.Rotation = 360
     TabOrder = 0
+    PrintMargins = (
+      15
+      18
+      15
+      18)
     ColorPaletteIndex = 13
     object Series1: TPieSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Emboss.Color = 8487297
+      Marks.Shadow.Color = 8487297
       Marks.Visible = True
-      Title = 'Vendas totais por m'#234's'
+      DataSource = ChDataVendaTotalMes
+      XLabelsSource = 'Series1.Label'
       XValues.Order = loAscending
       YValues.Name = 'Pie'
       YValues.Order = loNone
-      ExplodeBiggest = 30
+      YValues.ValueSource = 'Series1.Pie'
       Frame.InnerBrush.BackColor = clRed
       Frame.InnerBrush.Gradient.EndColor = clGray
       Frame.InnerBrush.Gradient.MidColor = clWhite
@@ -93,18 +63,17 @@ object fmGrafico: TfmGrafico
       Frame.Visible = False
       Frame.Width = 4
       OtherSlice.Legend.Visible = False
-      OtherSlice.Style = poBelowPercent
+      Data = {0000000000}
     end
     object Series2: TPieSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = True
-      Title = 'Vendas totais por produto por m'#234's'
+      DataSource = ChDataVendaTotalProd
       XValues.Order = loAscending
       YValues.Name = 'Pie'
       YValues.Order = loNone
-      ExplodeBiggest = 30
       Frame.InnerBrush.BackColor = clRed
       Frame.InnerBrush.Gradient.EndColor = clGray
       Frame.InnerBrush.Gradient.MidColor = clWhite
@@ -123,87 +92,87 @@ object fmGrafico: TfmGrafico
       Frame.Visible = False
       Frame.Width = 4
       OtherSlice.Legend.Visible = False
-      OtherSlice.Style = poBelowPercent
+      Data = {0000000000}
     end
     object Series3: TBarSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = True
-      Title = 'Vendas por dia'
-      Emboss.Color = 8947848
-      Shadow.Color = 8947848
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
       YValues.Order = loNone
+      Data = {
+        00060000000000000000B484400000000000E8874000000000001C8B40000000
+        000038884000000000003C894000000000008C8940}
     end
     object Series4: TBarSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = True
-      Title = 'Vendas por m'#234's'
-      Emboss.Color = 8882055
-      Shadow.Color = 8882055
+      Emboss.Color = 8487297
+      Shadow.Color = 8487297
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
       YValues.Order = loNone
+      Data = {
+        00060000000000000080F180400000000080A7834033333333336F8240666666
+        66E6C47E409A999999D902814034333333B33E7B40}
     end
     object Series5: TBarSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = True
-      Title = 'Vendas por produto por m'#234's'
-      Emboss.Color = 8750469
-      Shadow.Color = 8750469
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
       YValues.Order = loNone
+      Data = {
+        000600000099999999591C874066666666E6A2864066666666A69E8540333333
+        333325854066666666A6438440CCCCCCCC4CE88640}
     end
   end
-  object Button1: TButton
-    Left = 96
-    Top = 51
-    Width = 75
-    Height = 25
-    Caption = 'Gerar'
-    TabOrder = 1
-    OnClick = Button1Click
+  object ChDataVendaTotalMes: TChartDataSet
+    Active = True
+    Chart = DBChartGrafico
+    Left = 592
+    Top = 32
+    object ChDataVendaTotalMesSeries1Color: TIntegerField
+      FieldName = 'Series1.Color'
+    end
+    object ChDataVendaTotalMesSeries1X: TFloatField
+      FieldName = 'Series1.X'
+      OnChange = ChDataVendaTotalMesSeries1XChange
+    end
+    object ChDataVendaTotalMesSeries1Pie: TFloatField
+      FieldName = 'Series1.Pie'
+    end
+    object ChDataVendaTotalMesSeries1Label: TStringField
+      FieldName = 'Series1.Label'
+      Size = 128
+    end
   end
-  object Button2: TButton
-    Left = 96
-    Top = 82
-    Width = 75
-    Height = 25
-    Caption = 'Gerar'
-    TabOrder = 2
+  object ChDataVendaTotalProd: TChartDataSet
+    Chart = DBChartGrafico
+    Left = 512
+    Top = 112
   end
-  object Button3: TButton
-    Left = 96
-    Top = 113
-    Width = 75
-    Height = 25
-    Caption = 'Gerar'
-    TabOrder = 3
+  object ChDataVendaDia: TChartDataSet
+    Chart = DBChartGrafico
+    Left = 600
+    Top = 168
   end
-  object Button4: TButton
-    Left = 96
-    Top = 144
-    Width = 75
-    Height = 25
-    Caption = 'Gerar'
-    TabOrder = 4
+  object ChDataVendaMes: TChartDataSet
+    Chart = DBChartGrafico
+    Left = 504
+    Top = 232
   end
-  object Button5: TButton
-    Left = 96
-    Top = 175
-    Width = 75
-    Height = 25
-    Caption = 'Gerar'
-    TabOrder = 5
+  object ChDataVendaProdMes: TChartDataSet
+    Left = 656
+    Top = 280
   end
 end

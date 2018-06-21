@@ -44,12 +44,7 @@ procedure TfmGrafico.Button1Click(Sender: TObject);
 Var x, y, min, max, k: real;
 i, int, il: integer;
 begin
-x := 1;
 Series1.Clear;
-Series1.Add(2.5, 'a');
-Series1.Add(2.5, 'b');
-Series1.Add(2.5, 'c');
-
 end;
 
 end.

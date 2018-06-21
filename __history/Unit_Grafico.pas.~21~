@@ -46,9 +46,7 @@ i, int, il: integer;
 begin
 x := 1;
 Series1.Clear;
-Series1.Add(2.5, 'a');
-Series1.Add(2.5, 'b');
-Series1.Add(2.5, 'c');
+for i := 1 to 10 do
 
 end;
 
