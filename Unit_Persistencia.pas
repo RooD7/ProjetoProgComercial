@@ -93,6 +93,8 @@ Procedure Atualiza_Dados_Produto(Dados_Atuais: Dados_Produto);
 Function Retorna_Dados_Produto(Codigo: Integer): Dados_Produto;
 Function Retorna_Produtos_Cadastrados(Campo, Termo, Ordenacao: String)
   : Produtos_Cadastrados;
+Function Retorna_Produtos_Cadastrados2(Campo, Ordenacao: String)
+  : Produtos_Cadastrados;
 Function Retorna_Proximo_Codigo_Produto: String;
 Function Tem_Prod_SubGrupo(Cod_SubGrupo: Integer): Prods_Com_SubGrupo;
 Procedure Atualiza_Produtos_Cascata(Vetor_Prods: Prods_Com_SubGrupo;
@@ -541,6 +543,59 @@ Begin
     If LowerCase(Campo) = 'codbarras' Then
     Begin
       SQL.Add('Where Pro_CodBarras Like ' + QuotedStr(Termo + '%'));
+    End;
+    If Ordenacao = 'AZ' Then
+      SQL.Add('Order By Pro_Descricao Asc');
+    If Ordenacao = 'ZA' Then
+      SQL.Add('Order By Pro_Descricao Desc');
+    If Ordenacao = '09' Then
+      SQL.Add('Order By Pro_Codigo Asc');
+    If Ordenacao = '90' Then
+      SQL.Add('Order By Pro_Codigo Desc');
+    Open; // A SQL acima é executada
+    FetchAll;
+    SetLength(Result, 0);
+    For I := 1 to DM.qryAux.RecordCount do
+    Begin
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1].Codigo := DM.qryAux['Pro_Codigo'];
+      Result[Length(Result) - 1].Descricao := DM.qryAux['Pro_Descricao'];
+      Result[Length(Result) - 1].Cod_Barras := DM.qryAux['Pro_CodBarras'];
+      Result[Length(Result) - 1].Preco_Custo := DM.qryAux['Pro_PreCusto'];
+      Result[Length(Result) - 1].Preco_Venda := DM.qryAux['Pro_PreVenda'];
+      Result[Length(Result) - 1].Estoque_Atual := DM.qryAux['Pro_Estoque'];
+      Result[Length(Result) - 1].Estoque_Minimo := DM.qryAux['Pro_EstoqueMin'];
+      Result[Length(Result) - 1].Cod_Grupo := DM.qryAux['Pro_Cod_Grupo'];
+      Result[Length(Result) - 1].Cod_SubGrupo := DM.qryAux['Pro_Cod_SubGrupo'];
+      DM.qryAux.Next;
+    End;
+    Close;
+  End;
+End;
+
+Function Retorna_Produtos_Cadastrados2(Campo, Ordenacao: String)
+  : Produtos_Cadastrados;
+{ Valores possíveis para "Campo"
+  Codigo : Pro_Codigo
+  Descricao : Pro_Descricao
+  Codbarras : Pro_CodBarras
+}
+Var
+  I: Integer;
+Begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Select *');
+    SQL.Add('From Produto');
+    If LowerCase(Campo) = 'descricao' Then
+    Begin
+      SQL.Add('Where Pro_Descricao');
+    End;
+    If LowerCase(Campo) = 'codbarras' Then
+    Begin
+      SQL.Add('Where Pro_CodBarras');
     End;
     If Ordenacao = 'AZ' Then
       SQL.Add('Order By Pro_Descricao Asc');
