@@ -20,8 +20,6 @@ type
     Series5: TBarSeries;
     ComboBox1: TComboBox;
     ComboBox3: TComboBox;
-    DBCrossTabSource1: TDBCrossTabSource;
-    DBCrossTabSource2: TDBCrossTabSource;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -233,7 +231,7 @@ begin
 
   //Setting the default value
   ComboBox1.ItemIndex := 0;
-  ComboBox3.Enabled := false;
+  ComboBox3.Enabled := true;
 
   ComboBox3.Parent := Self;
   //Visual options

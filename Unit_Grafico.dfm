@@ -40,7 +40,6 @@ object frmGrafico: TfrmGrafico
       Marks.Shadow.Color = 8553090
       Marks.Style = smsLabelPercent
       Marks.Visible = True
-      DataSource = DBCrossTabSource1
       XValues.Order = loAscending
       YValues.Name = 'Pie'
       YValues.Order = loNone
@@ -116,7 +115,6 @@ object frmGrafico: TfrmGrafico
       YValues.Order = loNone
     end
     object Series4: TBarSeries
-      Active = False
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
@@ -171,16 +169,5 @@ object frmGrafico: TfrmGrafico
     Height = 21
     TabOrder = 3
     Text = '<Selecione o m'#234's>'
-  end
-  object DBCrossTabSource1: TDBCrossTabSource
-    DataSet = DM.IBTVenda
-    Formula = gfCount
-    Series = Series1
-    Left = 200
-    Top = 72
-  end
-  object DBCrossTabSource2: TDBCrossTabSource
-    Left = 16
-    Top = 88
   end
 end
