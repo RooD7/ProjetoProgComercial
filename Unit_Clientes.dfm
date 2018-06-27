@@ -20,7 +20,7 @@ object frmClientes: TfrmClientes
     Top = 0
     Width = 819
     Height = 455
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -57,7 +57,7 @@ object frmClientes: TfrmClientes
         Height = 64
         Align = alBottom
         BevelInner = bvLowered
-        Color = clYellow
+        Color = clMedGray
         ParentBackground = False
         TabOrder = 1
         object Label1: TLabel
@@ -76,7 +76,7 @@ object frmClientes: TfrmClientes
         end
         object cbxCampos: TComboBox
           Left = 16
-          Top = 28
+          Top = 26
           Width = 145
           Height = 32
           Style = csDropDownList
@@ -397,7 +397,7 @@ object frmClientes: TfrmClientes
       end
       object rdg_Sexo: TRadioGroup
         Left = 371
-        Top = 132
+        Top = 129
         Width = 327
         Height = 107
         Caption = ' Sexo '

@@ -4,7 +4,7 @@ object DM: TDM
   Width = 422
   object IBDatabase1: TIBDatabase
     Connected = True
-    DatabaseName = '\\172.16.2.186\E:\progcomercial\Prog_Comercial\BD_COMERCIAL.FDB'
+    DatabaseName = 'E:\trabalho01\21-06 - C'#243'pia (2)\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
@@ -63,21 +63,19 @@ object DM: TDM
   object qryProd_Venda: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 376
-    Top = 168
+    Left = 288
+    Top = 112
   end
-  object IBTableVenda: TIBTable
+  object qryFornecedor: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    TableName = 'VENDA'
-    Left = 48
-    Top = 240
+    Left = 64
+    Top = 256
   end
-  object IBTableProduto: TIBTable
+  object qryContasReceber: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    TableName = 'PRODUTO'
-    Left = 136
-    Top = 240
+    Left = 200
+    Top = 256
   end
 end

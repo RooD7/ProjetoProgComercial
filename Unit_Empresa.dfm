@@ -335,10 +335,10 @@ object frmEmpresa: TfrmEmpresa
         Height = 73
         TabOrder = 2
         object RadioGroup_CargoResp: TRadioGroup
-          Left = 16
-          Top = 2
+          Left = -6
+          Top = 0
           Width = 699
-          Height = 64
+          Height = 73
           Caption = 'Cargo do Respons'#225'vel'
           Enabled = False
           TabOrder = 0
@@ -347,16 +347,16 @@ object frmEmpresa: TfrmEmpresa
           Left = 326
           Top = 32
           Width = 113
-          Height = 17
+          Height = 33
           Caption = 'Gerente'
           Enabled = False
           TabOrder = 1
         end
         object RadioButton_Dono: TRadioButton
-          Left = 611
-          Top = 32
+          Left = 571
+          Top = 24
           Width = 113
-          Height = 17
+          Height = 41
           Caption = 'Dono'
           Enabled = False
           TabOrder = 2

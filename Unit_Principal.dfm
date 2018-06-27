@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'frmPrincipal'
-  ClientHeight = 365
-  ClientWidth = 589
+  ClientHeight = 487
+  ClientWidth = 648
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -60,9 +60,12 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'SubGrupo de Produtos'
         OnClick = SubGrupodeProdutos1Click
       end
-      object este1: TMenuItem
-        Caption = 'Teste'
-        OnClick = este1Click
+      object N5: TMenuItem
+        Caption = '-'
+      end
+      object Fornecedor1: TMenuItem
+        Caption = 'Fornecedor'
+        OnClick = Fornecedor1Click
       end
     end
     object Manuteno1: TMenuItem
@@ -78,21 +81,38 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Venda'
         OnClick = Venda1Click
       end
-    end
-    object Grafico: TMenuItem
-      Caption = 'Gr'#225'ficos'
-      object VizualizarGrafico: TMenuItem
-        Caption = 'Visualizar gr'#225'ficos'
-        ShortCut = 16455
-        OnClick = VizualizarGraficoClick
+      object Caixa1: TMenuItem
+        Caption = '-'
       end
+      object Contasareceber1: TMenuItem
+        Caption = 'Caixa'
+        OnClick = Contasareceber1Click
+      end
+      object N6: TMenuItem
+        Caption = '-'
+      end
+      object Contasareceber2: TMenuItem
+        Caption = 'Contas a receber'
+        OnClick = Contasareceber2Click
+      end
+      object N7: TMenuItem
+        Caption = '-'
+      end
+    end
+    object Relatrios1: TMenuItem
+      Caption = 'Relat'#243'rios'
+      OnClick = Relatrios1Click
+    end
+    object Grficos1: TMenuItem
+      Caption = 'Gr'#225'ficos'
+      OnClick = Grficos1Click
     end
   end
   object ImageList1: TImageList
     Left = 16
     Top = 56
     Bitmap = {
-      494C0101440150014C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010144015001540010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002005000001002000000000000020
       0500000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

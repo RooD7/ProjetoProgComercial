@@ -10,12 +10,6 @@ Type
     RazaoSocial: String;
     NomeFantasia: String;
     Endereco: String;
-    InscEstadual: String;
-    UF: String;
-    TelResp: String;
-    NomeResp: String;
-    CargoResp: String;
-    Email: String;
     CNPJ: String;
     Telefone: String;
     Lucro: Integer;
@@ -62,7 +56,23 @@ Type
     Cod_Grupo: Integer;
   End;
 
-  Empresas_Cadastradas = Array of Dados_Empresa;
+  Dados_Fornecedor = Record
+    Codigo: Integer;
+    RazaoSocial: String;
+    NomeFantasia: String;
+    Endereco: String;
+    CNPJ: String;
+    Telefone: String;
+    Email: String;
+    InscricaoEst: String;
+    UF: String;
+  End;
+
+  Ent_Caixa = Record
+    Data: String;
+    Total: Real;
+  End;
+
   Clientes_Cadastrados = Array of Dados_Cliente;
   Produtos_Cadastrados = Array of Dados_Produto;
   GrupoProds_Cadastrados = Array of Dados_GrupoProd;
@@ -70,18 +80,10 @@ Type
   Produtos_Venda = Array of Dados_Produto_Venda;
 
   Prods_Com_SubGrupo = Array of Integer;
+  Entradas_Caixa = Array of Ent_Caixa;
 
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Function Retorna_Dados_Empresa: Dados_Empresa;
-
-// subrotinas Empresa
-Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
-Function Retorna_Dados_Empresa(Codigo: Integer): Dados_Empresa;
-Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
-  : Empresas_Cadastradas;
-Function Retorna_Proximo_Codigo_Empresa: String;
-
 // subrotinas Cliente
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Procedure Atualiza_Dados_Cliente(Dados_Atuais: Dados_Cliente);
@@ -126,6 +128,12 @@ Function Retorna_Proximo_Codigo_Venda: String;
 Function Retorna_Prox_Codigo_ProdVenda: String;
 Procedure Grava_Dados_Venda(Cod_Venda: String; Data_Venda: TDate; Total: Real;
   Vet_Prod: Produtos_Venda);
+Function Retorna_Proximo_Codigo_ContReceber: String;
+Procedure Grava_Dados_ContasReceber(CR_Cod: String; Cod_Venda: String;
+  NParc: Integer; Valor: Real; Status: Integer; Data_Venc: TDate;
+  Data_Pagamento: TDate; Cli_cod: Integer);
+
+Function Retorna_Entradas_Caixa(): Entradas_Caixa;
 
 implementation
 
@@ -139,13 +147,6 @@ Begin
     Close;
   End
 End;
-
-//InscEstadual: String;
-  //  UF: String;
-//    TelResp: String;
-    //NomeResp: String;
-  //  CargoResp: String;
-//    Email: String;
 
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Begin
@@ -415,39 +416,39 @@ Begin
     SQL.Add('Where Pro_Codigo = ' + IntToStr(Codigo));
     Open; // A SQL acima é executada
     FetchAll;
-    if DM.qryAux['Pro_Codigo'] <> Null then
+    if DM.qryAux['Pro_Codigo'] <> null then
       Result.Codigo := DM.qryAux['Pro_Codigo']
     Else
       Result.Codigo := -1;
-    if DM.qryAux['Pro_Descricao'] <> Null then
+    if DM.qryAux['Pro_Descricao'] <> null then
       Result.Descricao := DM.qryAux['Pro_Descricao']
     Else
       Result.Descricao := '';
-    if DM.qryAux['Pro_CodBarras'] <> Null then
+    if DM.qryAux['Pro_CodBarras'] <> null then
       Result.Cod_Barras := DM.qryAux['Pro_CodBarras']
     Else
       Result.Cod_Barras := '';
-    if DM.qryAux['Pro_PreCusto'] <> Null then
+    if DM.qryAux['Pro_PreCusto'] <> null then
       Result.Preco_Custo := DM.qryAux['Pro_PreCusto']
     Else
       Result.Preco_Custo := -1;
-    if DM.qryAux['Pro_PreVenda'] <> Null then
+    if DM.qryAux['Pro_PreVenda'] <> null then
       Result.Preco_Venda := DM.qryAux['Pro_PreVenda']
     else
       Result.Preco_Venda := -1;
-    if DM.qryAux['Pro_Estoque'] <> Null then
+    if DM.qryAux['Pro_Estoque'] <> null then
       Result.Estoque_Atual := DM.qryAux['Pro_Estoque']
     else
       Result.Estoque_Atual := -1;
-    if DM.qryAux['Pro_EstoqueMin'] <> Null then
+    if DM.qryAux['Pro_EstoqueMin'] <> null then
       Result.Estoque_Minimo := DM.qryAux['Pro_EstoqueMin']
     else
       Result.Estoque_Minimo := -1;
-    if DM.qryAux['Pro_Cod_Grupo'] <> Null then
+    if DM.qryAux['Pro_Cod_Grupo'] <> null then
       Result.Cod_Grupo := DM.qryAux['Pro_Cod_Grupo']
     else
       Result.Cod_Grupo := -1;
-    if DM.qryAux['Pro_Cod_SubGrupo'] <> Null then
+    if DM.qryAux['Pro_Cod_SubGrupo'] <> null then
       Result.Cod_SubGrupo := DM.qryAux['Pro_Cod_SubGrupo']
     else
       Result.Cod_SubGrupo := -1;
@@ -637,11 +638,11 @@ Begin
     SQL.Add('Where GruP_Codigo = ' + IntToStr(Codigo));
     Open; // A SQL acima é executada
     FetchAll;
-    if DM.qryAux['GruP_Codigo'] <> Null then
+    if DM.qryAux['GruP_Codigo'] <> null then
       Result.Codigo := DM.qryAux['GruP_Codigo']
     Else
       Result.Codigo := -1;
-    if DM.qryAux['GruP_Descricao'] <> Null then
+    if DM.qryAux['GruP_Descricao'] <> null then
       Result.Descricao := DM.qryAux['GruP_Descricao']
     Else
       Result.Descricao := '';
@@ -773,15 +774,15 @@ Begin
     SQL.Add('Where SubGruP_Codigo = ' + IntToStr(Codigo));
     Open; // A SQL acima é executada
     FetchAll;
-    if DM.qryAux['SubGruP_Codigo'] <> Null then
+    if DM.qryAux['SubGruP_Codigo'] <> null then
       Result.Codigo := DM.qryAux['SubGruP_Codigo']
     Else
       Result.Codigo := -1;
-    if DM.qryAux['SubGruP_Descricao'] <> Null then
+    if DM.qryAux['SubGruP_Descricao'] <> null then
       Result.Descricao := DM.qryAux['SubGruP_Descricao']
     Else
       Result.Descricao := '';
-    if DM.qryAux['SubGruP_CodGrupo'] <> Null then
+    if DM.qryAux['SubGruP_CodGrupo'] <> null then
       Result.Cod_Grupo := DM.qryAux['SubGruP_CodGrupo']
     Else
       Result.Cod_Grupo := -1;
@@ -894,6 +895,25 @@ Begin
   End;
 End;
 
+Function Retorna_Proximo_Codigo_ContReceber: String;
+Begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Select CONTREC_COD');
+    SQL.Add('from CONTASRECEBER');
+    SQL.Add('Order By CONTREC_COD Desc');
+    Open;
+    If DM.qryAux.RecordCount <> 0 Then
+      Result := IntToStr(DM.qryAux['CONTREC_COD'] + 1)
+    Else
+      Result := '1';
+    Close;
+  End;
+
+End;
+
 Function Retorna_Prox_Codigo_ProdVenda: String;
 Begin
   With DM.qryAux Do
@@ -949,6 +969,59 @@ Begin
     End;
   End;
 
+End;
+
+Procedure Grava_Dados_ContasReceber(CR_Cod: String; Cod_Venda: String;
+  NParc: Integer; Valor: Real; Status: Integer; Data_Venc: TDate;
+  Data_Pagamento: TDate; Cli_cod: Integer);
+Var
+  I: Integer;
+Begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Insert Into CONTASRECEBER Values (');
+    SQL.Add(CR_Cod + ',');
+    SQL.Add(IntToStr(NParc) + ',');
+    SQL.Add(Cod_Venda + ',');
+    SQL.Add(Troca_Virgula_Ponto(FloatToStr(Valor)) + ',');
+    SQL.Add(IntToStr(Status) + ',');
+    SQL.Add(QuotedStr(Transforma_Data(Data_Venc)) + ',');
+    SQL.Add(QuotedStr(Transforma_Data(Data_Pagamento)) + ',');
+    SQL.Add(IntToStr(Cli_cod));
+    SQL.Add(')');
+    ExecSQL;
+    Commit;
+    Close;
+  End;
+End;
+
+Function Retorna_Entradas_Caixa(): Entradas_Caixa;
+Var
+  I: Integer;
+Begin
+  // Select CONTREC_DATAPAG, SUM(CONTREC_VALOR) from CONTASRECEBER WHERE CONTREC_STATUS=1 GROUP by CONTREC_DATAPAG ORDER BY CONTREC_DATAPAG ASC
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Select CONTREC_DATAPAG as data, SUM(CONTREC_VALOR) as valor');
+    SQL.Add('from CONTASRECEBER WHERE CONTREC_STATUS=1');
+    SQL.Add('GROUP by CONTREC_DATAPAG ORDER BY CONTREC_DATAPAG ASC');
+
+    Open; // A SQL acima é executada
+    FetchAll;
+    SetLength(Result, 0);
+    For I := 1 to DM.qryAux.RecordCount do
+    Begin
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1].Data := DM.qryAux['data'];
+      Result[Length(Result) - 1].Total := DM.qryAux['valor'];
+      DM.qryAux.Next;
+    End;
+    Close;
+  End;
 End;
 
 end.

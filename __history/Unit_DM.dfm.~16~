@@ -4,7 +4,7 @@ object DM: TDM
   Width = 422
   object IBDatabase1: TIBDatabase
     Connected = True
-    DatabaseName = '\\LOCALHOST\E:\git\ProjetoProgComercial\BD_COMERCIAL.FDB'
+    DatabaseName = 'E:\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
@@ -63,21 +63,83 @@ object DM: TDM
   object qryProd_Venda: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 376
-    Top = 168
+    Left = 288
+    Top = 112
   end
-  object IBTableVenda: TIBTable
+  object qryFornecedor: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    TableName = 'VENDA'
-    Left = 72
+    Left = 64
     Top = 256
   end
-  object IBTableProduto: TIBTable
+  object qryContasReceber: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 152
+    Top = 256
+  end
+  object IBTCliente: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'CLIENTE'
+    Left = 232
+    Top = 248
+    object IBTClienteCLI_CODIGO: TIntegerField
+      FieldName = 'CLI_CODIGO'
+      Required = True
+    end
+    object IBTClienteCLI_NOME: TIBStringField
+      FieldName = 'CLI_NOME'
+      Size = 200
+    end
+    object IBTClienteCLI_ENDERECO: TIBStringField
+      FieldName = 'CLI_ENDERECO'
+      Size = 150
+    end
+    object IBTClienteCLI_CPF: TIBStringField
+      FieldName = 'CLI_CPF'
+    end
+    object IBTClienteCLI_TELEFONE: TIBStringField
+      FieldName = 'CLI_TELEFONE'
+    end
+    object IBTClienteCLI_CELULAR: TIBStringField
+      FieldName = 'CLI_CELULAR'
+      Size = 100
+    end
+    object IBTClienteCLI_TIME: TIBStringField
+      FieldName = 'CLI_TIME'
+      Size = 100
+    end
+    object IBTClienteCLI_RELIGIAO: TIBStringField
+      FieldName = 'CLI_RELIGIAO'
+      Size = 100
+    end
+    object IBTClienteCLI_SEXO: TIntegerField
+      FieldName = 'CLI_SEXO'
+    end
+    object IBTClienteCLI_EMAIL: TIBStringField
+      FieldName = 'CLI_EMAIL'
+      Size = 100
+    end
+    object IBTClienteCLI_ESTCIVIL: TIntegerField
+      FieldName = 'CLI_ESTCIVIL'
+    end
+    object IBTClienteCLI_DATANASC: TDateField
+      FieldName = 'CLI_DATANASC'
+    end
+  end
+  object IBTProduto: TIBTable
     Database = IBDatabase1
     Transaction = IBTransaction1
     TableName = 'PRODUTO'
-    Left = 160
-    Top = 256
+    Left = 296
+    Top = 248
+  end
+  object IBTVenda: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'VENDA'
+    Left = 368
+    Top = 248
   end
 end

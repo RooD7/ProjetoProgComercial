@@ -1,0 +1,290 @@
+unit Unit_Relatorios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, frxClass, frxDBSet, Unit_DM,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Unit_Persistencia, Unit_Utils;
+
+type
+  TfrmRelatorios = class(TForm)
+    frxUsuario: TfrxReport;
+    frxDBCliente: TfrxDBDataset;
+    frxProduto: TfrxReport;
+    frxDBProduto: TfrxDBDataset;
+    frxVenda: TfrxReport;
+    frxDBVenda: TfrxDBDataset;
+    frxReport3: TfrxReport;
+    frxDBDataset3: TfrxDBDataset;
+    frx: TfrxReport;
+    frxDBDataset4: TfrxDBDataset;
+    RadioGroup3: TRadioGroup;
+    RadioGroup4: TRadioGroup;
+    RadioGroup5: TRadioGroup;
+    rbtFeminino: TRadioButton;
+    RadioGroup2: TRadioGroup;
+    Panel1: TPanel;
+    rbtMasculino: TRadioButton;
+    rbtTodosProd: TRadioButton;
+    rbtProdInd: TRadioButton;
+    rbtAvista: TRadioButton;
+    rbtAprazo: TRadioButton;
+    rbtReceber: TRadioButton;
+    rbtPagar: TRadioButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    cbxFaixaCod: TComboBox;
+    btnGerar: TButton;
+    edtMovCaixa: TMaskEdit;
+    edtDeContas: TMaskEdit;
+    edtAteContas: TMaskEdit;
+    edtDeVendas: TMaskEdit;
+    edtAteVendas: TMaskEdit;
+    rbtIndeterminado: TRadioButton;
+    edtCliDe: TEdit;
+    edtCliAte: TEdit;
+    Label8: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    RGclientes: TRadioGroup;
+    Label7: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    procedure btnGerarClick(Sender: TObject);
+    function RelatorioClientes: Clientes_cadastrados;
+    function RelatorioProdutos: Produtos_cadastrados;
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorios: TfrmRelatorios;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmRelatorios.btnGerarClick(Sender: TObject);
+begin
+    if rbtFeminino.Checked or rbtMasculino.Checked or rbtIndeterminado.Checked then
+    begin
+      DM.IBTCliente.Filtered := false;
+      if rbtFeminino.Checked = True then
+      begin
+        DM.IBTCliente.filter := 'Cli_Sexo=1 and Cli_Codigo >'+quotedstr(edtCliDe.Text)+' Cli_Codigo <'+quotedstr(edtCliAte.Text);
+      end
+      else if rbtMasculino.Checked = True then
+      begin
+        DM.IBTCliente.filter := 'Cli_Sexo=0 and Cli_Codigo >'+quotedstr(edtCliDe.Text)+' Cli_Codigo <'+quotedstr(edtCliAte.Text);
+      end
+      else if rbtIndeterminado.Checked = True then
+        DM.IBTCliente.filter := 'Cli_Sexo=2 and Cli_Codigo >'+quotedstr(edtCliDe.Text)+' Cli_Codigo <'+quotedstr(edtCliAte.Text);
+      DM.IBTCliente.Filtered:= True;
+
+      frxUsuario.PreviewOptions.Maximized := False;
+      //frxUsuario.PreviewOptions.Modal := true;
+      //frxUsuario.LoadFromFile('listaCliente.fr3');
+      frxUsuario.PrepareReport;
+      frxUsuario.ShowPreparedReport;
+      frxUsuario.ShowReport(true);
+      //frxUsuario.ShowReport(true);
+//      cliente:= RelatorioClientes;
+    end
+    {else if rbtProdInd.Checked or rbtTodosProd then
+    begin
+			DM.IBTProduto.filtered := false;
+			if rbtTodosProd.checked then
+				DM.IBTProduto.filter := 'pro_estoque = pro_estoqueMin and pro_codigo >='+inttostr()+'pro_codigo <='+inttostr()
+			else if rbtProdInd.checked then
+				DM.IBTProduto.filter := 'pro_estoque = pro_estoqueMin and pro_codigo >='+inttostr()+'pro_codigo <='+inttostr();
+			DM.IBTProduto.filtered:= true;
+//      produtos:= RelatorioProdutos;
+    end
+    else if rbtAprazo.Checked or rbtAvista then
+    begin
+
+    end
+    else if rbtReceber.Checked or rbtAvista then
+    begin
+
+    end }
+
+
+end;
+       {
+procedure TfrmRelatorios.ShowReport(RptName: String);
+begin
+
+
+
+end;  }
+
+
+function TfrmRelatorios.RelatorioClientes: clientes_cadastrados;
+var i : integer;
+begin
+//  With DM.qryCliente Do
+//  Begin
+//    Close;
+//    SQL.Clear;
+//    SQL.Add('Select *');
+//    SQL.Add('From Cliente');
+
+//    if rbtFeminino.Checked then
+//    begin
+
+//      SQL.Add('Where Cli_Sexo = 1');
+//      Open; // A SQL acima é executada
+//      FetchAll;
+//      SetLength(Result, 0);
+//      For I := 1 to DM.qryAux.RecordCount do
+//      Begin
+//        SetLength(Result, Length(Result) + 1);
+//        Result[Length(Result) - 1].Codigo := DM.qryAux['Cli_Codigo'];
+//        Result[Length(Result) - 1].Nome := DM.qryAux['Cli_Nome'];
+//        Result[Length(Result) - 1].Endereco := DM.qryAux['Cli_Endereco'];
+//        Result[Length(Result) - 1].CPF := DM.qryAux['Cli_CPF'];
+//        Result[Length(Result) - 1].Telefone := DM.qryAux['Cli_Telefone'];
+//        Result[Length(Result) - 1].Celular := DM.qryAux['Cli_Celular'];
+//        Result[Length(Result) - 1].Time := DM.qryAux['Cli_Time'];
+//        Result[Length(Result) - 1].Religiao := DM.qryAux['Cli_Religiao'];
+//        Result[Length(Result) - 1].Sexo := DM.qryAux['Cli_Sexo'];
+//        DM.qryAux.Next;
+//      End;
+//      Close;
+//    end
+//    else if rbtMasculino.Checked then
+//    begin
+
+//      SQL.Add('Where Cli_Sexo = 0');
+//      Open; // A SQL acima é executada
+//      FetchAll;
+//      SetLength(Result, 0);
+//      For I := 1 to DM.qryAux.RecordCount do
+//      Begin
+//        SetLength(Result, Length(Result) + 1);
+//        Result[Length(Result) - 1].Codigo := DM.qryAux['Cli_Codigo'];
+//        Result[Length(Result) - 1].Nome := DM.qryAux['Cli_Nome'];
+//        Result[Length(Result) - 1].Endereco := DM.qryAux['Cli_Endereco'];
+//        Result[Length(Result) - 1].CPF := DM.qryAux['Cli_CPF'];
+//        Result[Length(Result) - 1].Telefone := DM.qryAux['Cli_Telefone'];
+//        Result[Length(Result) - 1].Celular := DM.qryAux['Cli_Celular'];
+//        Result[Length(Result) - 1].Time := DM.qryAux['Cli_Time'];
+//        Result[Length(Result) - 1].Religiao := DM.qryAux['Cli_Religiao'];
+//        Result[Length(Result) - 1].Sexo := DM.qryAux['Cli_Sexo'];
+//        DM.qryAux.Next;
+//      End;
+//      Close;
+//    end
+//    else if rbtIndeterminado.Checked then
+//    begin
+
+//      SQL.Add('Where Cli_Sexo = 2');
+//      Open; // A SQL acima é executada
+//      FetchAll;
+//      SetLength(Result, 0);
+//      For I := 1 to DM.qryAux.RecordCount do
+//      Begin
+//        SetLength(Result, Length(Result) + 1);
+//        Result[Length(Result) - 1].Codigo := DM.qryAux['Cli_Codigo'];
+//        Result[Length(Result) - 1].Nome := DM.qryAux['Cli_Nome'];
+//        Result[Length(Result) - 1].Endereco := DM.qryAux['Cli_Endereco'];
+//        Result[Length(Result) - 1].CPF := DM.qryAux['Cli_CPF'];
+//        Result[Length(Result) - 1].Telefone := DM.qryAux['Cli_Telefone'];
+//        Result[Length(Result) - 1].Celular := DM.qryAux['Cli_Celular'];
+//        Result[Length(Result) - 1].Time := DM.qryAux['Cli_Time'];
+//        Result[Length(Result) - 1].Religiao := DM.qryAux['Cli_Religiao'];
+//        Result[Length(Result) - 1].Sexo := DM.qryAux['Cli_Sexo'];
+//        DM.qryAux.Next;
+//      End;
+//      Close;
+//    end;
+
+//  end;
+end;
+
+function TfrmRelatorios.RelatorioProdutos: produtos_cadastrados;
+begin
+
+
+end;
+
+{
+   if rdg_Sexo.ItemIndex = -1 Then
+  Begin
+    Application.MessageBox('Indique o sexo do cliente', 'Informe o sexo ',
+      MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    rdg_Sexo.SetFocus;
+    Exit;
+  End;   }
+
+ {
+  if Trim(edt_Nome.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo de Nome é obrigatório', 'Informe o nome',
+      MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    edt_Nome.SetFocus;
+    Exit;
+  End;
+  if Trim(edt_Endereco.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo de endereço é obrigatório',
+      'Informe o endereço', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    edt_Endereco.SetFocus;
+    Exit;
+  End;
+  Temp_CPF := edt_CPF.Text;
+  Temp_CPF := AnsiReplaceStr(Temp_CPF, '.', '');
+  Temp_CPF := AnsiReplaceStr(Temp_CPF, '-', '');
+  if Not(isCPF(Temp_CPF)) Then
+  Begin
+    Application.MessageBox
+      ('O CPF é inválido. Digite o CPF correto e tente novamente!',
+      'CPF inválido', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    edt_CPF.SetFocus;
+    Exit;
+  End;
+  if AnsiPos(' ', edt_Telefone.Text) <> 0 Then
+  Begin
+    Application.MessageBox('O campo de telefone é obrigatório',
+      'Informe o telefone ', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    edt_Telefone.SetFocus;
+    Exit;
+  End;
+  if AnsiPos(' ', edt_Celular.Text) <> 0 Then
+  Begin
+    Application.MessageBox('O campo de Celular é obrigatório',
+      'Informe o Celular ', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 1;
+    edt_Celular.SetFocus;
+    Exit;
+  End;
+
+        }
+
+  //Result := True;
+
+
+
+
+
+end.

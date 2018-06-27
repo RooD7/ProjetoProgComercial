@@ -1,0 +1,139 @@
+object frmCaixa: TfrmCaixa
+  Left = 0
+  Top = 0
+  Caption = 'frmCaixa'
+  ClientHeight = 456
+  ClientWidth = 609
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 24
+    Top = 8
+    Width = 169
+    Height = 19
+    Caption = 'Movimenta'#231#227'o Caixa'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 24
+    Top = 55
+    Width = 72
+    Height = 19
+    Caption = 'Entradas'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 24
+    Top = 223
+    Width = 53
+    Height = 19
+    Caption = 'Sa'#237'das'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 424
+    Top = 175
+    Width = 49
+    Height = 19
+    Caption = 'Total:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 424
+    Top = 343
+    Width = 49
+    Height = 19
+    Caption = 'Total:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 160
+    Top = 423
+    Width = 122
+    Height = 19
+    Caption = 'Total no caixa:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object StringGrid_CaixaEntradas: TStringGrid
+    Left = 24
+    Top = 80
+    Width = 553
+    Height = 89
+    ColCount = 2
+    RowCount = 1
+    FixedRows = 0
+    TabOrder = 0
+  end
+  object StringGrid_CaixaSaidas: TStringGrid
+    Left = 24
+    Top = 248
+    Width = 553
+    Height = 89
+    ColCount = 2
+    RowCount = 1
+    FixedRows = 0
+    TabOrder = 1
+  end
+  object Edit_TotalEntrada: TEdit
+    Left = 479
+    Top = 175
+    Width = 97
+    Height = 21
+    TabOrder = 2
+    Text = 'Edit_TotalEntrada'
+  end
+  object Edit_TotalSaida: TEdit
+    Left = 479
+    Top = 343
+    Width = 97
+    Height = 21
+    TabOrder = 3
+    Text = 'Edit1'
+  end
+  object Edi_total: TEdit
+    Left = 288
+    Top = 421
+    Width = 97
+    Height = 21
+    TabOrder = 4
+    Text = 'Edit1'
+  end
+end

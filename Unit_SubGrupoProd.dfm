@@ -20,15 +20,11 @@ object frmSubGrupoProd: TfrmSubGrupoProd
     Top = 0
     Width = 819
     Height = 275
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'SubGrupos cadastrados'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lblQtde: TLabel
         Left = 0
         Top = 148
@@ -61,7 +57,7 @@ object frmSubGrupoProd: TfrmSubGrupoProd
         Height = 64
         Align = alBottom
         BevelInner = bvLowered
-        Color = clYellow
+        Color = clMedGray
         ParentBackground = False
         TabOrder = 1
         object Label1: TLabel
@@ -172,10 +168,6 @@ object frmSubGrupoProd: TfrmSubGrupoProd
     object TabSheet2: TTabSheet
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 138
         Top = 112

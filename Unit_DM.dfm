@@ -4,7 +4,7 @@ object DM: TDM
   Width = 422
   object IBDatabase1: TIBDatabase
     Connected = True
-    DatabaseName = '\\LOCALHOST\E:\git\ProjetoProgComercial\BD_COMERCIAL.FDB'
+    DatabaseName = 'E:\git\ProjetoProgComercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
@@ -63,21 +63,137 @@ object DM: TDM
   object qryProd_Venda: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 376
-    Top = 168
+    Left = 288
+    Top = 112
   end
-  object IBTVenda: TIBTable
+  object qryFornecedor: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    TableName = 'VENDA'
-    Left = 72
+    Left = 64
     Top = 256
+  end
+  object qryContasReceber: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 152
+    Top = 256
+  end
+  object IBTCliente: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'CLIENTE'
+    Left = 232
+    Top = 248
+    object IBTClienteCLI_CODIGO: TIntegerField
+      FieldName = 'CLI_CODIGO'
+      Required = True
+    end
+    object IBTClienteCLI_NOME: TIBStringField
+      FieldName = 'CLI_NOME'
+      Size = 200
+    end
+    object IBTClienteCLI_ENDERECO: TIBStringField
+      FieldName = 'CLI_ENDERECO'
+      Size = 150
+    end
+    object IBTClienteCLI_CPF: TIBStringField
+      FieldName = 'CLI_CPF'
+    end
+    object IBTClienteCLI_TELEFONE: TIBStringField
+      FieldName = 'CLI_TELEFONE'
+    end
+    object IBTClienteCLI_CELULAR: TIBStringField
+      FieldName = 'CLI_CELULAR'
+      Size = 100
+    end
+    object IBTClienteCLI_TIME: TIBStringField
+      FieldName = 'CLI_TIME'
+      Size = 100
+    end
+    object IBTClienteCLI_RELIGIAO: TIBStringField
+      FieldName = 'CLI_RELIGIAO'
+      Size = 100
+    end
+    object IBTClienteCLI_SEXO: TIntegerField
+      FieldName = 'CLI_SEXO'
+    end
+    object IBTClienteCLI_EMAIL: TIBStringField
+      FieldName = 'CLI_EMAIL'
+      Size = 100
+    end
+    object IBTClienteCLI_ESTCIVIL: TIntegerField
+      FieldName = 'CLI_ESTCIVIL'
+    end
+    object IBTClienteCLI_DATANASC: TDateField
+      FieldName = 'CLI_DATANASC'
+    end
   end
   object IBTProduto: TIBTable
     Database = IBDatabase1
     Transaction = IBTransaction1
     TableName = 'PRODUTO'
-    Left = 160
-    Top = 256
+    Left = 296
+    Top = 248
+  end
+  object IBTVenda: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    FieldDefs = <
+      item
+        Name = 'VEN_CODIGO'
+        DataType = ftInteger
+      end
+      item
+        Name = 'VEN_DATA'
+        DataType = ftDate
+      end
+      item
+        Name = 'VEN_TOTAL'
+        DataType = ftFloat
+      end>
+    StoreDefs = True
+    TableName = 'VENDA'
+    Left = 368
+    Top = 248
+    object IBTVendaVEN_CODIGO: TIntegerField
+      FieldName = 'VEN_CODIGO'
+    end
+    object IBTVendaVEN_DATA: TDateField
+      FieldName = 'VEN_DATA'
+    end
+    object IBTVendaVEN_TOTAL: TFloatField
+      FieldName = 'VEN_TOTAL'
+    end
+  end
+  object IBTContasReceber: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    TableName = 'CONTASRECEBER'
+    Left = 224
+    Top = 56
+    object IBTContasReceberCONTREC_COD: TIntegerField
+      FieldName = 'CONTREC_COD'
+    end
+    object IBTContasReceberCONTREC_NPARC: TIntegerField
+      FieldName = 'CONTREC_NPARC'
+    end
+    object IBTContasReceberCONTRECVEN_COD: TIntegerField
+      FieldName = 'CONTRECVEN_COD'
+    end
+    object IBTContasReceberCONTREC_VALOR: TFloatField
+      FieldName = 'CONTREC_VALOR'
+    end
+    object IBTContasReceberCONTREC_STATUS: TIntegerField
+      FieldName = 'CONTREC_STATUS'
+    end
+    object IBTContasReceberCONTREC_DATAVENC: TDateField
+      FieldName = 'CONTREC_DATAVENC'
+    end
+    object IBTContasReceberCONTREC_DATAPAG: TDateField
+      FieldName = 'CONTREC_DATAPAG'
+    end
+    object IBTContasReceberCONTREC_CODCLIENTE: TIntegerField
+      FieldName = 'CONTREC_CODCLIENTE'
+    end
   end
 end

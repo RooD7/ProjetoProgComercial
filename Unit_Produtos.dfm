@@ -57,7 +57,7 @@ object frmProdutos: TfrmProdutos
         Height = 64
         Align = alBottom
         BevelInner = bvLowered
-        Color = clYellow
+        Color = clMedGray
         ParentBackground = False
         TabOrder = 1
         object Label1: TLabel
@@ -177,6 +177,10 @@ object frmProdutos: TfrmProdutos
     object TabSheet2: TTabSheet
       Caption = 'Cadastro/edi'#231#227'o de dados'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label3: TLabel
         Left = 138
         Top = 282

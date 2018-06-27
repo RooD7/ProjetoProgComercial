@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Unit_Empresa, Vcl.ImgList,
-  Vcl.DBLogDlg;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Unit_Empresa, Unit_Caixa,
+  Vcl.ImgList, Unit1_ContasReceber, unit_relatorios, unit_grafico;
 
 type
   TfrmPrincipal = class(TForm)
@@ -26,7 +26,14 @@ type
     Alteraodepreos1: TMenuItem;
     Movimentos1: TMenuItem;
     Venda1: TMenuItem;
-    este1: TMenuItem;
+    N5: TMenuItem;
+    Fornecedor1: TMenuItem;
+    Caixa1: TMenuItem;
+    Contasareceber1: TMenuItem;
+    N6: TMenuItem;
+    Contasareceber2: TMenuItem;
+    N7: TMenuItem;
+    Grficos1: TMenuItem;
     procedure Empresa1Click(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
@@ -34,8 +41,11 @@ type
     procedure SubGrupodeProdutos1Click(Sender: TObject);
     procedure Alteraodepreos1Click(Sender: TObject);
     procedure Venda1Click(Sender: TObject);
-    procedure este1Click(Sender: TObject);
-    procedure VizualizarGraficoClick(Sender: TObject);
+    procedure Fornecedor1Click(Sender: TObject);
+    procedure Contasareceber1Click(Sender: TObject);
+    procedure Contasareceber2Click(Sender: TObject);
+    procedure Relatrios1Click(Sender: TObject);
+    procedure Grficos1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,7 +60,7 @@ implementation
 {$R *.dfm}
 
 uses Unit_Clientes, Unit_Produtos, Unit_GrupoProd, Unit_SubGrupoProd,
-  Unit_Altera_Preco, Unit_Vendas, Unit_Fornecedor, Unit_Grafico;
+  Unit_Altera_Preco, Unit_Vendas, Unit_Fornecedor;
 
 procedure TfrmPrincipal.Alteraodepreos1Click(Sender: TObject);
 begin
@@ -66,6 +76,20 @@ begin
   frmClientes.Destroy;
 end;
 
+procedure TfrmPrincipal.Contasareceber1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmCaixa, frmCaixa);
+  frmCaixa.ShowModal;
+  frmCaixa.Destroy;
+end;
+
+procedure TfrmPrincipal.Contasareceber2Click(Sender: TObject);
+begin
+  Application.CreateForm(Tfrm_contasReceber, frm_contasReceber);
+  frm_contasReceber.ShowModal;
+  frm_contasReceber.Destroy;
+end;
+
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmEmpresa, frmEmpresa);
@@ -73,11 +97,18 @@ begin
   frmEmpresa.Destroy;
 end;
 
-procedure TfrmPrincipal.este1Click(Sender: TObject);
+procedure TfrmPrincipal.Fornecedor1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmFornecedor, frmFornecedor);
   frmFornecedor.ShowModal;
   frmFornecedor.Destroy;
+end;
+
+procedure TfrmPrincipal.Grficos1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmGrafico, frmGrafico);
+  frmGrafico.ShowModal;
+  frmGrafico.Destroy;
 end;
 
 procedure TfrmPrincipal.GruposdeProdutos1Click(Sender: TObject);
@@ -94,6 +125,13 @@ begin
   frmProdutos.Destroy;
 end;
 
+procedure TfrmPrincipal.Relatrios1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmRelatorios, frmRelatorios);
+  frmRelatorios.ShowModal;
+  frmRelatorios.Destroy;
+end;
+
 procedure TfrmPrincipal.SubGrupodeProdutos1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmSubGrupoProd, frmSubGrupoProd);
@@ -106,14 +144,6 @@ begin
   Application.CreateForm(TfrmVendas, frmVendas);
   frmVendas.ShowModal;
   frmVendas.Destroy;
-end;
-
-
-procedure TfrmPrincipal.VizualizarGraficoClick(Sender: TObject);
-begin
-  Application.CreateForm(TfrmGrafico, frmGrafico);
-  frmGrafico.ShowModal;
-  frmGrafico.Destroy;
 end;
 
 end.

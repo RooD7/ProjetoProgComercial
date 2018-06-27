@@ -179,11 +179,11 @@ Begin
     sgdProdutos.Cells[0, I + 1] := IntToStr(Produtos_Atuais[I].Codigo);
     sgdProdutos.Cells[1, I + 1] := Produtos_Atuais[I].Descricao;
     sgdProdutos.Cells[2, I + 1] := Produtos_Atuais[I].Cod_Barras;
-    sgdProdutos.Cells[3, I + 1] := FloatToStr(Produtos_Atuais[I].Preco_Custo);
-    sgdProdutos.Cells[4, I + 1] := FloatToStr(Produtos_Atuais[I].Preco_Venda);
-    sgdProdutos.Cells[5, I + 1] := FloatToStr(Produtos_Atuais[I].Estoque_Atual);
+    sgdProdutos.Cells[3, I + 1] := FloatToStrf(Produtos_Atuais[I].Preco_Custo,ffnumber,12,2);
+    sgdProdutos.Cells[4, I + 1] := FloatToStrf(Produtos_Atuais[I].Preco_Venda,ffnumber,12,2);
+    sgdProdutos.Cells[5, I + 1] := FloatToStrf(Produtos_Atuais[I].Estoque_Atual,ffnumber,12,2);
     sgdProdutos.Cells[6, I + 1] :=
-      FloatToStr(Produtos_Atuais[I].Estoque_Minimo);
+      FloatToStrf(Produtos_Atuais[I].Estoque_Minimo,ffnumber,12,2);
     sgdProdutos.Cells[7, I + 1] := Retorna_Dados_GrupoProd
       (Produtos_Atuais[I].Cod_Grupo).Descricao;
     sgdProdutos.Cells[8, I + 1] := Retorna_Dados_SubGrupoProd
@@ -245,10 +245,10 @@ Begin
   edt_Codigo.Text := IntToStr(Temp.Codigo);
   edt_Descricao.Text := Temp.Descricao;
   edt_CodBarras.Text := Temp.Cod_Barras;
-  edt_PreCusto.Text := FloatToStr(Temp.Preco_Custo);
-  edt_PreVenda.Text := FloatToStr(Temp.Preco_Venda);
-  edt_EstAtual.Text := FloatToStr(Temp.Estoque_Atual);
-  edt_EstMin.Text := FloatToStr(Temp.Estoque_Minimo);
+  edt_PreCusto.Text := FloatToStrf(Temp.Preco_Custo,ffnumber,12,2);
+  edt_PreVenda.Text := FloatToStrf(Temp.Preco_Venda,ffnumber,12,2);
+  edt_EstAtual.Text := FloatToStrf(Temp.Estoque_Atual,ffnumber,12,2);
+  edt_EstMin.Text := FloatToStrf(Temp.Estoque_Minimo,ffnumber,12,2);
   PageControl1.ActivePageIndex := 1;
   Habilita_Tela(True);
   Atualiza_Combo_Grupo(Retorna_Dados_GrupoProd(Temp.Cod_Grupo).Descricao);

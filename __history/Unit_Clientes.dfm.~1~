@@ -36,16 +36,19 @@ object frmClientes: TfrmClientes
         ExplicitWidth = 6
       end
       object sgdClientes: TStringGrid
-        Left = 0
+        Left = 41
         Top = 0
-        Width = 811
+        Width = 770
         Height = 328
         Align = alClient
         ColCount = 9
         FixedCols = 0
         RowCount = 2
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
+        PopupMenu = PopupMenu1
         TabOrder = 0
+        OnDblClick = sgdClientesDblClick
+        OnSelectCell = sgdClientesSelectCell
       end
       object Panel1: TPanel
         Left = 0
@@ -78,6 +81,13 @@ object frmClientes: TfrmClientes
           Height = 32
           Style = csDropDownList
           TabOrder = 0
+          OnChange = cbxCamposChange
+          Items.Strings = (
+            'C'#243'digo'
+            'Nome'
+            'Endere'#231'o'
+            'Telefone'
+            'CPF')
         end
         object edt_Pesquisa: TMaskEdit
           Left = 167
@@ -85,6 +95,7 @@ object frmClientes: TfrmClientes
           Width = 410
           Height = 32
           TabOrder = 1
+          OnChange = edt_PesquisaChange
         end
         object btn_Sair: TBitBtn
           Left = 699
@@ -108,6 +119,51 @@ object frmClientes: TfrmClientes
           NumGlyphs = 2
           TabOrder = 2
           OnClick = btn_Sair1Click
+        end
+      end
+      object Panel3: TPanel
+        Left = 0
+        Top = 0
+        Width = 41
+        Height = 328
+        Align = alLeft
+        TabOrder = 2
+        object btnAZ: TBitBtn
+          Left = 1
+          Top = 64
+          Width = 38
+          Height = 30
+          Caption = 'A..Z'
+          Enabled = False
+          TabOrder = 0
+          OnClick = btnAZClick
+        end
+        object btnZA: TBitBtn
+          Left = 1
+          Top = 99
+          Width = 38
+          Height = 30
+          Caption = 'Z..A'
+          TabOrder = 1
+          OnClick = btnZAClick
+        end
+        object btn09: TBitBtn
+          Left = 1
+          Top = 134
+          Width = 38
+          Height = 30
+          Caption = '0..9'
+          TabOrder = 2
+          OnClick = btn09Click
+        end
+        object btn90: TBitBtn
+          Left = 1
+          Top = 169
+          Width = 38
+          Height = 30
+          Caption = '9..0'
+          TabOrder = 3
+          OnClick = btn90Click
         end
       end
     end
@@ -379,6 +435,14 @@ object frmClientes: TfrmClientes
         LabelPosition = lpLeft
         TabOrder = 9
       end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 32
+    Top = 48
+    object Editarcadastro1: TMenuItem
+      Caption = 'Editar cadastro'
+      OnClick = sgdClientesDblClick
     end
   end
 end

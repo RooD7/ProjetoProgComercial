@@ -1,0 +1,19 @@
+11/06/2018 15:01:38 - <===> DLL ATTACH Ver:2.2.1.7<===>
+11/06/2018 15:01:41 - =======================================================================================================
+11/06/2018 15:01:41 - -->> BemaGeraSintegra(const char *strMfdTdmFileName, const char *strReportFileName, int year, int month, const char *strNomeContribuinte, const char *strLogradouro, int numero, const char *strComplemento, const char *strBairro, const char *strCEP, const char *strMunicipio, const char *strTelefone, const char *strFax, const char *strNomeContato, unsigned char relatorios)
+11/06/2018 15:01:41 - Parâmetros:('C:\Download.MFD', 'SINTEGRA.TXT', 2004, 8, 'BEMATECH S/A', 'Estrada de Santa Candida', 263, 'Industria', 'Santa Candida', '82630490', 'Curitiba', '413512700', '413512863', 'Fulano de Tal', '3F')
+11/06/2018 15:01:41 - Criando Banco de Dados!
+11/06/2018 15:01:41 - Criação do Banco de Dados Concluida!
+11/06/2018 15:01:41 - GetFileType: Arquivo TDM
+11/06/2018 15:01:41 - Processando Arquivo TDM!
+11/06/2018 15:01:41 - Arquivo TDM Processado!
+11/06/2018 15:01:41 - Carregando dados da MF!
+11/06/2018 15:01:41 - Sucesso carregando MF de arquivo!
+11/06/2018 15:01:41 - Dados da MF Carregados!
+11/06/2018 15:01:41 - Configurando Parametros de Busca!
+11/06/2018 15:01:41 - Parametros de Busca Configurados!
+11/06/2018 15:01:41 - Recuperando Comandos da MFD!
+11/06/2018 15:01:41 - Comandos da MFD Recuperados!
+11/06/2018 15:01:41 - Carregando dados do FiscalData!
+11/06/2018 15:01:41 - Dados do FiscalData Carregados!
+11/06/2018 15:01:41 - <===> DLL DETACH <===>

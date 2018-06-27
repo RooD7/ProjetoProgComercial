@@ -3,10 +3,11 @@ object DM: TDM
   Height = 336
   Width = 422
   object IBDatabase1: TIBDatabase
-    DatabaseName = '172.16.2.131:E:\Prog_Comercial\BD_COMERCIAL.FDB'
+    DatabaseName = 'E:\paula Comercial\Prog_Comercial\BD_COMERCIAL.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey')
+    LoginPrompt = False
     DefaultTransaction = IBTransaction1
     ServerType = 'IBServer'
     Left = 64
@@ -61,7 +62,13 @@ object DM: TDM
   object qryProd_Venda: TIBQuery
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 376
-    Top = 168
+    Left = 288
+    Top = 112
+  end
+  object qryFornecedor: TIBQuery
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    Left = 64
+    Top = 256
   end
 end

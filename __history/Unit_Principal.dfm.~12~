@@ -60,9 +60,12 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'SubGrupo de Produtos'
         OnClick = SubGrupodeProdutos1Click
       end
-      object este1: TMenuItem
-        Caption = 'Teste'
-        OnClick = este1Click
+      object N5: TMenuItem
+        Caption = '-'
+      end
+      object Fornecedor1: TMenuItem
+        Caption = 'Fornecedor'
+        OnClick = Fornecedor1Click
       end
     end
     object Manuteno1: TMenuItem
@@ -78,13 +81,22 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Venda'
         OnClick = Venda1Click
       end
-    end
-    object Terminal1: TMenuItem
-      Caption = 'Terminal'
-      object TerminalConsulta1: TMenuItem
-        Caption = 'Terminal de consulta'
-        ShortCut = 16468
-        OnClick = Terminal1Click
+      object Caixa1: TMenuItem
+        Caption = '-'
+      end
+      object Contasareceber1: TMenuItem
+        Caption = 'Caixa'
+        OnClick = Contasareceber1Click
+      end
+      object N6: TMenuItem
+        Caption = '-'
+      end
+      object Contasareceber2: TMenuItem
+        Caption = 'Contas a receber'
+        OnClick = Contasareceber2Click
+      end
+      object N7: TMenuItem
+        Caption = '-'
       end
     end
   end

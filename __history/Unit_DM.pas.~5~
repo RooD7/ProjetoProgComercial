@@ -18,6 +18,7 @@ type
     qryGrupoProd: TIBQuery;
     qrySubGrupoProd: TIBQuery;
     qryProd_Venda: TIBQuery;
+    qryFornecedor: TIBQuery;
   private
     { Private declarations }
   public

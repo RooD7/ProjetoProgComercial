@@ -2,7 +2,7 @@ object frmVendas: TfrmVendas
   Left = 0
   Top = 0
   Caption = 'frmVendas'
-  ClientHeight = 586
+  ClientHeight = 638
   ClientWidth = 754
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -52,7 +52,7 @@ object frmVendas: TfrmVendas
     Left = 0
     Top = 99
     Width = 754
-    Height = 415
+    Height = 467
     Align = alClient
     Caption = ' Produtos '
     TabOrder = 1
@@ -63,7 +63,7 @@ object frmVendas: TfrmVendas
       Height = 103
       Align = alTop
       BevelInner = bvLowered
-      Color = clGreen
+      Color = clGradientActiveCaption
       ParentBackground = False
       TabOrder = 0
       object edt_CodProduto: TLabeledEdit
@@ -141,33 +141,81 @@ object frmVendas: TfrmVendas
     end
     object Panel1: TPanel
       Left = 2
-      Top = 367
+      Top = 360
       Width = 750
-      Height = 46
+      Height = 105
       Align = alBottom
       BevelInner = bvLowered
-      Color = clRed
+      Color = clGradientActiveCaption
       ParentBackground = False
       TabOrder = 1
+      object Label1: TLabel
+        Left = 17
+        Top = 6
+        Width = 198
+        Height = 24
+        Caption = 'Forma de pagamento:'
+      end
+      object Label2_Cliente: TLabel
+        Left = 255
+        Top = 57
+        Width = 69
+        Height = 24
+        Caption = 'Cliente:'
+      end
       object edt_Total: TLabeledEdit
         Left = 564
         Top = 6
         Width = 111
         Height = 32
+        Color = clWhite
         EditLabel.Width = 134
         EditLabel.Height = 24
         EditLabel.Caption = 'Total da venda'
+        EditLabel.Color = clBlack
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clDefault
+        EditLabel.Font.Height = -20
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentColor = False
+        EditLabel.ParentFont = False
         Enabled = False
         LabelPosition = lpLeft
         TabOrder = 0
         Text = '0,00'
+      end
+      object RadioButton_Vista: TRadioButton
+        Left = 17
+        Top = 60
+        Width = 113
+        Height = 17
+        Caption = 'A vista'
+        TabOrder = 1
+        OnClick = RadioButton_VistaClick
+      end
+      object RadioButton_prazo: TRadioButton
+        Left = 136
+        Top = 52
+        Width = 113
+        Height = 29
+        Caption = 'A prazo'
+        TabOrder = 2
+        OnClick = RadioButton_prazoClick
+      end
+      object Combox_Clientes: TComboBox
+        Left = 330
+        Top = 56
+        Width = 263
+        Height = 32
+        TabOrder = 3
       end
     end
     object sgd_Produtos: TStringGrid
       Left = 2
       Top = 129
       Width = 750
-      Height = 238
+      Height = 231
       Align = alClient
       DefaultColWidth = 140
       FixedCols = 0
@@ -182,7 +230,7 @@ object frmVendas: TfrmVendas
   end
   object Panel2: TPanel
     Left = 0
-    Top = 514
+    Top = 566
     Width = 754
     Height = 72
     Align = alBottom
@@ -261,11 +309,11 @@ object frmVendas: TfrmVendas
       OnClick = btn_CancelarClick
     end
     object btn_Gravar: TBitBtn
-      Left = 454
-      Top = 12
-      Width = 130
+      Left = 445
+      Top = 14
+      Width = 165
       Height = 49
-      Caption = '&Gravar'
+      Caption = 'Efetuar Venda'
       Enabled = False
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
@@ -285,7 +333,7 @@ object frmVendas: TfrmVendas
       OnClick = btn_GravarClick
     end
     object btn_Sair1: TBitBtn
-      Left = 600
+      Left = 622
       Top = 12
       Width = 130
       Height = 49

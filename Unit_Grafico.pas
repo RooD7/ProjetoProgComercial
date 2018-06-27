@@ -53,6 +53,8 @@ procedure TfrmGrafico.Button1Click(Sender: TObject);
 Var x, y, min, max, k: real;
 i, int, il: integer;
 dataIni, dataFim, mes: String;
+str: StrArray;
+values: DoubleArray;
 begin
   Series1.Clear;
   Series2.Clear;
@@ -60,36 +62,68 @@ begin
   Series4.Clear;
   Series5.Clear;
 
+  // Vendas totais por produto por mês
   if ComboBox1.ItemIndex = 0 then
   begin
+    if ComboBox3.ItemIndex = 0 then mes := '01'
+    else
+    if ComboBox3.ItemIndex = 1 then mes := '02'
+    else
+    if ComboBox3.ItemIndex = 2 then mes := '03'
+    else
+    if ComboBox3.ItemIndex = 3 then mes := '04'
+    else
+    if ComboBox3.ItemIndex = 4 then mes := '05'
+    else
+    if ComboBox3.ItemIndex = 5 then mes := '06'
+    else
+    if ComboBox3.ItemIndex = 6 then mes := '07'
+    else
+    if ComboBox3.ItemIndex = 7 then mes := '08'
+    else
+    if ComboBox3.ItemIndex = 8 then mes := '09'
+    else
+    if ComboBox3.ItemIndex = 9 then mes := '10'
+    else
+    if ComboBox3.ItemIndex = 10 then mes := '11'
+    else
+    if ComboBox3.ItemIndex = 11 then mes := '12';
+
+    str := Unit_Persistencia.Retorna_Total_ProdPorMes01(mes);
+    values := Unit_Persistencia.Retorna_Total_ProdPorMes02(mes);
+    for i := 0 to Length(str)-1 do
+    begin
+      Series2.Add(values[i],str[i]);
+    end;
 
   end
   else
+    // Vendas totais por mes
     if ComboBox1.ItemIndex = 1 then
     begin
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('01');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('01');
       Series1.Add(x, 'Janeiro');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('02');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('02');
       Series1.Add(x, 'Fevereiro');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('03');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('03');
       Series1.Add(x, 'Março');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('04');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('04');
       Series1.Add(x, 'Abril');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('05');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('05');
       Series1.Add(x, 'Maio');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('06');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('06');
       Series1.Add(x, 'Junho');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('07');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('07');
       Series1.Add(x, 'Julho');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('08');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('08');
       Series1.Add(x, 'Agosto');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('09');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('09');
       Series1.Add(x, 'Setembro');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('10');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('10');
       Series1.Add(x, 'Outubro');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('11');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('11');
       Series1.Add(x, 'Novembro');
-      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('12');
+      x := Unit_Persistencia.Retorna_Total_VendaPorMes('12');
       Series1.Add(x, 'Dezembro');
     end;
 
@@ -163,7 +197,7 @@ begin
   //ComboBox1.AddItem('Vendas por dia', nil);
   ComboBox1.AddItem('Vendas por mes', nil);
   //Setting the default value
-  ComboBox1.ItemIndex := 1;
+  ComboBox1.ItemIndex := 0;
   ComboBox3.Enabled := false;
 
 

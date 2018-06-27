@@ -1,0 +1,368 @@
+unit Unit_Vendas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.ExtCtrls, Unit_Persistencia;
+
+type
+  TfrmVendas = class(TForm)
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    edt_CodVenda: TLabeledEdit;
+    edt_DataVenda: TLabeledEdit;
+    Panel3: TPanel;
+    Panel1: TPanel;
+    sgd_Produtos: TStringGrid;
+    edt_CodProduto: TLabeledEdit;
+    edt_DescProduto: TLabeledEdit;
+    edt_PrecoProduto: TLabeledEdit;
+    edt_Qtde: TLabeledEdit;
+    btn_InserirProduto: TBitBtn;
+    btn_RemoverProduto: TBitBtn;
+    edt_Total: TLabeledEdit;
+    Panel2: TPanel;
+    btn_Editar: TBitBtn;
+    btn_Limpar: TBitBtn;
+    btn_Cancelar: TBitBtn;
+    btn_Gravar: TBitBtn;
+    btn_Sair1: TBitBtn;
+    Label1: TLabel;
+    RadioButton_Vista: TRadioButton;
+    RadioButton_prazo: TRadioButton;
+    Label2_Cliente: TLabel;
+    Combox_Clientes: TComboBox;
+
+    Procedure Totaliza_Compra;
+    Procedure Pinta_Grid;
+    Function Coleta_Produtos: Produtos_Venda;
+    procedure Habilita_Tela(Habilita: Boolean);
+    procedure Habilita_Botoes(Quais: String);
+    procedure Limpa_Tela;
+
+    procedure btn_EditarClick(Sender: TObject);
+    procedure btn_LimparClick(Sender: TObject);
+    procedure btn_CancelarClick(Sender: TObject);
+    procedure btn_GravarClick(Sender: TObject);
+    procedure btn_Sair1Click(Sender: TObject);
+    procedure edt_CodProdutoChange(Sender: TObject);
+    procedure btn_InserirProdutoClick(Sender: TObject);
+    procedure edt_CodProdutoKeyPress(Sender: TObject; var Key: Char);
+    procedure edt_QtdeKeyPress(Sender: TObject; var Key: Char);
+    procedure btn_RemoverProdutoClick(Sender: TObject);
+    procedure sgd_ProdutosSelectCell(Sender: TObject; ACol, ARow: Integer;
+      var CanSelect: Boolean);
+    procedure FormShow(Sender: TObject);
+    procedure RadioButton_prazoClick(Sender: TObject);
+    procedure RadioButton_VistaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmVendas: TfrmVendas;
+  Linha: Integer;
+
+implementation
+
+{$R *.dfm}
+
+Procedure TfrmVendas.Totaliza_Compra;
+Var
+  I: Integer;
+  Total: Real;
+Begin
+  Total := 0;
+  Try
+    for I := 1 to sgd_Produtos.RowCount - 1 do
+      Total := Total + StrToFloat(sgd_Produtos.Cells[4, I]);
+    edt_Total.Text := FloatToStr(Total);
+  Except
+    edt_Total.Text := '0,00';
+  End;
+End;
+
+Procedure TfrmVendas.Pinta_Grid;
+Begin
+  sgd_Produtos.Cells[0, 0] := 'Cód.';
+  sgd_Produtos.Cells[1, 0] := 'Descrição';
+  sgd_Produtos.Cells[2, 0] := 'Preço';
+  sgd_Produtos.Cells[3, 0] := 'Qtde';
+  sgd_Produtos.Cells[4, 0] := 'Total';
+  sgd_Produtos.ColWidths[0] := 60;
+  sgd_Produtos.ColWidths[1] := 350;
+  sgd_Produtos.ColWidths[2] := 120;
+  sgd_Produtos.ColWidths[3] := 100;
+  sgd_Produtos.ColWidths[4] := 100;
+End;
+
+procedure TfrmVendas.RadioButton_VistaClick(Sender: TObject);
+begin
+  Label2_Cliente.Visible := False;
+  Combox_Clientes.Visible := False;
+end;
+
+procedure TfrmVendas.RadioButton_prazoClick(Sender: TObject);
+var
+  I: Integer;
+  Clientes_Atuais: Clientes_Cadastrados;
+  Campo, Termo: String;
+begin
+  Campo := '';
+  Termo := '';
+  Label2_Cliente.Visible := True;
+  Combox_Clientes.Visible := True;
+  SetLength(Clientes_Atuais, 0);
+  Clientes_Atuais := Retorna_Clientes_Cadastrados(Campo, Termo, 'AZ');
+  // Combox_Clientes.Item:=1;
+  for I := 0 to Length(Clientes_Atuais) - 1 do
+  Begin
+
+    Combox_Clientes.Items.Add(Clientes_Atuais[I].Nome);
+
+  End;
+
+end;
+
+procedure TfrmVendas.sgd_ProdutosSelectCell(Sender: TObject;
+  ACol, ARow: Integer; var CanSelect: Boolean);
+begin
+  Linha := ARow;
+end;
+
+Function TfrmVendas.Coleta_Produtos: Produtos_Venda;
+Var
+  I: Integer;
+Begin
+  SetLength(Result, sgd_Produtos.RowCount - 1);
+  for I := 1 to sgd_Produtos.RowCount - 1 do
+  Begin
+    Result[I - 1].Codigo := StrToInt(sgd_Produtos.Cells[0, I]);
+    Result[I - 1].Preco_Venda := StrToFloat(sgd_Produtos.Cells[2, I]);
+    Result[I - 1].Qtde := StrToFloat(sgd_Produtos.Cells[3, I]);
+  End;
+End;
+
+procedure TfrmVendas.edt_CodProdutoChange(Sender: TObject);
+Var
+  Produto_Temp: Dados_Produto;
+begin
+  If edt_CodProduto.Text = '' Then
+  Begin
+    edt_DescProduto.Clear;
+    edt_PrecoProduto.Clear;
+    edt_Qtde.Clear;
+    Exit;
+  End;
+
+  Produto_Temp := Retorna_Dados_Produto(StrToInt(edt_CodProduto.Text));
+  if Produto_Temp.Codigo <> -1 then
+  Begin
+    edt_DescProduto.Text := Produto_Temp.Descricao;
+    edt_PrecoProduto.Text := FloatToStr(Produto_Temp.Preco_Venda);
+  End
+  Else
+  Begin
+    edt_DescProduto.Clear;
+    edt_PrecoProduto.Clear;
+  End;
+end;
+
+procedure TfrmVendas.edt_CodProdutoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = Chr(13) then
+    edt_Qtde.SetFocus;
+end;
+
+procedure TfrmVendas.edt_QtdeKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = Chr(13) then
+    btn_InserirProduto.Click;
+end;
+
+procedure TfrmVendas.FormShow(Sender: TObject);
+begin
+  Linha := 1;
+  Pinta_Grid;
+  Label2_Cliente.Visible := False;
+  Combox_Clientes.Visible := False;
+end;
+
+procedure TfrmVendas.Habilita_Tela(Habilita: Boolean);
+Begin
+  edt_CodVenda.Enabled := Habilita;
+  edt_DataVenda.Enabled := Habilita;
+  edt_CodProduto.Enabled := Habilita;
+  edt_DescProduto.Enabled := Habilita;
+  edt_PrecoProduto.Enabled := Habilita;
+  edt_Qtde.Enabled := Habilita;
+  sgd_Produtos.Enabled := Habilita;
+  edt_Total.Enabled := Habilita;
+  btn_InserirProduto.Enabled := Habilita;
+  btn_RemoverProduto.Enabled := Habilita;
+End;
+
+procedure TfrmVendas.Limpa_Tela;
+Begin
+  edt_CodVenda.Clear;
+  edt_DataVenda.Clear;
+  edt_CodProduto.Clear;
+  edt_DescProduto.Clear;
+  edt_PrecoProduto.Clear;
+  edt_Qtde.Clear;
+  edt_Total.Clear;
+End;
+
+procedure TfrmVendas.Habilita_Botoes(Quais: String);
+Begin
+  if Quais[1] = '0' then
+    btn_Editar.Enabled := False
+  Else
+    btn_Editar.Enabled := True;
+  if Quais[2] = '0' then
+    btn_Limpar.Enabled := False
+  Else
+    btn_Limpar.Enabled := True;
+  if Quais[3] = '0' then
+    btn_Cancelar.Enabled := False
+  Else
+    btn_Cancelar.Enabled := True;
+  if Quais[4] = '0' then
+    btn_Gravar.Enabled := False
+  Else
+    btn_Gravar.Enabled := True;
+  if Quais[5] = '0' then
+    btn_Sair1.Enabled := False
+  Else
+    btn_Sair1.Enabled := True;
+End;
+
+procedure TfrmVendas.btn_CancelarClick(Sender: TObject);
+begin
+  Habilita_Botoes('10001');
+  Habilita_Tela(False);
+  Limpa_Tela;
+end;
+
+procedure TfrmVendas.btn_EditarClick(Sender: TObject);
+begin
+  Habilita_Tela(True);
+  Habilita_Botoes('01110');
+  edt_CodVenda.Text := Retorna_Proximo_Codigo_Venda;
+  edt_DataVenda.Text := DateToStr(Date);
+end;
+
+procedure TfrmVendas.btn_GravarClick(Sender: TObject);
+Var
+  Prods: Produtos_Venda;
+  CR_Cod : String;
+
+Begin
+  if RadioButton_Vista.Checked then
+  begin
+    ShowMessage('Venda a vista');
+    Prods := Coleta_Produtos;
+    Grava_Dados_Venda(edt_CodVenda.Text, StrToDate(edt_DataVenda.Text), StrToFloat(edt_Total.Text), Prods);
+    CR_Cod:= Retorna_Proximo_Codigo_ContReceber;
+    ShowMessage('Venda a vista'+ CR_Cod);
+
+    Grava_Dados_ContasReceber(CR_Cod, edt_CodVenda.Text, 0,  StrToFloat(edt_Total.Text), 1, StrToDate(edt_DataVenda.Text), StrToDate(edt_DataVenda.Text), -1);
+  end;
+
+  Habilita_Tela(False);
+  Habilita_Botoes('10001');
+  Label2_Cliente.Visible := False;
+  Combox_Clientes.Visible := False;
+End;
+
+procedure TfrmVendas.btn_InserirProdutoClick(Sender: TObject);
+Var
+  Produto_Temp: Dados_Produto;
+begin
+  if edt_CodProduto.Text = '' then
+  Begin
+    Application.MessageBox('Informe o código do produto antes de inserir',
+      'Informe o código', MB_ICONERROR + MB_OK);
+    edt_CodProduto.SetFocus;
+    Exit;
+  End;
+  if edt_Qtde.Text = '' then
+  Begin
+    Application.MessageBox('Informe a quantidade do produto antes de inserir',
+      'Informe a quantidade', MB_ICONERROR + MB_OK);
+    edt_Qtde.SetFocus;
+    Exit;
+  End;
+  Produto_Temp := Retorna_Dados_Produto(StrToInt(edt_CodProduto.Text));
+  if Produto_Temp.Codigo = -1 then
+  Begin
+    Application.MessageBox
+      (PChar('Não existe um produto cadastrado com o código = ' +
+      edt_CodProduto.Text), 'Produto não cadastrado', MB_ICONERROR + MB_OK);
+    Exit;
+  End;
+  if Not((sgd_Produtos.RowCount = 2) And (sgd_Produtos.Cells[0, 1] = '')) then
+    sgd_Produtos.RowCount := sgd_Produtos.RowCount + 1;
+  sgd_Produtos.Cells[0, sgd_Produtos.RowCount - 1] :=
+    IntToStr(Produto_Temp.Codigo);
+  sgd_Produtos.Cells[1, sgd_Produtos.RowCount - 1] := Produto_Temp.Descricao;
+  sgd_Produtos.Cells[2, sgd_Produtos.RowCount - 1] := edt_PrecoProduto.Text;
+  sgd_Produtos.Cells[3, sgd_Produtos.RowCount - 1] := edt_Qtde.Text;
+  sgd_Produtos.Cells[4, sgd_Produtos.RowCount - 1] :=
+    FloatToStr(StrToFloat(edt_PrecoProduto.Text) * StrToFloat(edt_Qtde.Text));
+
+  Totaliza_Compra;
+
+  edt_CodProduto.Clear;
+  edt_DescProduto.Clear;
+  edt_PrecoProduto.Clear;
+  edt_Qtde.Clear;
+  edt_CodProduto.SetFocus;
+end;
+
+procedure TfrmVendas.btn_LimparClick(Sender: TObject);
+Begin
+  if Application.MessageBox
+    ('Deseja realmente limpar todos os campos? Tem Certeza?',
+    'Limpar todos os campos?', MB_ICONQUESTION + MB_YESNO) = mrYes then
+    Limpa_Tela;
+End;
+
+procedure TfrmVendas.btn_RemoverProdutoClick(Sender: TObject);
+Var
+  I: Integer;
+begin
+  if sgd_Produtos.RowCount = 2 then
+  Begin
+    sgd_Produtos.Cells[0, 1] := '';
+    sgd_Produtos.Cells[1, 1] := '';
+    sgd_Produtos.Cells[2, 1] := '';
+    sgd_Produtos.Cells[3, 1] := '';
+    sgd_Produtos.Cells[4, 1] := '';
+    Totaliza_Compra;
+    Exit;
+  End;
+  for I := Linha to sgd_Produtos.RowCount Do
+  Begin
+    sgd_Produtos.Cells[0, I] := sgd_Produtos.Cells[0, I + 1];
+    sgd_Produtos.Cells[1, I] := sgd_Produtos.Cells[1, I + 1];
+    sgd_Produtos.Cells[2, I] := sgd_Produtos.Cells[2, I + 1];
+    sgd_Produtos.Cells[3, I] := sgd_Produtos.Cells[3, I + 1];
+    sgd_Produtos.Cells[4, I] := sgd_Produtos.Cells[4, I + 1];
+  End;
+  sgd_Produtos.RowCount := sgd_Produtos.RowCount - 1;
+  Totaliza_Compra;
+
+end;
+
+procedure TfrmVendas.btn_Sair1Click(Sender: TObject);
+begin
+  frmVendas.Close;
+end;
+
+end.
