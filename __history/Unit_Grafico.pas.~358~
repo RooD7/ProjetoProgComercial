@@ -31,6 +31,7 @@ type
     MaskEdit_Fim: TMaskEdit;
     ComboBox3: TComboBox;
     DBCrossTabSource1: TDBCrossTabSource;
+    DBCrossTabSource2: TDBCrossTabSource;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -63,12 +64,11 @@ begin
   Series4.Clear;
   Series5.Clear;
 
-  Series4.Add(2.5, 'a');
-  Series4.Add(2.5, 'b');
-  Series4.Add(2.5, 'c');
   // Vendas totais por produto por mês
   if ComboBox1.ItemIndex = 0 then
   begin
+    Chart1.SubTitle.Text.Clear;
+    Chart1.SubTitle.Text.Add('Vendas totais por produto por mês');
     if ComboBox3.ItemIndex = 0 then mes := '01'
     else
     if ComboBox3.ItemIndex = 1 then mes := '02'
@@ -105,6 +105,8 @@ begin
     // Vendas totais por mes
     if ComboBox1.ItemIndex = 1 then
     begin
+      Chart1.SubTitle.Text.Clear;
+      Chart1.SubTitle.Text.Add('Vendas totais por mês');
       x := Unit_Persistencia.Retorna_Total_VendaPorMes('01');
       Series1.Add(x, 'Janeiro');
       x := Unit_Persistencia.Retorna_Total_VendaPorMes('02');

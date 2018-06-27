@@ -56,6 +56,7 @@ object frmGrafico: TfrmGrafico
     Height = 327
     Legend.LegendStyle = lsValues
     Legend.TextStyle = ltsXAndValue
+    Legend.Visible = False
     Title.Text.Strings = (
       'Gr'#225'fico')
     Pages.AutoScale = True
@@ -71,6 +72,7 @@ object frmGrafico: TfrmGrafico
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Shadow.Color = 8553090
       Marks.Style = smsLabelPercent
       Marks.Visible = True
       DataSource = DBCrossTabSource1
@@ -98,13 +100,13 @@ object frmGrafico: TfrmGrafico
       MultiPie = mpDisabled
       OtherSlice.Legend.Visible = False
       OtherSlice.Style = poBelowPercent
-      Data = {0000000000}
     end
     object Series2: TPieSeries
-      LegendTitle = 'Produtos'
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Emboss.Color = 8487297
+      Marks.Shadow.Color = 8553090
       Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas totais por produto por m'#234's'
@@ -171,8 +173,8 @@ object frmGrafico: TfrmGrafico
       Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas por produto por m'#234's'
-      Emboss.Color = 8882055
-      Shadow.Color = 8882055
+      Emboss.Color = 8947848
+      Shadow.Color = 8947848
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
@@ -195,6 +197,7 @@ object frmGrafico: TfrmGrafico
     Height = 21
     TabOrder = 2
     Text = '<Selecione o gr'#225'fico>'
+    OnChange = ComboBox1Change
   end
   object Button2: TButton
     Left = 159
@@ -251,11 +254,12 @@ object frmGrafico: TfrmGrafico
     Text = '<Selecione o m'#234's>'
   end
   object DBCrossTabSource1: TDBCrossTabSource
-    Active = True
-    DataSet = DM.IBTableVenda
+    DataSet = DM.IBTVenda
     Formula = gfCount
     Series = Series1
     Left = 200
     Top = 72
+  end
+  object DBCrossTabSource2: TDBCrossTabSource
   end
 end

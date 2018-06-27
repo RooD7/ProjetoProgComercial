@@ -61,15 +61,13 @@ begin
   Series1.Clear;
   Series2.Clear;
   Series3.Clear;
-  //Series4.Clear;
+  Series4.Clear;
   Series5.Clear;
 
-  //Series4.Add(2.5, 'a');
-  //Series4.Add(2.5, 'b');
-  //Series4.Add(2.5, 'c');
   // Vendas totais por produto por mês
   if ComboBox1.ItemIndex = 0 then
   begin
+    Chart1.SubTitle.Text.Add('Vendas totais por produto por mês');
     if ComboBox3.ItemIndex = 0 then mes := '01'
     else
     if ComboBox3.ItemIndex = 1 then mes := '02'

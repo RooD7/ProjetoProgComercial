@@ -18,17 +18,7 @@ type
     Series3: TBarSeries;
     Series4: TBarSeries;
     Series5: TBarSeries;
-    Label1: TLabel;
-    Label2: TLabel;
     ComboBox1: TComboBox;
-    Button2: TButton;
-    Label3: TLabel;
-    DateTimePicker4: TDateTimePicker;
-    Label4: TLabel;
-    Label5: TLabel;
-    ComboBox2: TComboBox;
-    MaskEdit_Ini: TMaskEdit;
-    MaskEdit_Fim: TMaskEdit;
     ComboBox3: TComboBox;
     DBCrossTabSource1: TDBCrossTabSource;
     DBCrossTabSource2: TDBCrossTabSource;
@@ -67,6 +57,8 @@ begin
   // Vendas totais por produto por mês
   if ComboBox1.ItemIndex = 0 then
   begin
+    Chart1.SubTitle.Text.Clear;
+    Chart1.SubTitle.Text.Add('Vendas totais por produto por mês');
     if ComboBox3.ItemIndex = 0 then mes := '01'
     else
     if ComboBox3.ItemIndex = 1 then mes := '02'
@@ -103,6 +95,8 @@ begin
     // Vendas totais por mes
     if ComboBox1.ItemIndex = 1 then
     begin
+      Chart1.SubTitle.Text.Clear;
+      Chart1.SubTitle.Text.Add('Vendas totais por mês');
       x := Unit_Persistencia.Retorna_Total_VendaPorMes('01');
       Series1.Add(x, 'Janeiro');
       x := Unit_Persistencia.Retorna_Total_VendaPorMes('02');
@@ -132,6 +126,8 @@ begin
     // Vendas por mes
     if ComboBox1.ItemIndex = 2 then
     begin
+      Chart1.SubTitle.Text.Clear;
+      Chart1.SubTitle.Text.Add('Vendas por mês');
       if ComboBox3.ItemIndex = 0 then mes := '01'
       else
       if ComboBox3.ItemIndex = 1 then mes := '02'
@@ -239,18 +235,6 @@ begin
   ComboBox1.ItemIndex := 0;
   ComboBox3.Enabled := false;
 
-
-  ComboBox2.Parent := Self;
-  //Visual options
-  ComboBox2.DoubleBuffered := true;
-  ComboBox2.AutoComplete := true;
-
-  //Adding items to the combo box
-  ComboBox2.AddItem('Vendas totais por mês', nil);
-  ComboBox2.AddItem('Vendas totais por produtos por mês', nil);
-  ComboBox2.AddItem('Vendas por dia', nil);
-  ComboBox2.AddItem('Vendas por mês', nil);
-
   ComboBox3.Parent := Self;
   //Visual options
   ComboBox3.DoubleBuffered := true;
@@ -272,9 +256,6 @@ begin
   //Setting the default value
   ComboBox3.ItemIndex := 0;
 
-  //Unit_DM.DM.IBTableProduto.Filter('');
-  //Setting the default value
-  ComboBox2.ItemIndex := 0;
 end;
 
 end.

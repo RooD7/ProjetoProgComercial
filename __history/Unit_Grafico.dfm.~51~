@@ -170,8 +170,8 @@ object frmGrafico: TfrmGrafico
       Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas por produto por m'#234's'
-      Emboss.Color = 8882055
-      Shadow.Color = 8882055
+      Emboss.Color = 8947848
+      Shadow.Color = 8947848
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
@@ -194,6 +194,7 @@ object frmGrafico: TfrmGrafico
     Height = 21
     TabOrder = 2
     Text = '<Selecione o gr'#225'fico>'
+    OnChange = ComboBox1Change
   end
   object Button2: TButton
     Left = 159
@@ -250,10 +251,12 @@ object frmGrafico: TfrmGrafico
     Text = '<Selecione o m'#234's>'
   end
   object DBCrossTabSource1: TDBCrossTabSource
-    DataSet = DM.IBTableVenda
+    DataSet = DM.IBTVenda
     Formula = gfCount
     Series = Series1
     Left = 200
     Top = 72
+  end
+  object DBCrossTabSource2: TDBCrossTabSource
   end
 end
