@@ -97,6 +97,7 @@ Type
   Contas_Receber = Array of Cont_Rec;
   StrArray = array of String;
   DoubleArray = array of Double;
+  IntegerArray = array of Integer;
 
 // subrotinas Empresa
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
@@ -165,7 +166,8 @@ procedure arrumardata_parcelas(Cod_cr: string; n:integer);
 
 //graficos
 function Retorna_Total_VendaPorMes(Mes: String):Double;
-function Retorna_Dados_VendaPorMes(Mes: String):Double;
+function Retorna_Dados_VendaPorMes01(Mes: String):IntegerArray;
+function Retorna_Dados_VendaPorMes02(Mes: String):DoubleArray;
 function Retorna_Total_ProdPorMes01(Mes: String):StrArray;
 function Retorna_Total_ProdPorMes02(Mes: String):DoubleArray;
 
@@ -1256,20 +1258,40 @@ begin
   End;
 end;
 
-function Retorna_Dados_VendaPorMes(Mes: String):Double;
+function Retorna_Dados_VendaPorMes01(Mes: String):IntegerArray;
 begin
   With DM.qryAux Do
   Begin
     Close;
     SQL.Clear;
-    SQL.Add('select sum(ven_total) from venda where ven_data like ');
+    SQL.Add('select ven_Codigo from venda where ven_data like ');
     SQL.Add(QuotedStr('%_'+mes+'%'));
     Open;
     If DM.qryAux.RecordCount <> 0 Then
-      if DM.qryAux.FieldByName('sum').Value = null then
+      if DM.qryAux.FieldByName('ven_Codigo').Value = null then
         Result := 0
       else
-        Result := DM.qryAux['sum']
+        Result := DM.qryAux['ven_Codigo']
+    Else
+      Result := 0;
+    Close;
+  End;
+end;
+
+function Retorna_Dados_VendaPorMes02(Mes: String):DoubleArray;
+begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select ven_total from venda where ven_data like ');
+    SQL.Add(QuotedStr('%_'+mes+'%'));
+    Open;
+    If DM.qryAux.RecordCount <> 0 Then
+      if DM.qryAux.FieldByName('ven_total').Value = null then
+        Result := 0
+      else
+        Result := DM.qryAux['ven_total']
     Else
       Result := 0;
     Close;

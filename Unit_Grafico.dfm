@@ -170,8 +170,8 @@ object frmGrafico: TfrmGrafico
       Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas por produto por m'#234's'
-      Emboss.Color = 8882055
-      Shadow.Color = 8882055
+      Emboss.Color = 8947848
+      Shadow.Color = 8947848
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Bar'
@@ -256,5 +256,7 @@ object frmGrafico: TfrmGrafico
     Series = Series1
     Left = 200
     Top = 72
+  end
+  object DBCrossTabSource2: TDBCrossTabSource
   end
 end

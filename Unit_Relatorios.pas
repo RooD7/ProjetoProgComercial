@@ -97,10 +97,10 @@ begin
       end
       else if rbtMasculino.Checked = True then
       begin
-        DM.IBTCliente.filter := 'Cli_Sexo=0 and Cli_Codigo >'+quotedstr(edtCliDe.Text)+' and Cli_Codigo <'+quotedstr(edtCliAte.Text);
+        DM.IBTCliente.filter := 'Cli_Sexo=0 and Cli_Codigo >='+quotedstr(edtCliDe.Text)+' and Cli_Codigo <='+quotedstr(edtCliAte.Text);
       end
       else if rbtIndeterminado.Checked = True then
-        DM.IBTCliente.filter := 'Cli_Sexo=2 and Cli_Codigo >'+quotedstr(edtCliDe.Text)+' and Cli_Codigo <'+quotedstr(edtCliAte.Text);
+        DM.IBTCliente.filter := 'Cli_Sexo=2 and Cli_Codigo >='+quotedstr(edtCliDe.Text)+' and Cli_Codigo <='+quotedstr(edtCliAte.Text);
       DM.IBTCliente.Filtered:= True;
 
 			showReport(frxUsuario);

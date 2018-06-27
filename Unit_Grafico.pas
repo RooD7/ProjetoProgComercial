@@ -31,6 +31,7 @@ type
     MaskEdit_Fim: TMaskEdit;
     ComboBox3: TComboBox;
     DBCrossTabSource1: TDBCrossTabSource;
+    DBCrossTabSource2: TDBCrossTabSource;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -55,6 +56,7 @@ i, int, il: integer;
 dataIni, dataFim, mes: String;
 str: StrArray;
 values: DoubleArray;
+ints: IntegerArray;
 begin
   Series1.Clear;
   Series2.Clear;
@@ -125,6 +127,41 @@ begin
       Series1.Add(x, 'Novembro');
       x := Unit_Persistencia.Retorna_Total_VendaPorMes('12');
       Series1.Add(x, 'Dezembro');
+    end
+  else
+    // Vendas por mes
+    if ComboBox1.ItemIndex = 2 then
+    begin
+      if ComboBox3.ItemIndex = 0 then mes := '01'
+      else
+      if ComboBox3.ItemIndex = 1 then mes := '02'
+      else
+      if ComboBox3.ItemIndex = 2 then mes := '03'
+      else
+      if ComboBox3.ItemIndex = 3 then mes := '04'
+      else
+      if ComboBox3.ItemIndex = 4 then mes := '05'
+      else
+      if ComboBox3.ItemIndex = 5 then mes := '06'
+      else
+      if ComboBox3.ItemIndex = 6 then mes := '07'
+      else
+      if ComboBox3.ItemIndex = 7 then mes := '08'
+      else
+      if ComboBox3.ItemIndex = 8 then mes := '09'
+      else
+      if ComboBox3.ItemIndex = 9 then mes := '10'
+      else
+      if ComboBox3.ItemIndex = 10 then mes := '11'
+      else
+      if ComboBox3.ItemIndex = 11 then mes := '12';
+
+      ints := Unit_Persistencia.Retorna_Dados_VendaPorMes01(mes);
+      values := Unit_Persistencia.Retorna_Dados_VendaPorMes02(mes);
+      for i := 0 to Length(str)-1 do
+      begin
+        Series4.Add(values[i],IntToStr(ints[i]));
+      end;
     end;
 
   //Series1.Add(2.5, 'a');
@@ -175,7 +212,7 @@ end;
 
 procedure TfrmGrafico.ComboBox1Change(Sender: TObject);
 begin
-    if ComboBox1.ItemIndex = 0 then
+    if (ComboBox1.ItemIndex = 0) or (ComboBox1.ItemIndex = 2) then
       ComboBox3.Enabled := true
     else
       ComboBox3.Enabled := false;
@@ -192,10 +229,12 @@ begin
   ComboBox1.AutoComplete := true;
 
   //Adding items to the combo box
+  ComboBox1.AddItem('Vendas totais por produtos por mês', nil);
   ComboBox1.AddItem('Vendas totais por mês', nil);
-  //ComboBox1.AddItem('Vendas totais por produtos por mês', nil);
+  ComboBox1.AddItem('Vendas por mês', nil);
+
   //ComboBox1.AddItem('Vendas por dia', nil);
-  ComboBox1.AddItem('Vendas por mes', nil);
+
   //Setting the default value
   ComboBox1.ItemIndex := 0;
   ComboBox3.Enabled := false;
