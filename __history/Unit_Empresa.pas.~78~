@@ -51,6 +51,7 @@ type
     procedure btn_CancelarClick(Sender: TObject);
     procedure btn_GravarClick(Sender: TObject);
     procedure btn_SairClick(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
 
   private
     { Private declarations }
@@ -151,7 +152,7 @@ Begin
     edt_TelResp.SetFocus;
     Exit;
   End;
-
+  // SAPORRA NAO QUER FUNCIONAR, FEDEU MUITO
   if not (ValidateEmail(edt_Email.Text)) Then
   Begin
     Application.MessageBox('O campo de e-mail é obrigatório',
@@ -269,8 +270,6 @@ Begin
   edt_TelResp.Clear;
   edt_InscEstadual.Clear;
   edt_UFInscEstadual.Clear;
-  edt_Email.Clear;
-  spn_Lucro.Value := 0;
   RadioGroup_CargoResp.ItemIndex := 0;
 End;
 
@@ -290,7 +289,7 @@ procedure TfrmEmpresa.btn_GravarClick(Sender: TObject);
 begin
   if Validado then
   Begin
-    Atualiza_Dados_Empresa(Coleta_Dados);
+    Grava_Dados_Empresa(Coleta_Dados);
     Habilita_Tela(False);
     Habilita_Botoes('10001');
   End;

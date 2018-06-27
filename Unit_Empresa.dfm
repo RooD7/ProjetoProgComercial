@@ -148,7 +148,7 @@ object frmEmpresa: TfrmEmpresa
     Top = 0
     Width = 916
     Height = 403
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -315,7 +315,7 @@ object frmEmpresa: TfrmEmpresa
         Enabled = False
         LabelPosition = lpLeft
         TabOrder = 0
-        TextHint = 'digite aqui o nome fantasia'
+        TextHint = 'Digite aqui o nome do responsavel'
       end
       object edt_TelResp: TMaskEdit
         Left = 323
@@ -349,8 +349,10 @@ object frmEmpresa: TfrmEmpresa
           Width = 113
           Height = 33
           Caption = 'Gerente'
+          Checked = True
           Enabled = False
           TabOrder = 1
+          TabStop = True
         end
         object RadioButton_Dono: TRadioButton
           Left = 571

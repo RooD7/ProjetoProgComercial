@@ -277,7 +277,7 @@ Begin
     if DM.qryAux['Emp_CargoResp'] <> null then
       Result.CargoResp := DM.qryAux['Emp_CargoResp']
     else
-      Result.CargoResp := 0;
+      Result.CargoResp := '';
     if DM.qryAux['Emp_Email'] <> null then
       Result.Email := DM.qryAux['Emp_Email']
     else

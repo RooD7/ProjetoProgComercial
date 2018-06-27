@@ -6,8 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils,
-  StrUtils;
+  Vcl.Samples.Spin, Vcl.Mask, Vcl.ComCtrls, Unit_Persistencia, Unit_Utils, StrUtils;
 
 type
   TfrmEmpresa = class(TForm)
@@ -24,11 +23,22 @@ type
     edt_NomeFantasia: TLabeledEdit;
     edt_Endereco: TLabeledEdit;
     edt_CNPJ: TMaskEdit;
-    Label1: TLabel;
+    Label_CNPJ: TLabel;
     edt_Telefone: TMaskEdit;
-    Label2: TLabel;
+    Label_Tel: TLabel;
     spn_Lucro: TSpinEdit;
-    Label3: TLabel;
+    Label_PorcLucro: TLabel;
+    edt_InscEstadual: TLabeledEdit;
+    edt_UFInscEstadual: TLabeledEdit;
+    TabSheet3: TTabSheet;
+    edt_NomeResp: TLabeledEdit;
+    edt_TelResp: TMaskEdit;
+    Label_TelResp: TLabel;
+    RadioGroup_CargoResp: TRadioGroup;
+    RadioButton_Dono: TRadioButton;
+    RadioButton_Gerente: TRadioButton;
+    Panel2: TPanel;
+    edt_Email: TLabeledEdit;
     procedure FormShow(Sender: TObject);
     procedure btn_EditarClick(Sender: TObject);
     procedure Preenche_Componentes;
@@ -63,6 +73,12 @@ Begin
   edt_RazaoSocial.Text := Temp.RazaoSocial;
   edt_NomeFantasia.Text := Temp.NomeFantasia;
   edt_Endereco.Text := Temp.Endereco;
+  edt_InscEstadual.Text := Temp.InscEstadual;
+  edt_UFInscEstadual.Text := Temp.UF;
+  edt_TelResp.Text := Temp.TelResp;
+  edt_NomeResp.Text := Temp.NomeResp;
+  RadioGroup_CargoResp.ItemIndex := Temp.CargoResp;
+  edt_Email.Text := Temp.Email;
   edt_CNPJ.Text := Temp.CNPJ;
   edt_Telefone.Text := Temp.Telefone;
   spn_Lucro.Value := Temp.Lucro;
@@ -97,6 +113,52 @@ Begin
     Result := False;
     PageControl1.ActivePageIndex := 0;
     edt_Endereco.SetFocus;
+    Exit;
+  End;
+  if Trim(edt_InscEstadual.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo de Inscrição Estadual é obrigatório',
+      'Informe a inscrição', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 0;
+    edt_InscEstadual.SetFocus;
+    Exit;
+  End;
+  if Trim(edt_UFInscEstadual.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo UF é obrigatório',
+      'Informe o UF', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 0;
+    edt_UFInscEstadual.SetFocus;
+    Exit;
+  End;
+  if Trim(edt_NomeResp.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo de endereço é obrigatório',
+      'Informe o endereço', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 0;
+    edt_NomeResp.SetFocus;
+    Exit;
+  End;
+  if Trim(edt_TelResp.Text) = '' Then
+  Begin
+    Application.MessageBox('O campo de telefone do responsável é obrigatório',
+      'Informe o telefone do responsável', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 0;
+    edt_TelResp.SetFocus;
+    Exit;
+  End;
+  // SAPORRA NAO QUER FUNCIONAR, FEDEU MUITO
+  if not (ValidateEmail(edt_Email.Text)) Then
+  Begin
+    Application.MessageBox('O campo de e-mail é obrigatório',
+      'Informe o e-mail', MB_ICONERROR + MB_OK);
+    Result := False;
+    PageControl1.ActivePageIndex := 0;
+    edt_Email.SetFocus;
     Exit;
   End;
   Temp_CNPJ := edt_CNPJ.Text;
@@ -139,6 +201,12 @@ Begin
   Result.RazaoSocial := edt_RazaoSocial.Text;
   Result.NomeFantasia := edt_NomeFantasia.Text;
   Result.Endereco := edt_Endereco.Text;
+  Result.NomeResp := edt_NomeResp.Text;
+  Result.TelResp := edt_TelResp.Text;
+  Result.CargoResp := RadioGroup_CargoResp.ItemIndex;
+  Result.InscEstadual := edt_InscEstadual.Text;
+  Result.UF := edt_UFInscEstadual.Text;
+  Result.Email := edt_Email.Text;
   Result.CNPJ := edt_CNPJ.Text;
   Result.Telefone := edt_Telefone.Text;
   Result.Lucro := spn_Lucro.Value;
@@ -175,10 +243,19 @@ Begin
   edt_Endereco.Enabled := Habilita;
   edt_CNPJ.Enabled := Habilita;
   edt_Telefone.Enabled := Habilita;
-  Label1.Enabled := Habilita;
-  Label2.Enabled := Habilita;
-  Label3.Enabled := Habilita;
-  spn_Lucro.Enabled := Habilita;
+  edt_Email.Enabled := Habilita;
+  Label_CNPJ.Enabled := Habilita;
+  edt_InscEstadual.Enabled := Habilita;
+  edt_UFInscEstadual.Enabled := Habilita;
+  Label_Tel.Enabled := Habilita;
+  Label_TelResp.Enabled := Habilita;
+  edt_TelResp.Enabled := Habilita;
+  RadioGroup_CargoResp.Enabled := Habilita;
+  Label_PorcLucro.Enabled := Habilita;
+  edt_NomeResp.Enabled := Habilita;
+  RadioButton_Dono.Enabled := Habilita;
+  RadioButton_Gerente.Enabled := Habilita;
+  spn_Lucro.Enabled := habilita;
 End;
 
 procedure TfrmEmpresa.Limpa_Tela;
@@ -188,6 +265,13 @@ Begin
   edt_Endereco.Clear;
   edt_CNPJ.Clear;
   edt_Telefone.Clear;
+  edt_NomeResp.Clear;
+  edt_TelResp.Clear;
+  edt_InscEstadual.Clear;
+  edt_UFInscEstadual.Clear;
+  edt_Email.Clear;
+  spn_Lucro.Value := 0;
+  RadioGroup_CargoResp.ItemIndex := 0;
 End;
 
 procedure TfrmEmpresa.btn_CancelarClick(Sender: TObject);
@@ -206,7 +290,7 @@ procedure TfrmEmpresa.btn_GravarClick(Sender: TObject);
 begin
   if Validado then
   Begin
-    Grava_Dados_Empresa(Coleta_Dados);
+    Atualiza_Dados_Empresa(Coleta_Dados);
     Habilita_Tela(False);
     Habilita_Botoes('10001');
   End;

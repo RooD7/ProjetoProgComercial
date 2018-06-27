@@ -271,17 +271,17 @@ Begin
     else
       Result.TelResp := '';
     if DM.qryAux['Emp_NomeResp'] <> null then
-      Result.NomeResp := DM.qryAux['Emp_NomeResp']
+      Result.CNPJ := DM.qryAux['Emp_NomeResp']
     else
-      Result.NomeResp := '';
+      Result.CNPJ := '';
     if DM.qryAux['Emp_CargoResp'] <> null then
-      Result.CargoResp := DM.qryAux['Emp_CargoResp']
+      Result.CNPJ := DM.qryAux['Emp_CargoResp']
     else
-      Result.CargoResp := 0;
+      Result.CNPJ := '';
     if DM.qryAux['Emp_Email'] <> null then
-      Result.Email := DM.qryAux['Emp_Email']
+      Result.CNPJ := DM.qryAux['Emp_Email']
     else
-      Result.Email := '';
+      Result.CNPJ := '';
     if DM.qryAux['Emp_CNPJ'] <> null then
       Result.CNPJ := DM.qryAux['Emp_CNPJ']
     else
