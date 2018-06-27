@@ -125,6 +125,10 @@ Function Retorna_Prox_Codigo_ProdVenda: String;
 Procedure Grava_Dados_Venda(Cod_Venda: String; Data_Venda: TDate; Total: Real;
   Vet_Prod: Produtos_Venda);
 
+//graficos
+function Retorna_Dados_VendaPorMes(Mes: String):Double;
+
+
 implementation
 
 Procedure Commit;
@@ -1065,4 +1069,23 @@ Begin
 
 End;
 
+function Retorna_Dados_VendaPorMes(Mes: String):Double;
+begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select sum(ven_total) from venda where ven_data like ');
+    SQL.Add(QuotedStr('%_'+mes+'%'));
+    Open;
+    If DM.qryAux.RecordCount <> 0 Then
+      if DM.qryAux.FieldByName('sum').Value = null then
+        Result := 0
+      else
+        Result := DM.qryAux['sum']
+    Else
+      Result := 0;
+    Close;
+  End;
+end;
 end.

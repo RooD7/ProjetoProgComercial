@@ -153,6 +153,10 @@ object frmEmpresa: TfrmEmpresa
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados da Empresa'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label_CNPJ: TLabel
         Left = 185
         Top = 160

@@ -250,12 +250,10 @@ object frmGrafico: TfrmGrafico
     Text = '<Selecione o m'#234's>'
   end
   object DBCrossTabSource1: TDBCrossTabSource
-    Active = True
     DataSet = DM.IBTableVenda
     Formula = gfCount
-    GroupField = 'VEN_DATA'
-    LabelField = 'VEN_CODIGO'
     Series = Series1
-    ValueField = 'VEN_TOTAL'
+    Left = 200
+    Top = 72
   end
 end
