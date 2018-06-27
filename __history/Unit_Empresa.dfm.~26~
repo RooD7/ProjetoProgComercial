@@ -148,11 +148,15 @@ object frmEmpresa: TfrmEmpresa
     Top = 0
     Width = 916
     Height = 403
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados da Empresa'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label_CNPJ: TLabel
         Left = 185
         Top = 160
@@ -243,7 +247,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 5
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
-      object edt_TpInscEstadual: TLabeledEdit
+      object edt_UFInscEstadual: TLabeledEdit
         Left = 760
         Top = 110
         Width = 80
@@ -256,7 +260,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 6
         TextHint = 'digite aqui a inscri'#231#227'o estadual'
       end
-      object edt_Mail: TLabeledEdit
+      object edt_Email: TLabeledEdit
         Left = 251
         Top = 295
         Width = 427
@@ -304,7 +308,7 @@ object frmEmpresa: TfrmEmpresa
         Caption = 'Telefone do Respons'#225'vel'
         Enabled = False
       end
-      object Label_NomeResp: TLabeledEdit
+      object edt_NomeResp: TLabeledEdit
         Left = 323
         Top = 20
         Width = 425
@@ -317,7 +321,7 @@ object frmEmpresa: TfrmEmpresa
         TabOrder = 0
         TextHint = 'digite aqui o nome fantasia'
       end
-      object MaskEdit_TelResp: TMaskEdit
+      object edt_TelResp: TMaskEdit
         Left = 323
         Top = 187
         Width = 275

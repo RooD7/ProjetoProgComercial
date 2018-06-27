@@ -34,6 +34,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,37 +60,48 @@ begin
   Series4.Clear;
   Series5.Clear;
 
-  if ComboBox1.Items.Objects[ComboBox1.ItemIndex].ToString = 'Vendas por mes' then
+  if ComboBox1.ItemIndex = 0 then
   begin
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('01');
-    Series1.Add(x, 'Janeiro');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('02');
-    Series1.Add(x, 'Fevereiro');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('03');
-    Series1.Add(x, 'Março');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('04');
-    Series1.Add(x, 'Abril');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('05');
-    Series1.Add(x, 'Maio');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('06');
-    Series1.Add(x, 'Junho');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('07');
-    Series1.Add(x, 'Julho');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('08');
-    Series1.Add(x, 'Agosto');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('09');
-    Series1.Add(x, 'Setembro');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('10');
-    Series1.Add(x, 'Outubro');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('11');
-    Series1.Add(x, 'Novembro');
-    x := Unit_Persistencia.Retorna_Dados_VendaPorMes('12');
-    Series1.Add(x, 'Dezembro');
-  end;
+
+  end
+  else
+    if ComboBox1.ItemIndex = 1 then
+    begin
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('01');
+      Series1.Add(x, 'Janeiro');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('02');
+      Series1.Add(x, 'Fevereiro');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('03');
+      Series1.Add(x, 'Março');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('04');
+      Series1.Add(x, 'Abril');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('05');
+      Series1.Add(x, 'Maio');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('06');
+      Series1.Add(x, 'Junho');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('07');
+      Series1.Add(x, 'Julho');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('08');
+      Series1.Add(x, 'Agosto');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('09');
+      Series1.Add(x, 'Setembro');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('10');
+      Series1.Add(x, 'Outubro');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('11');
+      Series1.Add(x, 'Novembro');
+      x := Unit_Persistencia.Retorna_Dados_VendaPorMes('12');
+      Series1.Add(x, 'Dezembro');
+    end;
 
   //Series1.Add(2.5, 'a');
   //Series1.Add(2.5, 'b');
   //Series1.Add(2.5, 'c');
+
+  //Unit_DM.DM.IBTableVenda.Close;
+  //Unit_DM.DM.IBTableVenda.Filtered := False;
+  //Unit_DM.DM.IBTableVenda.Filter := 'Ven_data LIKE '+QuotedStr('%_'+mes+'%');
+  //Unit_DM.DM.IBTableVenda.Filtered := True;
+  //Unit_DM.DM.IBTableVenda.Open;
 
   //dataIni := Unit_Utils.Transforma_Data(DateTimePicker1.Date);
   //dataFim := Unit_Utils.Transforma_Data(DateTimePicker2.Date);
@@ -127,12 +139,19 @@ Series2.Add(32.5, 'z');
 
 end;
 
+procedure TfrmGrafico.ComboBox1Change(Sender: TObject);
+begin
+    if ComboBox1.ItemIndex = 0 then
+      ComboBox3.Enabled := true
+    else
+      ComboBox3.Enabled := false;
+end;
+
 procedure TfrmGrafico.FormCreate(Sender: TObject);
 Var
   str: String;
   x: Double;
 begin
-
   ComboBox1.Parent := Self;
   //Visual options
   ComboBox1.DoubleBuffered := true;
@@ -144,7 +163,8 @@ begin
   //ComboBox1.AddItem('Vendas por dia', nil);
   ComboBox1.AddItem('Vendas por mes', nil);
   //Setting the default value
-  ComboBox1.ItemIndex := 0;
+  ComboBox1.ItemIndex := 1;
+  ComboBox3.Enabled := false;
 
 
   ComboBox2.Parent := Self;

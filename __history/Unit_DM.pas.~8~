@@ -18,8 +18,8 @@ type
     qryGrupoProd: TIBQuery;
     qrySubGrupoProd: TIBQuery;
     qryProd_Venda: TIBQuery;
-    IBTVenda: TIBTable;
-    IBTProduto: TIBTable;
+    IBTableVenda: TIBTable;
+    IBTableProduto: TIBTable;
   private
     { Private declarations }
   public

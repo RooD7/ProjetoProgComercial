@@ -10,6 +10,12 @@ Type
     RazaoSocial: String;
     NomeFantasia: String;
     Endereco: String;
+    InscEstadual: String;
+    UF: String;
+    TelResp: String;
+    NomeResp: String;
+    CargoResp: Integer;
+    Email: String;
     CNPJ: String;
     Telefone: String;
     Lucro: Integer;
@@ -56,6 +62,7 @@ Type
     Cod_Grupo: Integer;
   End;
 
+  Empresas_Cadastradas = Array of Dados_Empresa;
   Clientes_Cadastrados = Array of Dados_Cliente;
   Produtos_Cadastrados = Array of Dados_Produto;
   GrupoProds_Cadastrados = Array of Dados_GrupoProd;
@@ -64,8 +71,14 @@ Type
 
   Prods_Com_SubGrupo = Array of Integer;
 
+// subrotinas Empresa
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Function Retorna_Dados_Empresa: Dados_Empresa;
+Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
+//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String)
+  //: Empresas_Cadastradas;
+//Function Retorna_Proximo_Codigo_Empresa: String;
+
 // subrotinas Cliente
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Procedure Atualiza_Dados_Cliente(Dados_Atuais: Dados_Cliente);
@@ -79,6 +92,8 @@ Procedure Grava_Dados_Produto(Dados_Atuais: Dados_Produto);
 Procedure Atualiza_Dados_Produto(Dados_Atuais: Dados_Produto);
 Function Retorna_Dados_Produto(Codigo: Integer): Dados_Produto;
 Function Retorna_Produtos_Cadastrados(Campo, Termo, Ordenacao: String)
+  : Produtos_Cadastrados;
+Function Retorna_Produtos_Cadastrados2(Campo, Ordenacao: String)
   : Produtos_Cadastrados;
 Function Retorna_Proximo_Codigo_Produto: String;
 Function Tem_Prod_SubGrupo(Cod_SubGrupo: Integer): Prods_Com_SubGrupo;
@@ -104,12 +119,15 @@ Function Retorna_SubGrupoProds_Cadastrados(Campo, Termo, Ordenacao: String)
   : SubGrupoProds_Cadastrados;
 Function Retorna_Proximo_Codigo_SubGrupoProd: String;
 Function Retorna_Codigo_SubGrupo(Descricao: String): Integer;
-
 // subrotinas de vendas
 Function Retorna_Proximo_Codigo_Venda: String;
 Function Retorna_Prox_Codigo_ProdVenda: String;
 Procedure Grava_Dados_Venda(Cod_Venda: String; Data_Venda: TDate; Total: Real;
   Vet_Prod: Produtos_Venda);
+
+//graficos
+function Retorna_Dados_VendaPorMes(Mes: String):Double;
+
 
 implementation
 
@@ -124,19 +142,59 @@ Begin
   End
 End;
 
+//InscEstadual: String;
+  //  UF: String;
+//    TelResp: String;
+    //NomeResp: String;
+  //  CargoResp: String;
+//    Email: String;
+
 Procedure Grava_Dados_Empresa(Dados_Atuais: Dados_Empresa);
 Begin
   With DM.qryEmpresa Do
   Begin
     SQL.Clear;
     SQL.Add('Update Empresa Set ');
-    SQL.Add('EMP_NOMEFANTASIA = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
-    SQL.Add('EMP_RAZAOSOCIAL = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
-    SQL.Add('EMP_ENDERECO = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
-    SQL.Add('EMP_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
-    SQL.Add('EMP_TELEFONE = ' +
+    SQL.Add('Emp_NomeFantasia = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
+    SQL.Add('Emp_RazaoSocial = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
+    SQL.Add('Emp_Endereco = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
+    SQL.Add('Emp_InscEstadual = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
+    SQL.Add('Emp_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
+    SQL.Add('Emp_TelResp = ' +
+      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
+    SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
+    SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
+    SQL.Add('Emp_Telefone = ' +
       QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
-    SQL.Add('EMP_PORC_LUCRO = ' + IntToStr(Dados_Atuais.Lucro));
+    SQL.Add('Emp_Porc_Lucro = ' + IntToStr(Dados_Atuais.Lucro));
+    ExecSQL;
+    Commit;
+    Close;
+  End;
+End;
+
+Procedure Atualiza_Dados_Empresa(Dados_Atuais: Dados_Empresa);
+Begin
+  With DM.qryEmpresa Do
+  Begin
+    SQL.Clear;
+    SQL.Add('Update Empresa Set ');
+    SQL.Add('Emp_NomeFantasia = ' + QuotedStr(Dados_Atuais.NomeFantasia) + ',');
+    SQL.Add('Emp_RazaoSocial = ' + QuotedStr(Dados_Atuais.RazaoSocial) + ',');
+    SQL.Add('Emp_Endereco = ' + QuotedStr(Dados_Atuais.Endereco) + ',');
+    SQL.Add('Emp_InscEstadual = ' + QuotedStr(Dados_Atuais.InscEstadual) + ',');
+    SQL.Add('Emp_UF = ' + QuotedStr(Dados_Atuais.UF) + ',');
+    SQL.Add('Emp_TelResp = ' +
+      QuotedStr(Remove_Mascara(Dados_Atuais.TelResp)) + ',');
+    SQL.Add('Emp_NomeResp = ' + QuotedStr(Dados_Atuais.NomeResp) + ',');
+    SQL.Add('Emp_CargoResp = ' + IntToStr(Dados_Atuais.CargoResp) + ',');
+    SQL.Add('Emp_Email = ' + QuotedStr(Dados_Atuais.Email) + ',');
+    SQL.Add('Emp_CNPJ = ' + QuotedStr(Remove_Mascara(Dados_Atuais.CNPJ)) + ',');
+    SQL.Add('Emp_Telefone = ' +
+      QuotedStr(Remove_Mascara(Dados_Atuais.Telefone)) + ',');
+    SQL.Add('Emp_Porc_Lucro = ' + IntToStr(Dados_Atuais.Lucro));
     ExecSQL;
     Commit;
     Close;
@@ -153,14 +211,62 @@ Begin
     SQL.Add('From Empresa');
     Open; // A SQL acima é executada
     FetchAll;
-    Result.RazaoSocial := DM.qryAux['Emp_RazaoSocial'];
-    Result.NomeFantasia := DM.qryAux['Emp_NomeFantasia'];
-    Result.Endereco := DM.qryAux['Emp_Endereco'];
-    Result.CNPJ := DM.qryAux['Emp_CNPJ'];
-    Result.Telefone := DM.qryAux['Emp_Telefone'];
-    Result.Lucro := DM.qryAux['Emp_Porc_Lucro'];
+    if DM.qryAux['Emp_RazaoSocial'] <> null then
+      Result.RazaoSocial := DM.qryAux['Emp_RazaoSocial']
+    else
+      Result.RazaoSocial := '';
+    if DM.qryAux['Emp_NomeFantasia'] <> null then
+      Result.NomeFantasia := DM.qryAux['Emp_NomeFantasia']
+    else
+      Result.NomeFantasia := '';
+    if DM.qryAux['Emp_Endereco'] <> null then
+      Result.Endereco := DM.qryAux['Emp_Endereco']
+    else
+      Result.Endereco := '';
+    if DM.qryAux['Emp_InscEstadual'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_InscEstadual']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_UF'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_UF']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_TelResp'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_TelResp']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_NomeResp'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_NomeResp']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_CargoResp'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_CargoResp']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_Email'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_Email']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_CNPJ'] <> null then
+      Result.CNPJ := DM.qryAux['Emp_CNPJ']
+    else
+      Result.CNPJ := '';
+    if DM.qryAux['Emp_Telefone'] <> null then
+      Result.Telefone := DM.qryAux['Emp_Telefone']
+    else
+      Result.Telefone := '';
+    if DM.qryAux['Emp_Porc_Lucro'] <> null then
+      Result.Lucro := DM.qryAux['Emp_Porc_Lucro']
+    else
+      Result.Lucro := 0;
   End;
 End;
+
+/// NAO FORAM IMPLEMENTADAS AS FUNCOES DA EMPRESA
+//Function Retorna_Empresas_Cadastradas(Campo, Termo, Ordenacao: String);
+  //: Empresas_Cadastradas;
+//Function Retorna_Proximo_Codigo_Empresa: String;
+// POIS NAO EXISTE MAIS DE UMA EMPRESA NO SISTEMA
 
 Procedure Grava_Dados_Cliente(Dados_Atuais: Dados_Cliente);
 Begin
@@ -440,6 +546,59 @@ Begin
     If LowerCase(Campo) = 'codbarras' Then
     Begin
       SQL.Add('Where Pro_CodBarras Like ' + QuotedStr(Termo + '%'));
+    End;
+    If Ordenacao = 'AZ' Then
+      SQL.Add('Order By Pro_Descricao Asc');
+    If Ordenacao = 'ZA' Then
+      SQL.Add('Order By Pro_Descricao Desc');
+    If Ordenacao = '09' Then
+      SQL.Add('Order By Pro_Codigo Asc');
+    If Ordenacao = '90' Then
+      SQL.Add('Order By Pro_Codigo Desc');
+    Open; // A SQL acima é executada
+    FetchAll;
+    SetLength(Result, 0);
+    For I := 1 to DM.qryAux.RecordCount do
+    Begin
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1].Codigo := DM.qryAux['Pro_Codigo'];
+      Result[Length(Result) - 1].Descricao := DM.qryAux['Pro_Descricao'];
+      Result[Length(Result) - 1].Cod_Barras := DM.qryAux['Pro_CodBarras'];
+      Result[Length(Result) - 1].Preco_Custo := DM.qryAux['Pro_PreCusto'];
+      Result[Length(Result) - 1].Preco_Venda := DM.qryAux['Pro_PreVenda'];
+      Result[Length(Result) - 1].Estoque_Atual := DM.qryAux['Pro_Estoque'];
+      Result[Length(Result) - 1].Estoque_Minimo := DM.qryAux['Pro_EstoqueMin'];
+      Result[Length(Result) - 1].Cod_Grupo := DM.qryAux['Pro_Cod_Grupo'];
+      Result[Length(Result) - 1].Cod_SubGrupo := DM.qryAux['Pro_Cod_SubGrupo'];
+      DM.qryAux.Next;
+    End;
+    Close;
+  End;
+End;
+
+Function Retorna_Produtos_Cadastrados2(Campo, Ordenacao: String)
+  : Produtos_Cadastrados;
+{ Valores possíveis para "Campo"
+  Codigo : Pro_Codigo
+  Descricao : Pro_Descricao
+  Codbarras : Pro_CodBarras
+}
+Var
+  I: Integer;
+Begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('Select *');
+    SQL.Add('From Produto');
+    If LowerCase(Campo) = 'descricao' Then
+    Begin
+      SQL.Add('Where Pro_Descricao');
+    End;
+    If LowerCase(Campo) = 'codbarras' Then
+    Begin
+      SQL.Add('Where Pro_CodBarras');
     End;
     If Ordenacao = 'AZ' Then
       SQL.Add('Order By Pro_Descricao Asc');
@@ -910,4 +1069,43 @@ Begin
 
 End;
 
+function Retorna_Total_VendaPorMes(Mes: String):Double;
+begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select sum(ven_total) from venda where ven_data like ');
+    SQL.Add(QuotedStr('%_'+mes+'%'));
+    Open;
+    If DM.qryAux.RecordCount <> 0 Then
+      if DM.qryAux.FieldByName('sum').Value = null then
+        Result := 0
+      else
+        Result := DM.qryAux['sum']
+    Else
+      Result := 0;
+    Close;
+  End;
+end;
+
+function Retorna_Dados_VendaPorMes(Mes: String):Double;
+begin
+  With DM.qryAux Do
+  Begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select sum(ven_total) from venda where ven_data like ');
+    SQL.Add(QuotedStr('%_'+mes+'%'));
+    Open;
+    If DM.qryAux.RecordCount <> 0 Then
+      if DM.qryAux.FieldByName('sum').Value = null then
+        Result := 0
+      else
+        Result := DM.qryAux['sum']
+    Else
+      Result := 0;
+    Close;
+  End;
+end;
 end.

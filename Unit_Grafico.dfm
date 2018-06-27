@@ -194,6 +194,7 @@ object frmGrafico: TfrmGrafico
     Height = 21
     TabOrder = 2
     Text = '<Selecione o gr'#225'fico>'
+    OnChange = ComboBox1Change
   end
   object Button2: TButton
     Left = 159
@@ -250,7 +251,7 @@ object frmGrafico: TfrmGrafico
     Text = '<Selecione o m'#234's>'
   end
   object DBCrossTabSource1: TDBCrossTabSource
-    DataSet = DM.IBTableVenda
+    DataSet = DM.IBTVenda
     Formula = gfCount
     Series = Series1
     Left = 200

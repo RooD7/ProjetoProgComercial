@@ -141,8 +141,6 @@ Var
   str: String;
   x: Double;
 begin
-  if ComboBox1.ItemIndex = 1 then
-        ComboBox3.Enabled := false;
   ComboBox1.Parent := Self;
   //Visual options
   ComboBox1.DoubleBuffered := true;
@@ -154,7 +152,7 @@ begin
   //ComboBox1.AddItem('Vendas por dia', nil);
   ComboBox1.AddItem('Vendas por mes', nil);
   //Setting the default value
-  ComboBox1.ItemIndex := 0;
+  ComboBox1.ItemIndex := 1;
 
 
   ComboBox2.Parent := Self;

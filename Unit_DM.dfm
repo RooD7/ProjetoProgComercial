@@ -66,14 +66,14 @@ object DM: TDM
     Left = 376
     Top = 168
   end
-  object IBTableVenda: TIBTable
+  object IBTVenda: TIBTable
     Database = IBDatabase1
     Transaction = IBTransaction1
     TableName = 'VENDA'
     Left = 72
     Top = 256
   end
-  object IBTableProduto: TIBTable
+  object IBTProduto: TIBTable
     Database = IBDatabase1
     Transaction = IBTransaction1
     TableName = 'PRODUTO'

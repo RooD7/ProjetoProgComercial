@@ -70,7 +70,6 @@ begin
     else
       if ComboBox1.ItemIndex = 1 then
       begin
-        ComboBox3.Enabled := false;
         x := Unit_Persistencia.Retorna_Dados_VendaPorMes('01');
         Series1.Add(x, 'Janeiro');
         x := Unit_Persistencia.Retorna_Dados_VendaPorMes('02');
@@ -142,7 +141,6 @@ Var
   str: String;
   x: Double;
 begin
-
   ComboBox1.Parent := Self;
   //Visual options
   ComboBox1.DoubleBuffered := true;
