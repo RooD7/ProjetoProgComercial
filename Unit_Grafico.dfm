@@ -11,18 +11,19 @@ object frmGrafico: TfrmGrafico
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 61
+    Top = 293
     Width = 29
     Height = 13
     Caption = 'In'#237'cio:'
   end
   object Label2: TLabel
     Left = 8
-    Top = 88
+    Top = 320
     Width = 42
     Height = 13
     Caption = 'T'#233'rmino:'
@@ -47,7 +48,6 @@ object frmGrafico: TfrmGrafico
     Width = 136
     Height = 13
     Caption = 'Vendas por produto por m'#234's'
-    OnClick = Label5Click
   end
   object Chart1: TChart
     Left = 256
@@ -71,8 +71,9 @@ object frmGrafico: TfrmGrafico
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Style = smsLabelPercent
       Marks.Visible = True
-      Title = 'Vendas totais por m'#234's'
+      DataSource = DBCrossTabSource1
       XValues.Order = loAscending
       YValues.Name = 'Pie'
       YValues.Order = loNone
@@ -94,13 +95,16 @@ object frmGrafico: TfrmGrafico
       Frame.OuterBrush.Gradient.Visible = True
       Frame.Visible = False
       Frame.Width = 4
+      MultiPie = mpDisabled
       OtherSlice.Legend.Visible = False
       OtherSlice.Style = poBelowPercent
     end
     object Series2: TPieSeries
+      LegendTitle = 'Produtos'
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas totais por produto por m'#234's'
       XValues.Order = loAscending
@@ -124,13 +128,16 @@ object frmGrafico: TfrmGrafico
       Frame.OuterBrush.Gradient.Visible = True
       Frame.Visible = False
       Frame.Width = 4
+      MultiPie = mpDisabled
       OtherSlice.Legend.Visible = False
       OtherSlice.Style = poBelowPercent
     end
     object Series3: TBarSeries
+      Active = False
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas por dia'
       Emboss.Color = 8947848
@@ -141,11 +148,28 @@ object frmGrafico: TfrmGrafico
       YValues.Order = loNone
     end
     object Series4: TBarSeries
+      Active = False
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
+      Marks.Style = smsLabelValue
       Marks.Visible = True
       Title = 'Vendas por m'#234's'
+      Emboss.Color = 8947848
+      Shadow.Color = 8947848
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Bar'
+      YValues.Order = loNone
+    end
+    object Series5: TBarSeries
+      Active = False
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Style = smsLabelValue
+      Marks.Visible = True
+      Title = 'Vendas por produto por m'#234's'
       Emboss.Color = 8882055
       Shadow.Color = 8882055
       XValues.Name = 'X'
@@ -153,63 +177,32 @@ object frmGrafico: TfrmGrafico
       YValues.Name = 'Bar'
       YValues.Order = loNone
     end
-    object Series5: TBarSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = True
-      Title = 'Vendas por produto por m'#234's'
-      Emboss.Color = 8750469
-      Shadow.Color = 8750469
-      XValues.Name = 'X'
-      XValues.Order = loAscending
-      YValues.Name = 'Bar'
-      YValues.Order = loNone
-    end
   end
   object Button1: TButton
-    Left = 167
-    Top = 22
+    Left = 159
+    Top = 38
     Width = 75
     Height = 25
     Caption = 'Gerar'
     TabOrder = 1
     OnClick = Button1Click
   end
-  object DateTimePicker1: TDateTimePicker
-    Left = 56
-    Top = 53
-    Width = 186
-    Height = 21
-    Date = 43276.590481701390000000
-    Time = 43276.590481701390000000
-    TabOrder = 2
-  end
-  object DateTimePicker2: TDateTimePicker
-    Left = 56
-    Top = 80
-    Width = 186
-    Height = 21
-    Date = 43276.590481701390000000
-    Time = 43276.590481701390000000
-    TabOrder = 3
-  end
   object ComboBox1: TComboBox
     Left = 8
     Top = 26
     Width = 145
     Height = 21
-    TabOrder = 4
+    TabOrder = 2
     Text = '<Selecione o gr'#225'fico>'
   end
   object Button2: TButton
-    Left = 167
+    Left = 159
     Top = 134
     Width = 75
     Height = 25
     Caption = 'Gerar'
-    TabOrder = 5
-    OnClick = Button1Click
+    TabOrder = 3
+    OnClick = Button2Click
   end
   object DateTimePicker4: TDateTimePicker
     Left = 56
@@ -218,14 +211,51 @@ object frmGrafico: TfrmGrafico
     Height = 21
     Date = 43276.590481701390000000
     Time = 43276.590481701390000000
-    TabOrder = 6
+    TabOrder = 4
   end
   object ComboBox2: TComboBox
     Left = 56
     Top = 165
     Width = 186
     Height = 21
-    TabOrder = 7
+    TabOrder = 5
     Text = '<Selecione o produto>'
+  end
+  object MaskEdit_Ini: TMaskEdit
+    Left = 56
+    Top = 285
+    Width = 186
+    Height = 21
+    EditMask = '!99/99/0000;1;_'
+    MaxLength = 10
+    TabOrder = 6
+    Text = '  /  /    '
+  end
+  object MaskEdit_Fim: TMaskEdit
+    Left = 56
+    Top = 312
+    Width = 186
+    Height = 21
+    EditMask = '!99/99/0000;1;_'
+    MaxLength = 10
+    TabOrder = 7
+    Text = '  /  /    '
+  end
+  object ComboBox3: TComboBox
+    Left = 8
+    Top = 53
+    Width = 145
+    Height = 21
+    TabOrder = 8
+    Text = '<Selecione o m'#234's>'
+  end
+  object DBCrossTabSource1: TDBCrossTabSource
+    Active = True
+    DataSet = DM.IBTableVenda
+    Formula = gfCount
+    GroupField = 'VEN_DATA'
+    LabelField = 'VEN_CODIGO'
+    Series = Series1
+    ValueField = 'VEN_TOTAL'
   end
 end

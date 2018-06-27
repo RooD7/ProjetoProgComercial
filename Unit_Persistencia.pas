@@ -119,7 +119,6 @@ Function Retorna_SubGrupoProds_Cadastrados(Campo, Termo, Ordenacao: String)
   : SubGrupoProds_Cadastrados;
 Function Retorna_Proximo_Codigo_SubGrupoProd: String;
 Function Retorna_Codigo_SubGrupo(Descricao: String): Integer;
-
 // subrotinas de vendas
 Function Retorna_Proximo_Codigo_Venda: String;
 Function Retorna_Prox_Codigo_ProdVenda: String;
